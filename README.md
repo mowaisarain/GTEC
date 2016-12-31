@@ -1,12 +1,9 @@
-## Welcome to GitHub Pages
+## Welcome to GTEC GitHub Repository
 
-You can use the [editor on GitHub](https://github.com/mowaisarain/GTEC/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+GTEC is a free software distributed under GPL version 2.0 license. GTEC implements multi constellation GNSS derived TEC(Total Electron Content) calibration model by Luigi Ciraolo and Katy Alazo Cuartas from [T/ICT4D Lab](http://t-ict4d.ictp.it/nequick2/gnss-tec-calibration) ICTP - Abdus Salam International Center for Theoretical Physics.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+### Web Model
+A web based model is also available at [T/ICT4D GNSS TEC Calibration](http://t-ict4d.ictp.it/nequick2/gps-tec-calibration-online)
 
 ```markdown
 Syntax highlighted code block
