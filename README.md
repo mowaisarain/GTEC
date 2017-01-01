@@ -14,6 +14,6 @@ Have questions about code? Check out code [documentation](https://github.com/mow
 
 ##### <a name="ref1"></a>^^Reference 1
 Ciraolo, L., et al. "Calibration errors on experimental slant total electron content (TEC) determined with GPS." Journal of Geodesy 81.2 (2007): 111-120.
-##### <a name="ref2"></a>^^^Reference 1
+##### <a name="ref2"></a>^^^Reference 2
 Calibration Fortran code implemented by _Katy Alazo Cuartas_
 
