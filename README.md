@@ -9,7 +9,7 @@ A web based model is also available at [T/ICT4D GNSS TEC Calibration](http://t-i
 
 ### Support or Contact
 
-Have questions about code? Check out code [documentation](https://github.com/mowaisarain/GTEC/doxygen.md) or [contact author](mailto:owaisarain@gmail.com), questions regarding calibration model could be addressed to [_katy Alazo_](mailto:kalazo_c@ictp.it ).
+Have questions about code? Check out code [documentation](https://github.com/mowaisarain/GTEC/doc/) or [contact author](mailto:owaisarain@gmail.com), questions regarding calibration model could be addressed to [_katy Alazo_](mailto:kalazo_c@ictp.it ).
 
 
 ##### <a name="ref1"></a>Reference 1
