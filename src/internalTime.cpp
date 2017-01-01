@@ -1,6 +1,7 @@
 /*
-    GTEC - Multi Constellation GNSS Derived TEC Calibration Model 
-    by T/ICT4D Lab ICTP.
+    GTEC -  A high performance standardized implementation of 
+    Multi Constellation GNSS Derived TEC Calibration 
+    (Model by T/ICT4D Lab ICTP).
     Copyright (C) 2016,2017  Muhammad Owais
     
     This file is part of GTEC.
@@ -16,7 +17,18 @@
 
     You should have received a copy of the GNU General Public License
     along with GTEC.  If not, see <http://www.gnu.org/licenses/>.
+    
+    Disclaimer: GTEC is a research implementation which is under 
+    development and should not be considered fully functional unless 
+    otherwise stated or a release is announced. Author is providing this 
+    software on a best effort AS IS basis and do not warrant validity, 
+    functionality, and suitability for any particular purpose. All copyright 
+    notices must be kept intact. 
+
 */
+
+
+
 
 
 #include "internalTime.hpp"

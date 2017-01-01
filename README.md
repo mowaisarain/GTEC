@@ -15,6 +15,9 @@ Documentation for GTEC is generated using doxygen. please refer to the [html](ht
 
 Have questions about code? [contact author](mailto:owaisarain@gmail.com), questions regarding calibration model could be addressed to [_katy Alazo_](mailto:kalazo_c@ictp.it ).
 
+### Disclaimer
+
+GTEC is a research implementation which is under development and should not be considered fully functional unless otherwise stated or a release is announced. Author is providing this software on a best effort AS IS basis and do not warrant validity, functionality, and suitability for any particular purpose.  
 
 ##### <a name="ref1"></a>Reference 1
 Ciraolo, L., et al. "Calibration errors on experimental slant total electron content (TEC) determined with GPS." Journal of Geodesy 81.2 (2007): 111-120.
