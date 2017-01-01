@@ -7,7 +7,7 @@
 A web based model is also available at [T/ICT4D GNSS TEC Calibration](http://t-ict4d.ictp.it/nequick2/gps-tec-calibration-online)
 
 
-## GTEC Documentation
+### GTEC Documentation
 Documentation for GTEC is generated using doxygen. please refer to the [html](https://mowaisarain.github.io/GTEC/doc/html/index.html) or [PDF](https://mowaisarain.github.io/GTEC/doc/refman.pdf) version of GTEC manual.
 
 
