@@ -38,3 +38,6 @@
 
 # Doxygen latex directory
 doc/latex/*
+
+# samples directory
+samples/* 
