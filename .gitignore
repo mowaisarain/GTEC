@@ -35,3 +35,6 @@
 # CodeLite workspace files
 *.workspace
 *.project
+
+# Doxygen latex directory
+doc/latex/*
