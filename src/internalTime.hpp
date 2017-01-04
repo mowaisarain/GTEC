@@ -105,10 +105,8 @@ class internalTime
     
     void toUNIXTime(int); //sets corresponding UNIX internalTime + leapseconds
     
-  private:
     internalTime(); 
     /**< Default Constructor. 
-     * Hidden, cannot be used.
      */
 
 };

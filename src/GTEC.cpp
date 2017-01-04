@@ -29,8 +29,6 @@
 
 
 
-
-
 #include <iostream>
 #include <fstream>
 #include <exception>
@@ -38,15 +36,18 @@
 #include "constants.hpp"
 #include "navigation.hpp"
 #include "inout.hpp"
-#include "igrf.hpp"
 #include "ObsData.hpp"
 
-int main()
+int main(int argc, char* argv[])
 {    
+    
+    inout io;
+    io.process_Inputs(argc,argv);
+    
     std::vector<std::string >  fnamvec_o = {};
-    fnamvec_o.push_back("../data/rdlt/rdlt00dom_r_20161510000_01d_15s_mo.rnx");
-    fnamvec_o.push_back("../data/rdlt/rdlt00dom_r_20161520000_01d_15s_mo.rnx");
-    fnamvec_o.push_back("../data/rdlt/rdlt00dom_r_20161530000_01d_15s_mo.rnx");
+    fnamvec_o.push_back("samples/rdlt00dom_r_20161510000_01d_15s_mo.rnx");
+    fnamvec_o.push_back("samples/rdlt00dom_r_20161520000_01d_15s_mo.rnx");
+    fnamvec_o.push_back("samples/rdlt00dom_r_20161530000_01d_15s_mo.rnx");
 
     int samplingtime = 10; //in Minutes
     
@@ -70,58 +71,10 @@ int main()
     //Navigation files
 
     std::vector<std::string >  fnamvec_n = {};
-    fnamvec_n.push_back("/home/mowais/project/code/data/brdc/mixed/brdm1510.16p");
-    fnamvec_n.push_back("/home/mowais/project/code/data/brdc/mixed/brdm1520.16p");
-    fnamvec_n.push_back("/home/mowais/project/code/data/brdc/mixed/brdm1530.16p");
-//    fnamvec_n.push_back("/home/mowais/project/code/data/brdc/mixed/brdm1540.16p");
-//    fnamvec_n.push_back("/home/mowais/project/code/data/brdc/mixed/brdm1550.16p");
-//    fnamvec_n.push_back("/home/mowais/project/code/data/brdc/mixed/brdm1560.16p");
-//    fnamvec_n.push_back("/home/mowais/project/code/data/brdc/mixed/brdm1570.16p");
-//    fnamvec_n.push_back("/home/mowais/project/code/data/brdc/mixed/brdm1580.16p");
-//    fnamvec_n.push_back("/home/mowais/project/code/data/brdc/mixed/brdm1590.16p");
-//    fnamvec_n.push_back("/home/mowais/project/code/data/brdc/mixed/brdm1600.16p");
-//    fnamvec_n.push_back("/home/mowais/project/code/data/brdc/mixed/brdm1610.16p");
-//    fnamvec_n.push_back("/home/mowais/project/code/data/brdc/mixed/brdm1620.16p");
-//    fnamvec_n.push_back("/home/mowais/project/code/data/brdc/mixed/brdm1630.16p");
-//    fnamvec_n.push_back("/home/mowais/project/code/data/brdc/mixed/brdm1640.16p");
-//    fnamvec_n.push_back("/home/mowais/project/code/data/brdc/mixed/brdm1650.16p");
-//    fnamvec_n.push_back("/home/mowais/project/code/data/brdc/mixed/brdm1660.16p");
-//    fnamvec_n.push_back("/home/mowais/project/code/data/brdc/mixed/brdm1670.16p");
-//    fnamvec_n.push_back("/home/mowais/project/code/data/brdc/mixed/brdm1680.16p");
-//    fnamvec_n.push_back("/home/mowais/project/code/data/brdc/mixed/brdm1690.16p");
-//    fnamvec_n.push_back("/home/mowais/project/code/data/brdc/mixed/brdm1700.16p");
-//    fnamvec_n.push_back("/home/mowais/project/code/data/brdc/mixed/brdm1710.16p");
-//    fnamvec_n.push_back("/home/mowais/project/code/data/brdc/mixed/brdm1720.16p");
-//    fnamvec_n.push_back("/home/mowais/project/code/data/brdc/mixed/brdm1730.16p");
-//    fnamvec_n.push_back("/home/mowais/project/code/data/brdc/mixed/brdm1740.16p");
-//    fnamvec_n.push_back("/home/mowais/project/code/data/brdc/mixed/brdm1750.16p");
-//    fnamvec_n.push_back("/home/mowais/project/code/data/brdc/mixed/brdm1760.16p");
-//    fnamvec_n.push_back("/home/mowais/project/code/data/brdc/mixed/brdm1770.16p");
-//    fnamvec_n.push_back("/home/mowais/project/code/data/brdc/mixed/brdm1780.16p");
-//    fnamvec_n.push_back("/home/mowais/project/code/data/brdc/mixed/brdm1790.16p");
-//    fnamvec_n.push_back("/home/mowais/project/code/data/brdc/mixed/brdm1800.16p");
-//    fnamvec_n.push_back("/home/mowais/project/code/data/brdc/mixed/brdm1810.16p");
-//    fnamvec_n.push_back("/home/mowais/project/code/data/brdc/mixed/brdm1820.16p");
-//    fnamvec_n.push_back("/home/mowais/project/code/data/brdc/mixed/brdm1830.16p");
-//    fnamvec_n.push_back("/home/mowais/project/code/data/brdc/mixed/brdm1840.16p");
-//    fnamvec_n.push_back("/home/mowais/project/code/data/brdc/mixed/brdm1850.16p");
-//    fnamvec_n.push_back("/home/mowais/project/code/data/brdc/mixed/brdm1860.16p");
-//    fnamvec_n.push_back("/home/mowais/project/code/data/brdc/mixed/brdm1870.16p");
-//    fnamvec_n.push_back("/home/mowais/project/code/data/brdc/mixed/brdm1880.16p");
-//    fnamvec_n.push_back("/home/mowais/project/code/data/brdc/mixed/brdm1890.16p");
-//    fnamvec_n.push_back("/home/mowais/project/code/data/brdc/mixed/brdm1900.16p");
-//    fnamvec_n.push_back("/home/mowais/project/code/data/brdc/mixed/brdm1910.16p");
-//    fnamvec_n.push_back("/home/mowais/project/code/data/brdc/mixed/brdm1920.16p");
-//    fnamvec_n.push_back("/home/mowais/project/code/data/brdc/mixed/brdm1930.16p");
-//    fnamvec_n.push_back("/home/mowais/project/code/data/brdc/mixed/brdm1940.16p");
-//    fnamvec_n.push_back("/home/mowais/project/code/data/brdc/mixed/brdm1950.16p");
-//    fnamvec_n.push_back("/home/mowais/project/code/data/brdc/mixed/brdm1960.16p");
-//    fnamvec_n.push_back("/home/mowais/project/code/data/brdc/mixed/brdm1970.16p");
-//    fnamvec_n.push_back("/home/mowais/project/code/data/brdc/mixed/brdm1980.16p");
-//    fnamvec_n.push_back("/home/mowais/project/code/data/brdc/mixed/brdm1990.16p");
-//    fnamvec_n.push_back("/home/mowais/project/code/data/brdc/mixed/brdm2000.16p");
-
-    
+    fnamvec_n.push_back("samples/brdm1510.16p");
+    fnamvec_n.push_back("samples/brdm1520.16p");
+    fnamvec_n.push_back("samples/brdm1530.16p");
+  
     navigation navdata(fnamvec_n);
     navdata.read();
 

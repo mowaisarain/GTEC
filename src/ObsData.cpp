@@ -51,16 +51,14 @@ void ObsData::setSysFlags(std::string sysString)
                 readGAL = true;
             else if(sysString[i] == 'C')
                 readBEI = true;
-            else if(sysString[i] == 'J')
-                readQZS = true;
         }
 };
 
 ObsData::ObsData(std::vector<std::string> fvec, std::string sysString)
 {
     fnames = fvec;
-    hasGPS = hasGLO = hasGAL = hasBEI = hasQZS = false;
-    readGPS = readGLO = readGAL = readBEI = readQZS = false;
+    hasGPS = hasGLO = hasGAL = hasBEI = false;
+    readGPS = readGLO = readGAL = readBEI = false;
 
     setSysFlags(sysString);
 
@@ -218,11 +216,11 @@ void ObsData::read()
 
                             if(str[0] == 'A' && str[1] == 'P' && str[2] == 'P' && str[3] == 'R' && str[4] == 'O' && str[5] == 'X')
                                 {
-                                    MarkerPositionX = stof(line, &pos);
+                                    MarkerPosition.X = stof(line, &pos);
                                     tmp = line.substr(pos);
-                                    MarkerPositionY = stof(tmp, &pos);
+                                    MarkerPosition.Y = stof(tmp, &pos);
                                     tmp = tmp.substr(pos);
-                                    MarkerPositionZ = stof(tmp);
+                                    MarkerPosition.Z = stof(tmp);
                                 }
 
                             if(str[0] == 'T' && str[1] == 'I' && str[2] == 'M' && str[3] == 'E' && str[8] == 'F' && str[9] == 'I' &&
@@ -250,9 +248,6 @@ void ObsData::read()
                             if(line[0] == 'E' && str[0] == 'S' && str[1] == 'Y' && str[2] == 'S' && str[10] == 'O' &&
                                str[11] == 'B' && str[12] == 'S')
                                 hasGAL = true;
-                            if(line[0] == 'J' && str[0] == 'S' && str[1] == 'Y' && str[2] == 'S' && str[10] == 'O' &&
-                               str[11] == 'B' && str[12] == 'S')
-                                hasQZS = true;
                             if(line[0] == 'C' && str[0] == 'S' && str[1] == 'Y' && str[2] == 'S' && str[10] == 'O' &&
                                str[11] == 'B' && str[12] == 'S')
                                 hasBEI = true;

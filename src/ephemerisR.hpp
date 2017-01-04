@@ -30,39 +30,31 @@
 
 
 
-#ifndef INOUT_HPP
-#define INOUT_HPP
+#ifndef __EPHEMERISR__
+#define __EPHEMERISR__
 
-#include <string>
-#include <vector>
+#include "triple.hpp"
 
-class inout
+
+class ephemerisR
 {
-  public:
-	int nobsfiles;		//Number of Input Observation Files
-	int nnavfiles;		//Number of Input Navigation Files
+    public:
+        int tb;     //Ephemerides reference epoch 
+        
+        float px;   //Coordinate at te, in PZ-90 
+        float py;   //Coordinate at te, in PZ-90
+        float pz;   //Coordinate at te, in PZ-90
+        
+        float vx;   //Velocity component at te, in PZ-90
+        float vy;   //Velocity component at te, in PZ-90
+        float vz;   //Velocity component at te, in PZ-90
+        
+        float xdd;  //Sun and Moon acceleration at te
+        float ydd;  //Sun and Moon acceleration at te
+        float zdd;  //Sun and Moon acceleration at te
+        
+        void position(int , triple&);
     
-	bool systemGPS;
-	bool systemGlonass;
-	bool systemGalileo;
-	bool systemBeidou;
-	bool systemQZSS;
-    
-    int numDays;
-    std::string inputDirectory;
-    std::string satSys;
-    int sampingTime;
-    
-
-
-	std::vector<std::string> navfiles;	//Observation file names from config file 
-	std::vector<std::string> obsfiles;	//Navigation file names from config file
-
-	void process_Inputs(int ac, char* args[]);
-	inout();
-	void dump(std::ostream& s);
 };
-
-
 
 #endif

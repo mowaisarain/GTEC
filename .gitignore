@@ -41,3 +41,6 @@ doc/latex/*
 
 # samples directory
 samples/* 
+
+# Build Directory
+build/*

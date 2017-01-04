@@ -29,40 +29,18 @@
 
 
 
+#ifndef __INT_PAIR__
+#define __INT_PAIR__
 
-#ifndef INOUT_HPP
-#define INOUT_HPP
-
-#include <string>
-#include <vector>
-
-class inout
+class int_pair
 {
   public:
-	int nobsfiles;		//Number of Input Observation Files
-	int nnavfiles;		//Number of Input Navigation Files
     
-	bool systemGPS;
-	bool systemGlonass;
-	bool systemGalileo;
-	bool systemBeidou;
-	bool systemQZSS;
+    int start;
+    int end;
     
-    int numDays;
-    std::string inputDirectory;
-    std::string satSys;
-    int sampingTime;
-    
-
-
-	std::vector<std::string> navfiles;	//Observation file names from config file 
-	std::vector<std::string> obsfiles;	//Navigation file names from config file
-
-	void process_Inputs(int ac, char* args[]);
-	inout();
-	void dump(std::ostream& s);
+    int_pair();
+    int_pair(int , int);
 };
-
-
 
 #endif

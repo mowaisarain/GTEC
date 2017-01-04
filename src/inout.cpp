@@ -33,7 +33,7 @@
 #include "inout.hpp"
 #include <string>
 #include <sstream>
-
+#include <algorithm>
 
 
 
@@ -60,50 +60,41 @@ void inout::process_Inputs(int ac, char* args[])
 		exit(1);
 	}
 
-	std::string buffer;
+	std::string line;
 
 	std::ifstream inpfile;
 	inpfile.open(args[1]);
-
-
-	std::getline(inpfile, buffer);
-	obsfiles[0] = buffer;
-	nobsfiles = atoi(buffer.c_str());
-
-	std::getline(inpfile, buffer);
-	navfiles[0] = buffer;
-	nnavfiles = atoi(buffer.c_str());
-
-	for(int i=0;i<nobsfiles;++i)
-	{
-		std::getline(inpfile, buffer);
-		obsfiles.push_back(buffer);
-	}
-	for(int i=0;i<nnavfiles;++i)
-	{
-		std::getline(inpfile, buffer);
-		navfiles.push_back(buffer);
-	}
-
-	//Now process last two lines of input parameters
-	std::getline(inpfile, buffer);
-	for(int i=0; i<buffer.size(); ++i)
-	{
-		if(buffer[i] == 'G')
-			systemGPS = true;
-		if(buffer[i] == 'R')
-			systemGlonass = true;
-		if(buffer[i] == 'E')
-			systemGalileo = true;
-		if(buffer[i] == 'B')
-			systemBeidou = true;
-		if(buffer[i] == 'Q')
-			systemQZSS = true;
-	}
-
-
-	inpfile.close();
-
+    
+    
+    if (inpfile.is_open())
+    {
+        while(std::getline(inpfile, line))
+        {
+            //strip comment
+            line.erase( std::find( line.begin(), line.end(), '#' ), line.end() );
+            //strip spaces
+            line.erase(remove_if(line.begin(), line.end(), isspace), line.end());
+            
+            if(line.size() == 0)
+            {
+                //Continue to next line
+                continue;
+            }
+            else
+            {
+                //process line
+                std::cout << line << std::endl;
+            }
+        }
+    }
+    else
+    {
+        std::cout << "Cannot open config file.\n";
+        exit(1);
+    }
+    
+    
+    inpfile.close();
 };
 
 
