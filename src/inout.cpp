@@ -35,9 +35,9 @@
 #include <sstream>
 #include <algorithm>
 #include <exception>
+#include <boost/filesystem.hpp>
 
-
-
+using namespace boost::filesystem;
 
 inout::inout()
 {
@@ -187,10 +187,51 @@ void inout::process_Inputs(int ac, char* args[])
         std::cout << "Cannot open config file.\n";
         exit(1);
     }
-    
-    
     inpfile.close();
+    
+    
+    checkInputFiles();
+    
+    
 };
+
+
+
+void inout::checkInputFiles()
+{
+    //list files in input directory
+    path p(inputDirectory);
+    
+    if(exists(p))
+    {
+        if (is_directory(p))
+        {
+            //List files
+            std::cout << "Input directory path: " << p << std::endl;
+            for (directory_entry& d: directory_iterator(p))
+            {
+                std::cout << "    " << d.path() << std::endl;
+            }
+        }
+        else
+        {
+            //Path not a directory!
+            std::cout << "Input path not a directory.\n";
+            exit(1);
+        }
+    }
+    else
+    {
+        //Path does not exist!
+        std::cout << "Input directory doesn't exist.\n";
+        exit(1);
+    }
+};
+
+
+
+
+
 
 
 void inout::dump(std::ostream& s)

@@ -37,12 +37,15 @@
 #include "inout.hpp"
 #include "ObsData.hpp"
 
+
+
 int main(int argc, char* argv[])
 {    
     
     inout io;
     io.process_Inputs(argc,argv);
     io.dump(std::cout);
+    
     
     std::vector<std::string >  fnamvec_o = {};
     fnamvec_o.push_back("samples/rdlt00dom_r_20161510000_01d_15s_mo.rnx");

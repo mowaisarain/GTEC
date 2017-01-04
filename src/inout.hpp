@@ -65,6 +65,11 @@ class inout
 	void process_Inputs(int ac, char* args[]);
 	inout();
 	void dump(std::ostream& s);
+    
+    
+  private:
+    void checkInputFiles();
+
 };
 
 

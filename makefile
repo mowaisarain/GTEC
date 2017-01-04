@@ -34,8 +34,9 @@
 
 #------------------------------------------------------------------------------
 CC      = g++
+BOOSTLIB = /usr/local/lib
 CFLAGS  = -std=c++11
-LDFLAGS = 
+LDFLAGS = -lboost_system -lboost_filesystem
 PROGRAM = GTEC
 SRCDIR  = src
 OBJS = inout.o int_pair.o ptr_pair.o internalTime.o ObsData.o navigation.o ephemerisGE.o ephemerisR.o triple.o GTEC.o
