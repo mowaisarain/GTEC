@@ -34,18 +34,20 @@
 #include <string>
 #include <sstream>
 #include <algorithm>
+#include <exception>
+
 
 
 
 inout::inout()
 {
-	navfiles = {""};
-	obsfiles = {""};
-	bool systemGPS = false;
-	bool systemGlonass = false;
-	bool systemGalileo = false;
-	bool systemBeidou = false;
-	bool systemQZSS = false;
+    navfiles = {""};
+    obsfiles = {""};
+    bool systemGPS = false;
+    bool systemGlonass = false;
+    bool systemGalileo = false;
+    bool systemBeidou = false;
+    bool systemQZSS = false;
 };
 
 
@@ -53,23 +55,28 @@ inout::inout()
 //Process Inputs
 void inout::process_Inputs(int ac, char* args[])
 {
-	
-	if(ac != 2)
-	{
-		std::cout << "Usage: " << args[0] << " <config-file>" << std::endl;
-		exit(1);
-	}
+    
+    if(ac != 2)
+    {
+        std::cout << "Usage: " << args[0] << " <config-file>" << std::endl;
+        exit(1);
+    }
 
-	std::string line;
+    std::string line;
+    std::string parameter;
+    std::string value;
+    int lineNumber=0;
 
-	std::ifstream inpfile;
-	inpfile.open(args[1]);
+    std::ifstream inpfile;
+    inpfile.open(args[1]);
     
     
     if (inpfile.is_open())
     {
         while(std::getline(inpfile, line))
         {
+            lineNumber += 1;
+            
             //strip comment
             line.erase( std::find( line.begin(), line.end(), '#' ), line.end() );
             //strip spaces
@@ -83,7 +90,95 @@ void inout::process_Inputs(int ac, char* args[])
             else
             {
                 //process line
-                std::cout << line << std::endl;
+                parameter = line.substr(0,line.find( '=' ));
+                
+                if (parameter == "NUMDAYS")
+                {
+                    //Set number of days to calibrate
+                    value = line.substr(line.find( '=' )+1);
+                    try
+                    {
+                        numDays = stoi(value);
+                    }
+                    catch (std::exception& e)
+                    {
+                        std::cout << "Invalid parameter value in config file at line: " << lineNumber << "\n";
+                        exit(1);
+                    }
+                }
+                else if (parameter == "INPDIR")
+                {
+                    //Set input directory
+                    inputDirectory = line.substr(line.find( '=' )+1);
+                }
+                else if (parameter == "SATSYS")
+                {
+                    //Set satellite systems string
+                    satSys = line.substr(line.find( '=' )+1);
+                }
+                else if (parameter == "SAMPLINGTIME")
+                {
+                    //Set sampling time
+                    value = line.substr(line.find( '=' )+1);
+                    try
+                    {
+                        sampingTime = stoi(value);
+                    }
+                    catch (std::exception& e)
+                    {
+                        std::cout << "Invalid parameter value in config file at line: " << lineNumber << "\n";
+                        exit(1);
+                    }
+                }
+                else if (parameter == "MINARCLEN")
+                {
+                    //Set sampling time
+                    value = line.substr(line.find( '=' )+1);
+                    try
+                    {
+                        minArcLen = stoi(value);
+                    }
+                    catch (std::exception& e)
+                    {
+                        std::cout << "Invalid parameter value in config file at line: " << lineNumber << "\n";
+                        exit(1);
+                    }
+                }
+                else if (parameter == "INTRPOLINTRVL")
+                {
+                    //Set sampling time
+                    value = line.substr(line.find( '=' )+1);
+                    try
+                    {
+                        intrpolIntrvl = stoi(value);
+                    }
+                    catch (std::exception& e)
+                    {
+                        std::cout << "Invalid parameter value in config file at line: " << lineNumber << "\n";
+                        exit(1);
+                    }
+                }
+                else if (parameter == "DEGREE")
+                {
+                    //Set sampling time
+                    value = line.substr(line.find( '=' )+1);
+                    try
+                    {
+                        deg = stoi(value);
+                    }
+                    catch (std::exception& e)
+                    {
+                        std::cout << "Invalid parameter value in config file at line: " << lineNumber << "\n";
+                        exit(1);
+                    }
+                }
+                else
+                {
+                    //Invalid parameter
+                    std::cout << "Invalid parameter in config file at line: " << lineNumber << "\n";
+                    exit(1);
+                }
+                
             }
         }
     }
@@ -100,16 +195,17 @@ void inout::process_Inputs(int ac, char* args[])
 
 void inout::dump(std::ostream& s)
 {
-
-	s << "Number of Obs Files: " << nobsfiles << "\n";
-	s << "Number of Nav Files: " << nnavfiles << "\n";
-	s << "System string: " << "\n";
-	s << "GPS: " << systemGPS << "\n";
-	s << "GLONASS: " << systemGlonass << "\n";
-	s << "Galileo: " << systemGalileo << "\n";
-	s << "Beidou: " << systemBeidou << "\n";
-	s << "QZSS: " << systemQZSS << "\n";
-
+    s << "System Configuration from config file.\n";
+    s << "---------------------------------------\n";
+    s << "Number of Days: " << numDays << "\n";
+    s << "Input Directory: " << inputDirectory << "\n";
+    s << "System string: " << satSys << "\n";
+    s << "Sampling Time: " << sampingTime << "\n";
+    s << "Minimum Arc Length: " << minArcLen << "\n";
+    s << "Interpolation Interval: " << intrpolIntrvl << "\n";
+    s << "Interpolation Degree: " << deg << "\n";
+    s << "---------------------------------------";
+    s << std::endl;
 };
 
 

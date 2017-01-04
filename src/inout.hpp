@@ -53,6 +53,10 @@ class inout
     std::string satSys;
     int sampingTime;
     
+    int minArcLen;
+    int intrpolIntrvl;
+    int deg;
+    
 
 
 	std::vector<std::string> navfiles;	//Observation file names from config file 

@@ -31,7 +31,6 @@
 
 #include <iostream>
 #include <fstream>
-#include <exception>
 #include "triple.hpp"
 #include "constants.hpp"
 #include "navigation.hpp"
@@ -43,6 +42,7 @@ int main(int argc, char* argv[])
     
     inout io;
     io.process_Inputs(argc,argv);
+    io.dump(std::cout);
     
     std::vector<std::string >  fnamvec_o = {};
     fnamvec_o.push_back("samples/rdlt00dom_r_20161510000_01d_15s_mo.rnx");
@@ -60,7 +60,7 @@ int main(int argc, char* argv[])
     //observations.dumpSizes();
     //observations.dumpNonZeroArcs();
 
-    obs.pre_process(120,300,6);
+    obs.pre_process(io.minArcLen,io.intrpolIntrvl,io.deg);
     std::cout << "done preprocessing..\n";
 
 
