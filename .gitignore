@@ -44,3 +44,7 @@ samples/*
 
 # Build Directory
 build/*
+
+# Executeable
+GTEC
+GTEC.x
