@@ -51,16 +51,21 @@ class inout
     int numDays;
     std::string inputDirectory;
     std::string satSys;
+    std::string marker;
     int sampingTime;
+    
     
     int minArcLen;
     int intrpolIntrvl;
     int deg;
     
 
+    //Observation file names from imput directory
+	std::vector<std::string> obsfiles;	 
+    
+    //Navigation file names from imput directory
+	std::vector<std::string> navfiles;	
 
-	std::vector<std::string> navfiles;	//Observation file names from config file 
-	std::vector<std::string> obsfiles;	//Navigation file names from config file
 
 	void process_Inputs(int ac, char* args[]);
 	inout();

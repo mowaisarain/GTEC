@@ -45,40 +45,19 @@ int main(int argc, char* argv[])
     inout io;
     io.process_Inputs(argc,argv);
     io.dump(std::cout);
-    
-    
-    std::vector<std::string >  fnamvec_o = {};
-    fnamvec_o.push_back("samples/rdlt00dom_r_20161510000_01d_15s_mo.rnx");
-    fnamvec_o.push_back("samples/rdlt00dom_r_20161520000_01d_15s_mo.rnx");
-    fnamvec_o.push_back("samples/rdlt00dom_r_20161530000_01d_15s_mo.rnx");
 
     int samplingtime = 10; //in Minutes
     
-	ObsData obs(fnamvec_o,"RGEC");
+	ObsData obs(io.obsfiles,io.satSys);
 	obs.read();
     std::cout << "done reading all files..\n";
 
-        
-    //observations.dumpArcBinary('R', 16);
-    //observations.dumpSizes();
-    //observations.dumpNonZeroArcs();
 
     obs.pre_process(io.minArcLen,io.intrpolIntrvl,io.deg);
     std::cout << "done preprocessing..\n";
 
-
-    //observations.dumpArcBinaryPtrsAll();
-    //observations.dumpArcValuePtrsAll();
-    
-    
-    //Navigation files
-
-    std::vector<std::string >  fnamvec_n = {};
-    fnamvec_n.push_back("samples/brdm1510.16p");
-    fnamvec_n.push_back("samples/brdm1520.16p");
-    fnamvec_n.push_back("samples/brdm1530.16p");
   
-    navigation navdata(fnamvec_n);
+    navigation navdata(io.navfiles);
     navdata.read();
 
 

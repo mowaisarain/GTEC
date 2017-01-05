@@ -41,8 +41,6 @@ using namespace boost::filesystem;
 
 inout::inout()
 {
-    navfiles = {""};
-    obsfiles = {""};
     bool systemGPS = false;
     bool systemGlonass = false;
     bool systemGalileo = false;
@@ -172,6 +170,11 @@ void inout::process_Inputs(int ac, char* args[])
                         exit(1);
                     }
                 }
+                else if (parameter == "MARKER")
+                {
+                    //Set marker (station) name
+                    marker = line.substr(line.find( '=' )+1);
+                }
                 else
                 {
                     //Invalid parameter
@@ -201,6 +204,9 @@ void inout::checkInputFiles()
 {
     //list files in input directory
     path p(inputDirectory);
+    path filePath("");
+    std::string pathString;
+    std::size_t found;
     
     if(exists(p))
     {
@@ -210,8 +216,25 @@ void inout::checkInputFiles()
             std::cout << "Input directory path: " << p << std::endl;
             for (directory_entry& d: directory_iterator(p))
             {
-                std::cout << "    " << d.path() << std::endl;
+                filePath = d.path();
+                pathString = filePath.string();
+                found = pathString.find(marker);
+                if (found != std::string::npos)
+                {
+                    obsfiles.push_back(pathString);
+                }
+                else
+                {
+                    found = pathString.find("brdm");
+                    if (found != std::string::npos)
+                    {
+                        navfiles.push_back(pathString);
+                    }
+                }
             }
+            //Sort file names
+            std::sort(obsfiles.begin(),obsfiles.end());
+            std::sort(navfiles.begin(),navfiles.end());
         }
         else
         {
@@ -230,10 +253,6 @@ void inout::checkInputFiles()
 
 
 
-
-
-
-
 void inout::dump(std::ostream& s)
 {
     s << "System Configuration from config file.\n";
@@ -245,6 +264,17 @@ void inout::dump(std::ostream& s)
     s << "Minimum Arc Length: " << minArcLen << "\n";
     s << "Interpolation Interval: " << intrpolIntrvl << "\n";
     s << "Interpolation Degree: " << deg << "\n";
+    s << "Marker Name: " << marker << "\n";
+    s << "Observation Files:\n";
+    for (auto file: obsfiles)
+    {
+        s << file << "\n";
+    }
+    s << "Navigation Files:\n";
+    for (auto file: navfiles)
+    {
+        s << file << "\n";
+    }
     s << "---------------------------------------";
     s << std::endl;
 };
