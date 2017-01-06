@@ -81,6 +81,17 @@ class navigation
         std::vector< std::vector<ephemerisR > > ephemeris_R;
         //!Vector to store objects of type ephemerisGE for BeiDou
         std::vector< std::vector<ephemerisGE > > ephemeris_C;
+        
+        
+        //!Function to compute GLONASS satellite position.
+        /*!This function calculates GLONASS satellite coordinates given
+         * an ephemerisR object, and a step size.
+        * \param initialConditions ephemerisR object containing initial conditions.
+        * \param h Integer step size for next coordinate.
+        * \param pos triple object returned with computed coordinates.
+        */
+        void getPositionR(ephemerisR& initialConditions, int h , triple& pos);
+        
 
     private:
         navigation();
