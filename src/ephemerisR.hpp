@@ -52,8 +52,6 @@ class ephemerisR
         float xdd;  //Sun and Moon acceleration at te
         float ydd;  //Sun and Moon acceleration at te
         float zdd;  //Sun and Moon acceleration at te
-        
-        void position(int , triple&);
     
 };
 
