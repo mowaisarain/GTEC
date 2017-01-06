@@ -103,6 +103,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ab4c4ab34aa1059755e812e153d101bec"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnavigation.html#ab4c4ab34aa1059755e812e153d101bec">navigation</a> (std::vector&lt; std::string &gt; fnames)</td></tr>
 <tr class="memdesc:ab4c4ab34aa1059755e812e153d101bec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor with Input files.  <a href="#ab4c4ab34aa1059755e812e153d101bec">More...</a><br /></td></tr>
 <tr class="separator:ab4c4ab34aa1059755e812e153d101bec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03ddfd1902b235cb225bfa450c01be3c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnavigation.html#a03ddfd1902b235cb225bfa450c01be3c">getPositionR</a> (<a class="el" href="classephemerisR.html">ephemerisR</a> &amp;initialConditions, int h, <a class="el" href="classtriple.html">triple</a> &amp;pos)</td></tr>
+<tr class="memdesc:a03ddfd1902b235cb225bfa450c01be3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to compute GLONASS satellite position.  <a href="#a03ddfd1902b235cb225bfa450c01be3c">More...</a><br /></td></tr>
+<tr class="separator:a03ddfd1902b235cb225bfa450c01be3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -119,20 +122,20 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
 <tr class="memdesc:a2b1fc9382510a80d7c50752dfbeaca77"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores leapSeconds from Navigation files. <br /></td></tr>
 <tr class="separator:a2b1fc9382510a80d7c50752dfbeaca77"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a100045b675e85a5b155f538e66feedca"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a100045b675e85a5b155f538e66feedca"></a>
-std::vector&lt; std::vector&lt; ephemerisGE &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnavigation.html#a100045b675e85a5b155f538e66feedca">ephemeris_G</a></td></tr>
-<tr class="memdesc:a100045b675e85a5b155f538e66feedca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector to store objects of type ephemerisGE for GPS. <br /></td></tr>
+std::vector&lt; std::vector&lt; <a class="el" href="classephemerisGE.html">ephemerisGE</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnavigation.html#a100045b675e85a5b155f538e66feedca">ephemeris_G</a></td></tr>
+<tr class="memdesc:a100045b675e85a5b155f538e66feedca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector to store objects of type <a class="el" href="classephemerisGE.html">ephemerisGE</a> for GPS. <br /></td></tr>
 <tr class="separator:a100045b675e85a5b155f538e66feedca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afeb429ed06a575338d9c4dee16f82969"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afeb429ed06a575338d9c4dee16f82969"></a>
-std::vector&lt; std::vector&lt; ephemerisGE &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnavigation.html#afeb429ed06a575338d9c4dee16f82969">ephemeris_E</a></td></tr>
-<tr class="memdesc:afeb429ed06a575338d9c4dee16f82969"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector to store objects of type ephemerisGE for Galileo. <br /></td></tr>
+std::vector&lt; std::vector&lt; <a class="el" href="classephemerisGE.html">ephemerisGE</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnavigation.html#afeb429ed06a575338d9c4dee16f82969">ephemeris_E</a></td></tr>
+<tr class="memdesc:afeb429ed06a575338d9c4dee16f82969"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector to store objects of type <a class="el" href="classephemerisGE.html">ephemerisGE</a> for Galileo. <br /></td></tr>
 <tr class="separator:afeb429ed06a575338d9c4dee16f82969"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acc536be73b10ee4bd1c32052a4539429"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acc536be73b10ee4bd1c32052a4539429"></a>
-std::vector&lt; std::vector&lt; ephemerisR &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnavigation.html#acc536be73b10ee4bd1c32052a4539429">ephemeris_R</a></td></tr>
-<tr class="memdesc:acc536be73b10ee4bd1c32052a4539429"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector to store objects of type ephemerisR for GLONASS. <br /></td></tr>
+std::vector&lt; std::vector&lt; <a class="el" href="classephemerisR.html">ephemerisR</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnavigation.html#acc536be73b10ee4bd1c32052a4539429">ephemeris_R</a></td></tr>
+<tr class="memdesc:acc536be73b10ee4bd1c32052a4539429"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector to store objects of type <a class="el" href="classephemerisR.html">ephemerisR</a> for GLONASS. <br /></td></tr>
 <tr class="separator:acc536be73b10ee4bd1c32052a4539429"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acb4ab62e83def3e3e9da0dd7555c7542"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acb4ab62e83def3e3e9da0dd7555c7542"></a>
-std::vector&lt; std::vector&lt; ephemerisGE &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnavigation.html#acb4ab62e83def3e3e9da0dd7555c7542">ephemeris_C</a></td></tr>
-<tr class="memdesc:acb4ab62e83def3e3e9da0dd7555c7542"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector to store objects of type ephemerisGE for BeiDou. <br /></td></tr>
+std::vector&lt; std::vector&lt; <a class="el" href="classephemerisGE.html">ephemerisGE</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnavigation.html#acb4ab62e83def3e3e9da0dd7555c7542">ephemeris_C</a></td></tr>
+<tr class="memdesc:acb4ab62e83def3e3e9da0dd7555c7542"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector to store objects of type <a class="el" href="classephemerisGE.html">ephemerisGE</a> for BeiDou. <br /></td></tr>
 <tr class="separator:acb4ab62e83def3e3e9da0dd7555c7542"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
@@ -193,6 +196,48 @@ Private Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a03ddfd1902b235cb225bfa450c01be3c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void navigation::getPositionR </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classephemerisR.html">ephemerisR</a> &amp;&#160;</td>
+          <td class="paramname"><em>initialConditions</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>h</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classtriple.html">triple</a> &amp;&#160;</td>
+          <td class="paramname"><em>pos</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Function to compute GLONASS satellite position. </p>
+<p>This function calculates GLONASS satellite coordinates given an <a class="el" href="classephemerisR.html">ephemerisR</a> object, and a step size. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">initialConditions</td><td><a class="el" href="classephemerisR.html">ephemerisR</a> object containing initial conditions. </td></tr>
+    <tr><td class="paramname">h</td><td>Integer step size for next coordinate. </td></tr>
+    <tr><td class="paramname">pos</td><td>triple object returned with computed coordinates. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="a9337ffa9e22252da8b96fd0013c8061e"></a>
 <div class="memitem">
 <div class="memproto">

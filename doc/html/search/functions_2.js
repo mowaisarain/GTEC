@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['lagrangeinterpolation',['lagrangeInterpolation',['../classObsData.html#a7d2a34b034f862bee82f11ec4bc1e9d3',1,'ObsData']]]
+  ['internaltime',['internalTime',['../classinternalTime.html#aba8c0f382b7ec75f3bbc9bd99ed04590',1,'internalTime::internalTime(int Y, int M, int D, int h, int m, int s)'],['../classinternalTime.html#a3673eea5e663a4faac7c1b6b8d796b5a',1,'internalTime::internalTime()']]]
 ];

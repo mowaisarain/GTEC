@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['obsdata',['ObsData',['../classObsData.html',1,'']]]
+  ['navigation',['navigation',['../classnavigation.html',1,'']]]
 ];
