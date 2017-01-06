@@ -103,6 +103,41 @@ void inout::process_Inputs(int ac, char* args[])
                         std::cout << "Invalid parameter value in config file at line: " << lineNumber << "\n";
                         exit(1);
                     }
+                    //numDays should be between 1 and 3
+                    if(numDays < 1 || numDays > 3)
+                    {
+                        std::cout << "Invalid parameter value in config file at line: " << lineNumber << "\n";
+                        std::cout << "Valid range for NUMDAYS is between 1 and 3.\n";
+                        exit(1);
+                    }
+                }
+                else if (parameter == "FIRSTDOY")
+                {
+                    //Set first day of year
+                    value = line.substr(line.find( '=' )+1);
+                    try
+                    {
+                        firstDayOfYear = stoi(value);
+                    }
+                    catch (std::exception& e)
+                    {
+                        std::cout << "Invalid parameter value in config file at line: " << lineNumber << "\n";
+                        exit(1);
+                    }
+                }
+                else if (parameter == "YEAR")
+                {
+                    //Set first day of year
+                    value = line.substr(line.find( '=' )+1);
+                    try
+                    {
+                        year = stoi(value);
+                    }
+                    catch (std::exception& e)
+                    {
+                        std::cout << "Invalid parameter value in config file at line: " << lineNumber << "\n";
+                        exit(1);
+                    }
                 }
                 else if (parameter == "INPDIR")
                 {
@@ -207,6 +242,24 @@ void inout::checkInputFiles()
     path filePath("");
     std::string pathString;
     std::size_t found;
+    std::string tmp;
+    
+    int dayStart;
+    int dayEnd;
+    int fileDay;
+    
+    
+    if(firstDayOfYear == 1)
+    {
+        dayStart = 365;
+    }
+    else
+    {
+        dayStart = firstDayOfYear - 1;
+    }
+    
+    dayEnd = firstDayOfYear + numDays;
+    
     
     if(exists(p))
     {
@@ -218,17 +271,42 @@ void inout::checkInputFiles()
             {
                 filePath = d.path();
                 pathString = filePath.string();
+                
+                
                 found = pathString.find(marker);
                 if (found != std::string::npos)
                 {
-                    obsfiles.push_back(pathString);
+                    //check days in file name
+                    tmp = pathString.substr(found);
+                    if (tmp.size() == 12)
+                    {
+                        fileDay = stoi(tmp.substr(4, 3));
+                        if (fileDay >= dayStart && fileDay <= dayEnd)
+                        {
+                            obsfiles.push_back(pathString);
+                        }
+                    }
+                    else if (tmp.size() == 38)
+                    {
+                        std::cout << tmp << "  " << tmp.size() << "\n";
+                        fileDay = stoi(tmp.substr(16, 3));
+                        std::cout << fileDay << "\n";
+                        if (fileDay >= dayStart && fileDay <= dayEnd)
+                        {
+                            obsfiles.push_back(pathString);
+                        }
+                    }
                 }
                 else
                 {
                     found = pathString.find("brdm");
                     if (found != std::string::npos)
                     {
-                        navfiles.push_back(pathString);
+                        fileDay = stoi(pathString.substr(found+4, 3));
+                        if (fileDay >= dayStart && fileDay <= dayEnd)
+                        {
+                            navfiles.push_back(pathString);
+                        }
                     }
                 }
             }
@@ -249,6 +327,16 @@ void inout::checkInputFiles()
         std::cout << "Input directory doesn't exist.\n";
         exit(1);
     }
+    
+    
+    //Check if enough files are found!
+    
+    if ( (obsfiles.size() != (numDays + 2)) || (navfiles.size() != (numDays + 2)) )
+    {
+        std::cout << "Not enough obs/nav files in input directory.\n";
+        exit(1);
+    }
+    
 };
 
 
@@ -258,6 +346,8 @@ void inout::dump(std::ostream& s)
     s << "System Configuration from config file.\n";
     s << "---------------------------------------\n";
     s << "Number of Days: " << numDays << "\n";
+    s << "Year: " << year << "\n";
+    s << "First day of year: " << firstDayOfYear << "\n";
     s << "Input Directory: " << inputDirectory << "\n";
     s << "System string: " << satSys << "\n";
     s << "Sampling Time: " << sampingTime << "\n";

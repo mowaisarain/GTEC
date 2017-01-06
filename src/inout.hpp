@@ -53,6 +53,8 @@ class inout
     std::string satSys;
     std::string marker;
     int sampingTime;
+    int firstDayOfYear;
+    int year;
     
     
     int minArcLen;
