@@ -1,9 +1,8 @@
 var searchData=
 [
-  ['hasbei',['hasBEI',['../classObsData.html#a66520a37d4501d22e34f27dfc9a66d3a',1,'ObsData']]],
-  ['hasgal',['hasGAL',['../classObsData.html#a5a386420b6414af8dc724c86dfde187b',1,'ObsData']]],
-  ['hasglo',['hasGLO',['../classObsData.html#a3095d7ed025cb44c41f31bf7a5c38ae5',1,'ObsData']]],
-  ['hasgps',['hasGPS',['../classObsData.html#a470c3f2826b5b8eda2e66b9400cea2f7',1,'ObsData']]],
-  ['hastofo',['hasTOFO',['../classObsData.html#a63d415d1d9992edabddfadfa35801ed2',1,'ObsData']]],
-  ['hour',['hour',['../classinternalTime.html#a438c996a5a037d7ebb7f16f028baab55',1,'internalTime']]]
+  ['gal_5fuctec',['GAL_ucTEC',['../classObsData.html#a6a0b7612bc708089dcd075c05b6c3825',1,'ObsData']]],
+  ['getpositionge',['getPositionGE',['../classnavigation.html#ada025f5dc80afd4dc403ddeeb00a80ab',1,'navigation']]],
+  ['getpositionr',['getPositionR',['../classnavigation.html#a03ddfd1902b235cb225bfa450c01be3c',1,'navigation']]],
+  ['glo_5fuctec',['GLO_ucTEC',['../classObsData.html#a6aec26d82796f510f374f0396128e2e6',1,'ObsData']]],
+  ['gps_5fuctec',['GPS_ucTEC',['../classObsData.html#a87d0a1c3a07a84bc1a8e5a1688c96a10',1,'ObsData']]]
 ];

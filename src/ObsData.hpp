@@ -28,17 +28,16 @@
 */
 
 
-
-
 #ifndef __OBS_DATA__
 #define __OBS_DATA__
 
-
+#include <iostream>
+#include <fstream>
+#include <vector>
 #include "internalTime.hpp"
 #include "triple.hpp"
 #include "ptr_pair.hpp"
 #include "int_pair.hpp"
-#include <vector>
 
 
 /**
@@ -71,7 +70,17 @@ class ObsData
 	 * @param sysString string (any combination of 'G','R','E','C') defining constellations being processed.
 	 */
         ObsData(std::vector<std::string > fvec, std::string sysString);
-	
+
+
+
+
+	//!Clean-up function.
+    /*!This function cleans up internal workspace, should be called before end 
+     * of object's lifetime.
+	 */
+        void cleanUp();
+
+
 	
         int dumpArc(char, int);
         int dumpArcByTime(char, int);
@@ -174,11 +183,11 @@ class ObsData
         //std::vector<int> Aprn3;
         
 	
-        //! Stores matrix S (non-calibrated TEC).
+        //! Stores vector S (non-calibrated TEC).
         /*! This vector stores all computed non-calibrated TEC values, arranged by
 	 *  epochs. This is the input vector given to the system solver.
 	 */
-        std::vector<float> S;
+        std::vector<double> S;
 	
         //! Stores arc numbers for @ref S.
         /*! This vector stores for each element in @ref S , a corresponding value 
@@ -193,6 +202,8 @@ class ObsData
 	 */
         std::vector<int> S_prn;
         
+        
+        
         int size_of_S; //!< Indicates size of @ref S.
         
         std::vector<int_pair > intse;
@@ -202,6 +213,16 @@ class ObsData
 	 *  using @ref pre_process.
 	 */
         int numArcs;
+        
+        
+    //! Stores matrix B.
+    /*! This is stored matrix B. B is a boolean matrix relating each value in 
+     * vector S to a given arc number. The i^{th} row of B has only one 
+     * non-zero (a one) in the j^{th} column, relating i^{th} value in vector S
+     * to j^{th} arc numbers defined in S_arcnum. Size of B is (size_of_S x numArcs).
+     */
+        double* B;        
+
         
 	std::vector<int> prnid;
         
@@ -236,6 +257,24 @@ class ObsData
 	 */
         std::vector<ptr_pair> arcs3;
         
+
+
+    //! Builds matrix B.
+    /*! This function builds and stores matrix B.
+     */
+        void buildB();
+        
+        
+        
+	//!Function to dump raw matrix.
+    /*!This Function dumps raw matrix to standard output stream, usefull in
+     * debugging purposes.
+	 * @param mat pointer to stored matrix.
+	 * @param dim1 First dimension of matrix (number of rows).
+	 * @param dim2 Second dimension of matrix (number of columns).
+	 */        
+        void dumpRawMatrix(const double* mat, int& dim1, int& dim2);
+
 
 
     private:

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['x',['X',['../classtriple.html#a1f48528775fd07273771a32a15592665',1,'triple']]]
+  ['version',['version',['../classnavigation.html#aa3e5a45dd2cec476b4e9547e26523ec3',1,'navigation::version()'],['../classObsData.html#a73bd2931540595360778f1edc69a2bec',1,'ObsData::version()']]]
 ];

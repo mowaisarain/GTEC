@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['tounixtime',['toUNIXTime',['../classinternalTime.html#a450c3c838b681c19a4cee80728866013',1,'internalTime']]]
+  ['read',['read',['../classnavigation.html#a9337ffa9e22252da8b96fd0013c8061e',1,'navigation::read()'],['../classObsData.html#ada040e104d1152cbfcabd0597bb21735',1,'ObsData::read()']]]
 ];

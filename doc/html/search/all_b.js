@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['obsdata',['ObsData',['../classObsData.html',1,'ObsData'],['../classObsData.html#a6d29c18404a7aee395ee8727bb8d7796',1,'ObsData::ObsData(std::vector&lt; std::string &gt; fvec, std::string sysString)'],['../classObsData.html#a2487d4b085e533233698a9a19d3b891b',1,'ObsData::ObsData()']]],
-  ['obsdata_2ehpp',['ObsData.hpp',['../ObsData_8hpp.html',1,'']]]
+  ['navigation',['navigation',['../classnavigation.html',1,'navigation'],['../classnavigation.html#ab4c4ab34aa1059755e812e153d101bec',1,'navigation::navigation(std::vector&lt; std::string &gt; fnames)'],['../classnavigation.html#a5764a3f340904cc404b6a879058bd0b9',1,'navigation::navigation()']]],
+  ['navigation_2ehpp',['navigation.hpp',['../navigation_8hpp.html',1,'']]],
+  ['numarcs',['numArcs',['../classObsData.html#a1923f1b7993d3fd3bd6e437899160a2b',1,'ObsData']]]
 ];

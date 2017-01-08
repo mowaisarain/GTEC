@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['z',['Z',['../classtriple.html#afe4ad071c62f12a043c2d43dabdc7009',1,'triple']]]
+  ['y',['Y',['../classtriple.html#a50efefd5dc47f9d9c52c7215ebb83fb6',1,'triple']]],
+  ['year',['year',['../classinternalTime.html#aaeca9b01d023f4f487ca829519ffdad9',1,'internalTime']]]
 ];

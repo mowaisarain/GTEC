@@ -112,6 +112,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a6d29c18404a7aee395ee8727bb8d7796"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classObsData.html#a6d29c18404a7aee395ee8727bb8d7796">ObsData</a> (std::vector&lt; std::string &gt; fvec, std::string sysString)</td></tr>
 <tr class="memdesc:a6d29c18404a7aee395ee8727bb8d7796"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor with Input files, and system string.  <a href="#a6d29c18404a7aee395ee8727bb8d7796">More...</a><br /></td></tr>
 <tr class="separator:a6d29c18404a7aee395ee8727bb8d7796"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a628aeb10c81e5a7c54c76fdf5973e809"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classObsData.html#a628aeb10c81e5a7c54c76fdf5973e809">cleanUp</a> ()</td></tr>
+<tr class="memdesc:a628aeb10c81e5a7c54c76fdf5973e809"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clean-up function.  <a href="#a628aeb10c81e5a7c54c76fdf5973e809">More...</a><br /></td></tr>
+<tr class="separator:a628aeb10c81e5a7c54c76fdf5973e809"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aac5c124b13659137cf428795e8773357"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aac5c124b13659137cf428795e8773357"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>dumpArc</b> (char, int)</td></tr>
 <tr class="separator:aac5c124b13659137cf428795e8773357"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -136,6 +139,12 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>dumpArcBinaryPtrsAll</
 <tr class="memitem:a8660e0693ad38e90c9c9b06056b99511"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8660e0693ad38e90c9c9b06056b99511"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>dumpArcValuePtrsAll</b> ()</td></tr>
 <tr class="separator:a8660e0693ad38e90c9c9b06056b99511"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae171a2413dbfd44cd29d725e6e992289"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classObsData.html#ae171a2413dbfd44cd29d725e6e992289">buildB</a> ()</td></tr>
+<tr class="memdesc:ae171a2413dbfd44cd29d725e6e992289"><td class="mdescLeft">&#160;</td><td class="mdescRight">Builds matrix B.  <a href="#ae171a2413dbfd44cd29d725e6e992289">More...</a><br /></td></tr>
+<tr class="separator:ae171a2413dbfd44cd29d725e6e992289"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b5c3919dc970136276aa90074b7f3ab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classObsData.html#a0b5c3919dc970136276aa90074b7f3ab">dumpRawMatrix</a> (const double *mat, int &amp;dim1, int &amp;dim2)</td></tr>
+<tr class="memdesc:a0b5c3919dc970136276aa90074b7f3ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to dump raw matrix.  <a href="#a0b5c3919dc970136276aa90074b7f3ab">More...</a><br /></td></tr>
+<tr class="separator:a0b5c3919dc970136276aa90074b7f3ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -214,18 +223,18 @@ std::vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a c
 <tr class="memitem:af5d84c690f3f9044a8f1c100322d65da"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::vector&lt; float &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classObsData.html#af5d84c690f3f9044a8f1c100322d65da">BDU_ucTEC</a></td></tr>
 <tr class="memdesc:af5d84c690f3f9044a8f1c100322d65da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vectors to store raw non-calibrated TEC for BeiDou Satellites.  <a href="#af5d84c690f3f9044a8f1c100322d65da">More...</a><br /></td></tr>
 <tr class="separator:af5d84c690f3f9044a8f1c100322d65da"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a01043a8376c6c4b118667199d708db21"><td class="memItemLeft" align="right" valign="top">std::vector&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classObsData.html#a01043a8376c6c4b118667199d708db21">S</a></td></tr>
-<tr class="memdesc:a01043a8376c6c4b118667199d708db21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores matrix S (non-calibrated TEC).  <a href="#a01043a8376c6c4b118667199d708db21">More...</a><br /></td></tr>
-<tr class="separator:a01043a8376c6c4b118667199d708db21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae146296cfaa4ca7c6928c10094114212"><td class="memItemLeft" align="right" valign="top">std::vector&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classObsData.html#ae146296cfaa4ca7c6928c10094114212">S</a></td></tr>
+<tr class="memdesc:ae146296cfaa4ca7c6928c10094114212"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores vector S (non-calibrated TEC).  <a href="#ae146296cfaa4ca7c6928c10094114212">More...</a><br /></td></tr>
+<tr class="separator:ae146296cfaa4ca7c6928c10094114212"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a92a5a64cb8c4ad485ec0d17b153f520e"><td class="memItemLeft" align="right" valign="top">std::vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classObsData.html#a92a5a64cb8c4ad485ec0d17b153f520e">S_arcnum</a></td></tr>
-<tr class="memdesc:a92a5a64cb8c4ad485ec0d17b153f520e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores arc numbers for <a class="el" href="classObsData.html#a01043a8376c6c4b118667199d708db21">S</a>.  <a href="#a92a5a64cb8c4ad485ec0d17b153f520e">More...</a><br /></td></tr>
+<tr class="memdesc:a92a5a64cb8c4ad485ec0d17b153f520e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores arc numbers for <a class="el" href="classObsData.html#ae146296cfaa4ca7c6928c10094114212">S</a>.  <a href="#a92a5a64cb8c4ad485ec0d17b153f520e">More...</a><br /></td></tr>
 <tr class="separator:a92a5a64cb8c4ad485ec0d17b153f520e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a938a00b94a0048a18cf7df0bb69c3898"><td class="memItemLeft" align="right" valign="top">std::vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classObsData.html#a938a00b94a0048a18cf7df0bb69c3898">S_prn</a></td></tr>
-<tr class="memdesc:a938a00b94a0048a18cf7df0bb69c3898"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores Satellite IDs for <a class="el" href="classObsData.html#a01043a8376c6c4b118667199d708db21">S</a>.  <a href="#a938a00b94a0048a18cf7df0bb69c3898">More...</a><br /></td></tr>
+<tr class="memdesc:a938a00b94a0048a18cf7df0bb69c3898"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores Satellite IDs for <a class="el" href="classObsData.html#ae146296cfaa4ca7c6928c10094114212">S</a>.  <a href="#a938a00b94a0048a18cf7df0bb69c3898">More...</a><br /></td></tr>
 <tr class="separator:a938a00b94a0048a18cf7df0bb69c3898"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa57eccc3feb803128c01533846e0fbe8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa57eccc3feb803128c01533846e0fbe8"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classObsData.html#aa57eccc3feb803128c01533846e0fbe8">size_of_S</a></td></tr>
-<tr class="memdesc:aa57eccc3feb803128c01533846e0fbe8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates size of <a class="el" href="classObsData.html#a01043a8376c6c4b118667199d708db21">S</a>. <br /></td></tr>
+<tr class="memdesc:aa57eccc3feb803128c01533846e0fbe8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates size of <a class="el" href="classObsData.html#ae146296cfaa4ca7c6928c10094114212">S</a>. <br /></td></tr>
 <tr class="separator:aa57eccc3feb803128c01533846e0fbe8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab6ee1f878d0c90131482e7c852196841"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab6ee1f878d0c90131482e7c852196841"></a>
 std::vector&lt; <a class="el" href="classint__pair.html">int_pair</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>intse</b></td></tr>
@@ -233,6 +242,9 @@ std::vector&lt; <a class="el" href="classint__pair.html">int_pair</a> &gt;&#160;
 <tr class="memitem:a1923f1b7993d3fd3bd6e437899160a2b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classObsData.html#a1923f1b7993d3fd3bd6e437899160a2b">numArcs</a></td></tr>
 <tr class="memdesc:a1923f1b7993d3fd3bd6e437899160a2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates total number of arcs.  <a href="#a1923f1b7993d3fd3bd6e437899160a2b">More...</a><br /></td></tr>
 <tr class="separator:a1923f1b7993d3fd3bd6e437899160a2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24f51075cd9743c374bb49a287ebadae"><td class="memItemLeft" align="right" valign="top">double *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classObsData.html#a24f51075cd9743c374bb49a287ebadae">B</a></td></tr>
+<tr class="memdesc:a24f51075cd9743c374bb49a287ebadae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores matrix B.  <a href="#a24f51075cd9743c374bb49a287ebadae">More...</a><br /></td></tr>
+<tr class="separator:a24f51075cd9743c374bb49a287ebadae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab122dce3cee72656c601953e499e8639"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab122dce3cee72656c601953e499e8639"></a>
 std::vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>prnid</b></td></tr>
 <tr class="separator:ab122dce3cee72656c601953e499e8639"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -345,6 +357,84 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="ae171a2413dbfd44cd29d725e6e992289"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ObsData::buildB </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Builds matrix B. </p>
+<p>This function builds and stores matrix B. </p>
+
+</div>
+</div>
+<a class="anchor" id="a628aeb10c81e5a7c54c76fdf5973e809"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ObsData::cleanUp </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Clean-up function. </p>
+<p>This function cleans up internal workspace, should be called before end of object's lifetime. </p>
+
+</div>
+</div>
+<a class="anchor" id="a0b5c3919dc970136276aa90074b7f3ab"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ObsData::dumpRawMatrix </td>
+          <td>(</td>
+          <td class="paramtype">const double *&#160;</td>
+          <td class="paramname"><em>mat</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int &amp;&#160;</td>
+          <td class="paramname"><em>dim1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int &amp;&#160;</td>
+          <td class="paramname"><em>dim2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Function to dump raw matrix. </p>
+<p>This Function dumps raw matrix to standard output stream, usefull in debugging purposes. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mat</td><td>pointer to stored matrix. </td></tr>
+    <tr><td class="paramname">dim1</td><td>First dimension of matrix (number of rows). </td></tr>
+    <tr><td class="paramname">dim2</td><td>Second dimension of matrix (number of columns). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="a7d2a34b034f862bee82f11ec4bc1e9d3"></a>
 <div class="memitem">
 <div class="memproto">
@@ -588,6 +678,21 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
+<a class="anchor" id="a24f51075cd9743c374bb49a287ebadae"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double* ObsData::B</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Stores matrix B. </p>
+<p>This is stored matrix B. B is a boolean matrix relating each value in vector S to a given arc number. The i^{th} row of B has only one non-zero (a one) in the j^{th} column, relating i^{th} value in vector S to j^{th} arc numbers defined in S_arcnum. Size of B is (size_of_S x numArcs). </p>
+
+</div>
+</div>
 <a class="anchor" id="af5d84c690f3f9044a8f1c100322d65da"></a>
 <div class="memitem">
 <div class="memproto">
@@ -678,17 +783,17 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a class="anchor" id="a01043a8376c6c4b118667199d708db21"></a>
+<a class="anchor" id="ae146296cfaa4ca7c6928c10094114212"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt;float&gt; ObsData::S</td>
+          <td class="memname">std::vector&lt;double&gt; ObsData::S</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Stores matrix S (non-calibrated TEC). </p>
+<p>Stores vector S (non-calibrated TEC). </p>
 <p>This vector stores all computed non-calibrated TEC values, arranged by epochs. This is the input vector given to the system solver. </p>
 
 </div>
@@ -703,8 +808,8 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Stores arc numbers for <a class="el" href="classObsData.html#a01043a8376c6c4b118667199d708db21">S</a>. </p>
-<p>This vector stores for each element in <a class="el" href="classObsData.html#a01043a8376c6c4b118667199d708db21">S</a> , a corresponding value indicating the its arc number. Arc numbers are defined by pre_processing phase using <a class="el" href="classObsData.html#a8d6692bb157f342d8b52d607fdf06e4c">pre_process</a>. </p>
+<p>Stores arc numbers for <a class="el" href="classObsData.html#ae146296cfaa4ca7c6928c10094114212">S</a>. </p>
+<p>This vector stores for each element in <a class="el" href="classObsData.html#ae146296cfaa4ca7c6928c10094114212">S</a> , a corresponding value indicating the its arc number. Arc numbers are defined by pre_processing phase using <a class="el" href="classObsData.html#a8d6692bb157f342d8b52d607fdf06e4c">pre_process</a>. </p>
 
 </div>
 </div>
@@ -718,8 +823,8 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Stores Satellite IDs for <a class="el" href="classObsData.html#a01043a8376c6c4b118667199d708db21">S</a>. </p>
-<p>This vector stores for each element in <a class="el" href="classObsData.html#a01043a8376c6c4b118667199d708db21">S</a> , a corresponding value indicating the its Satellite ID. </p>
+<p>Stores Satellite IDs for <a class="el" href="classObsData.html#ae146296cfaa4ca7c6928c10094114212">S</a>. </p>
+<p>This vector stores for each element in <a class="el" href="classObsData.html#ae146296cfaa4ca7c6928c10094114212">S</a> , a corresponding value indicating the its Satellite ID. </p>
 
 </div>
 </div>

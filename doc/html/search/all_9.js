@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['markerposition',['MarkerPosition',['../classObsData.html#aeb928a6f92cdf8e890e84306fef46780',1,'ObsData']]],
-  ['minute',['minute',['../classinternalTime.html#ab72e84d2b228d4ddefeb2f5928ffb18e',1,'internalTime']]],
-  ['month',['month',['../classinternalTime.html#abf6cde029a0587b91be30286e3c4f677',1,'internalTime']]]
+  ['lagrangeinterpolation',['lagrangeInterpolation',['../classObsData.html#a7d2a34b034f862bee82f11ec4bc1e9d3',1,'ObsData']]],
+  ['leapseconds',['leapSeconds',['../classnavigation.html#a2b1fc9382510a80d7c50752dfbeaca77',1,'navigation']]]
 ];

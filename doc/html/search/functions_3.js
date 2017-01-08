@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['getpositionge',['getPositionGE',['../classnavigation.html#ada025f5dc80afd4dc403ddeeb00a80ab',1,'navigation']]],
-  ['getpositionr',['getPositionR',['../classnavigation.html#a03ddfd1902b235cb225bfa450c01be3c',1,'navigation']]]
+  ['dump',['dump',['../classtriple.html#abb55cfbb75afa61b1b10208edbb84553',1,'triple']]],
+  ['dumprawmatrix',['dumpRawMatrix',['../classObsData.html#a0b5c3919dc970136276aa90074b7f3ab',1,'ObsData']]]
 ];

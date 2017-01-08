@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['eccanomaly',['eccAnomaly',['../classnavigation.html#ae52d2b1bdf4a4a9788fb68094f0d4319',1,'navigation']]]
+  ['cleanup',['cleanUp',['../classObsData.html#a628aeb10c81e5a7c54c76fdf5973e809',1,'ObsData']]]
 ];

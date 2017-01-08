@@ -29,9 +29,7 @@
 
 
 
-#include <iostream>
 #include <string>
-#include <fstream>
 #include <sstream>
 #include <exception>
 #include <algorithm>
@@ -674,6 +672,23 @@ int ObsData::dumpArcBinary(char sys, int prn)
     return 0;
 };
 
+
+//This Function dumps raw matrix to given standard output
+//Useful for debugging purposes
+void ObsData::dumpRawMatrix(const double* mat, int& dim1, int& dim2)
+{
+    for (int i=0; i<dim1; ++i)
+    {
+        for (int j=0; j<dim2; ++j)
+        {
+            std::cout << mat[i*dim2 + j] << " ";
+        }
+        std::cout << "\n";
+    }
+};
+
+
+
 int ObsData::dumpSizes()
 {
     int id = 1;
@@ -1253,6 +1268,31 @@ int ObsData::dumpArcValuePtrsAll()
             std::cout << "\n\n";
         }
     return 0;
+};
+
+
+
+
+
+
+//This function builds and stores B
+void ObsData::buildB()
+{
+    //Build B
+    B = (double*) calloc(size_of_S * numArcs, sizeof(double));
+    for(int i=0; i < size_of_S; ++i)
+    {
+        B[i*numArcs + S_arcnum[i]] = 1.0;
+    }
+};
+
+
+//This function cleans up internal workspace 
+//should be called before end of object's lifetime.
+void ObsData::cleanUp()
+{
+    //Deallocate B
+    free(B);
 };
 
 

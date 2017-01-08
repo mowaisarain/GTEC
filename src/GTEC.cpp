@@ -440,10 +440,10 @@ int main(int argc, char* argv[])
 
             }
             
-                std::cout << "ST: " << st
-                << " Sstart: " << Sstart
-                << " S_Size: " << obs.S.size()
-                << " Block_S: " << obs.S.size()-Sstart << "\n";
+                //std::cout << "ST: " << st
+                //<< " Sstart: " << Sstart
+                //<< " S_Size: " << obs.S.size()
+                //<< " Block_S: " << obs.S.size()-Sstart << "\n";
             
             
             //Done for this Sampling time reset variables
@@ -470,19 +470,9 @@ int main(int argc, char* argv[])
 
 
     //building B
-    std::cout << "building Partial B.. Sampling time: " << st << "\n";
-//    float* B = (float*) calloc(obs.size_of_S * obs.numArcs, sizeof(float));
-//    for(int i=0;i<obs.size_of_S;++i)
-//    {
-//        B[i*obs.numArcs + obs.S_arcnum[i]] = 1.0;
-//    }
-//    
-//
-//
-//
-//
-//
-//
-//    free(B);
+    std::cout << "building matrix B..\n";
+    obs.buildB();
+    
+    obs.cleanUp();
 	return 0;
 }
