@@ -39,8 +39,8 @@ CFLAGS  = -std=c++11
 LDFLAGS = -lboost_system -lboost_filesystem
 PROGRAM = GTEC
 SRCDIR  = src
-OBJS = inout.o int_pair.o ptr_pair.o internalTime.o ObsData.o navigation.o ephemerisGE.o triple.o GTEC.o
-SRCS = $(SRCDIR)/inout.cpp $(SRCDIR)/int_pair.cpp $(SRCDIR)/ptr_pair.cpp $(SRCDIR)/internalTime.cpp $(SRCDIR)/ObsData.cpp $(SRCDIR)/navigation.cpp $(SRCDIR)/ephemerisGE.cpp $(SRCDIR)/triple.cpp $(SRCDIR)/GTEC.cpp
+OBJS = inout.o int_pair.o ptr_pair.o internalTime.o ObsData.o navigation.o triple.o GTEC.o
+SRCS = $(SRCDIR)/inout.cpp $(SRCDIR)/int_pair.cpp $(SRCDIR)/ptr_pair.cpp $(SRCDIR)/internalTime.cpp $(SRCDIR)/ObsData.cpp $(SRCDIR)/navigation.cpp $(SRCDIR)/triple.cpp $(SRCDIR)/GTEC.cpp
 #------------------------------------------------------------------------------
 
 $(PROGRAM): $(OBJS)
@@ -60,9 +60,6 @@ internalTime.o:  $(SRCDIR)/internalTime.cpp
 
 navigation.o:  $(SRCDIR)/navigation.cpp
 	$(CC) -c $(SRCDIR)/navigation.cpp $(CFLAGS)
-	
-ephemerisGE.o:  $(SRCDIR)/ephemerisGE.cpp
-	$(CC) -c $(SRCDIR)/ephemerisGE.cpp $(CFLAGS)
 
 ObsData.o:  $(SRCDIR)/ObsData.cpp
 	$(CC) -c $(SRCDIR)/ObsData.cpp $(CFLAGS)

@@ -742,3 +742,202 @@ void navigation::getPositionR(ephemerisR& initialConditions, int h, triple &pos)
 //  std::cout << rx << "  " << ry << "  " << rz << "\n";
 
 };
+
+
+
+
+void navigation::getPositionGE(ephemerisGE& initial, int t , triple& pos)
+{
+    // Input t --> is current time in GPS seconds for which postion is to be calculated
+    // Output pos --> is the resultant position vector (X,Y,Z) (pos.X,posY,posZ)
+
+    // Compute the time tk from the ephemerides reference epoch Toe (t and Toe are expressed in seconds in the GPS week)
+    int tk = t - initial.Toe;
+
+    if(tk > 302400) {
+        tk = tk - 604800;
+    } else if(tk < -302400) {
+        tk = tk + 604800;
+    }
+
+    // Compute the mean anomaly Mk for tk
+    // Here mu = 3.986005e+14 defined in constants source file
+    //     M0 is mean anomaly at refernce epoch (fron nav epoch record)
+    //     Ahalf is sqrt of semi-major axis (fron nav epoch record)
+    float Mk = initial.M0 + (sqrt(mu) / (initial.Ahalf * initial.Ahalf * initial.Ahalf) + 
+                     initial.deltan) * tk;
+
+    // Solve (iteratively) the Kepler equation for the eccentricity anomaly Ek
+    // Arguments Mk from previous step
+    //          e eccentricity fron nav epoch record
+    float Ek = eccAnomaly(Mk, initial.e);
+
+    // Compute the true anomaly vk
+    // using Ek computed in previous step and e eccentricity fron nav epoch record
+    float vk = atan((sqrt(1 - initial.e * initial.e) * 
+                    sin(Ek)) / (cos(Ek) - initial.e));
+
+    // Compute the argument of latitude
+    // from: the argument of perigee (w) (fron nav epoch record),
+    //       true anomaly vk (computed in previous step),
+    //       and corrections Cuc and Cus (fron nav epoch record):
+    float uk = initial.w + vk + (initial.Cuc * cos(2 * (initial.w + vk))) + 
+               (initial.Cus * sin(2 * (initial.w + vk)));
+
+    // Compute the radial distance rk,
+    // considering: corrections Crc and Crs (fron nav epoch record):
+    float rk = (initial.Ahalf * initial.Ahalf) * 
+               (1 - initial.e * cos(Ek)) + 
+               (initial.Crc * cos(2 * (initial.w + vk))) + 
+               (initial.Crs * sin(2 * (initial.w + vk)));
+
+    // Compute the inclination of the orbital plane
+    // from: the inclination i0 (i0) (fron nav epoch record) at reference time Toe,
+    // and corrections Cic and Cis (fron nav epoch record):
+    float ik = initial.i0 + (tk * initial.idot) + 
+                (initial.Cic * cos(2 * (initial.w + vk))) + 
+                (initial.Cis * sin(2 * (initial.w + vk)));
+
+    // Compute the longitude of the ascending node LAMBDAk (Lk) (with respect to Greenwich). This calculation uses:
+    // the right ascension at the beginning of the current week (Omega0) (fron nav epoch record),
+    // the correction from the apparent sidereal time variation in Greenwich between the beginning of the week and
+    // reference time tk,
+    // and the change in longitude of the ascending node from the reference time Toe (Toe fron nav epoch record):
+    // wE is Earth's rotation rate in radians per sec defined in constants source file.
+    // OMEGAdot is rate of node's right ascension (fron nav epoch record)
+    float Lk = initial.Omega0 + ((initial.Omegadot - wE) * tk) - 
+                (wE * initial.Toe);
+
+    // Compute the coordinates in TRS frame, applying three rotations (around uk, ik and Lk ):
+    applyRotations(Lk, ik, uk, rk, pos);
+};
+
+
+
+// This Routine Calculates eccentricity anomaly Ek
+// by Solving (iteratively) the Kepler equation for the eccentricity anomaly, 
+// using Newton–Raphson method, Euation -->  Mk = Ek - ( e * Sin(Ek) )
+float navigation::eccAnomaly(float M, float e)
+{
+    // Input M --> mean anomaly for reference time tk
+    // Input e --> eccentricity from nav epoch record
+    // return Output --> eccentricity anomaly Ek
+
+    // Initial Guess for Ek
+    // We can also use M(Mk) as initial guess ??
+    float Ek0 = 0.5;
+
+    // F --> function f(Ek)
+    float F = 0.0;
+
+    // Fp --> derivative of function f(Ek)
+    float Fp = 0.0;
+
+    // Estimated value of Ek
+    float Ek = 0.0;
+
+    // Absolute Relative Error as stoping criteria for iterations
+    float Rerr = 0.0;
+
+    do {
+        // calculate function at initial guess
+        F = Ek0 - (e * sin(Ek0)) - M;
+        // calculate function derivative at initial guess
+        Fp = 1 - (e * cos(Ek0));
+        // Estimate Ek
+        Ek = Ek0 - (F / Fp);
+        // Calculate Absolute Relative Error
+        Rerr = abs(((Ek - Ek0) / Ek) * 100.0);
+        // save estimate of Ek to be used for next Iteration
+        Ek0 = Ek;
+    }
+    // Check if required precision is achieved
+    while(Rerr > 0.00005);
+
+    // Return Final Result Ek
+    return Ek;
+};
+
+
+
+
+// This routine apply rotations around uk, ik and Lk
+void navigation::applyRotations(float& Lk, float& ik, float& uk, 
+                                float& rk, triple& pos)
+{
+    // Rotation ==
+    //  | Xk |                           | rk |
+    //  | Yk |  =  R3(-Lk)R1(-ik)R3(-uk) | 0  |
+    //  | Zk |                           | 0  |
+
+    // Wwhere R1 and R3 are the rotation matrices defined at:
+    // http://www.navipedia.net/index.php/Transformation_between_Terrestrial_Frames
+    // By Hernández-Pajares, Technical University of Catalonia, Spain.
+
+    // Initialize Rotation Matrices with zeros
+    float R3Lk[3][3] = { 0.0 };
+    float R1ik[3][3] = { 0.0 };
+    float R3uk[3][3] = { 0.0 };
+
+    // Initialize Temp Matrices
+    float Res1[3][3] = { 0.0 };
+    float Res2[3][3] = { 0.0 };
+
+    // Initialization of vector Rk
+    float Rk[3] = { rk, 0.0, 0.0 };
+
+    // Vector to hold results
+    float Res[3] = { 0.0 };
+
+    // Loop Variables
+    int i, j, k;
+
+    // Definition of Matrix R3(Lk)
+    R3Lk[0][0] = cos(-1 * Lk);
+    R3Lk[0][1] = sin(-1 * Lk);
+    R3Lk[1][0] = -1 * sin(-1 * Lk);
+    R3Lk[1][1] = cos(-1 * Lk);
+    R3Lk[2][2] = 1.0;
+
+    // Definition of Matrix R1(ik)
+    R1ik[0][0] = 1.0;
+    R1ik[1][1] = cos(-1 * ik);
+    R1ik[1][2] = sin(-1 * ik);
+    R1ik[2][1] = -1 * sin(-1 * ik);
+    R1ik[2][2] = cos(-1 * ik);
+
+    // Definition of Matrix R3(uk)
+    R3uk[0][0] = cos(-1 * uk);
+    R3uk[0][1] = sin(-1 * uk);
+    R3uk[1][0] = -1 * sin(-1 * uk);
+    R3uk[1][1] = cos(-1 * uk);
+    R3uk[2][2] = 1.0;
+
+    // Apply Rotations by multiplying matrices
+    for(i = 0; i < 3; i++) {
+        for(j = 0; j < 3; j++) {
+            for(k = 0; k < 3; k++) {
+                Res1[i][j] += R3Lk[i][k] * R1ik[k][j];
+            }
+        }
+    }
+    for(i = 0; i < 3; i++) {
+        for(j = 0; j < 3; j++) {
+            for(k = 0; k < 3; k++) {
+                Res2[i][j] += Res1[i][k] * R3uk[k][j];
+            }
+        }
+    }
+    for(i = 0; i < 3; i++) {
+        for(j = 0; j < 3; j++) {
+            Res[i] += Res2[i][j] * Rk[j];
+        }
+    }
+
+    // Store resultant positions
+    pos.X = Res[0];
+    pos.Y = Res[1];
+    pos.Z = Res[2];
+};
+
+

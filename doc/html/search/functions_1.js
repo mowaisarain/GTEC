@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['getpositionr',['getPositionR',['../classnavigation.html#a03ddfd1902b235cb225bfa450c01be3c',1,'navigation']]]
+  ['dump',['dump',['../classtriple.html#abb55cfbb75afa61b1b10208edbb84553',1,'triple']]]
 ];

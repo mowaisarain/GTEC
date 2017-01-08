@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['lagrangeinterpolation',['lagrangeInterpolation',['../classObsData.html#a7d2a34b034f862bee82f11ec4bc1e9d3',1,'ObsData']]]
+  ['getpositionge',['getPositionGE',['../classnavigation.html#ada025f5dc80afd4dc403ddeeb00a80ab',1,'navigation']]],
+  ['getpositionr',['getPositionR',['../classnavigation.html#a03ddfd1902b235cb225bfa450c01be3c',1,'navigation']]]
 ];

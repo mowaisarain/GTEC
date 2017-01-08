@@ -83,14 +83,24 @@ class navigation
         std::vector< std::vector<ephemerisGE > > ephemeris_C;
         
         
-        //!Function to compute GLONASS satellite position.
+        //!Function to compute GLONASS satellite positions.
         /*!This function calculates GLONASS satellite coordinates given
-         * an ephemerisR object, and a step size.
+        * an ephemerisR object, and a step size.
         * \param initialConditions ephemerisR object containing initial conditions.
         * \param h Integer step size for next coordinate.
         * \param pos triple object returned with computed coordinates.
         */
         void getPositionR(ephemerisR& initialConditions, int h , triple& pos);
+        
+        
+        //!Function to compute GPS/Galileo/BeiDou satellite positions.
+        /*!This function calculates GPS/Galileo/BeiDou satellite coordinates given
+        * an ephemerisGE object and time for which coordinates are required.
+        * \param initial ephemerisGE object containing initial Keplerian elements.
+        * \param t Integer time for which coordinates are to be computed.
+        * \param pos triple object returned with computed coordinates.
+        */
+        void getPositionGE(ephemerisGE& initial, int t , triple& pos);
         
 
     private:
@@ -98,6 +108,35 @@ class navigation
         /**< Default Constructor. 
         * Hidden, cannot be used.
         */
+        
+        
+        //!Function to compute eccentricity anomaly Ek.
+        /*!This Function computes eccentricity anomaly Ek by Solving (iteratively) 
+        * the Kepler equation for the eccentricity anomaly, using 
+        * Newton–Raphson method, Equation -->  Mk = Ek - ( e * Sin(Ek) )
+        * \param M mean anomaly for reference time tk.
+        * \param e eccentricity.
+        */
+        float eccAnomaly(float M, float e);
+        
+        
+        //!This Function apply rotations around uk, ik and Lk.
+        /*!This Function apply rotations around uk, ik and Lk, 
+        * Rotation ==
+        * | Xk |                           | rk |
+        * | Yk |  =  R3(-Lk)R1(-ik)R3(-uk) | 0  |
+        * | Zk |                           | 0  |
+        * Wwhere R1 and R3 are the rotation matrices defined at:
+        * http://www.navipedia.net/index.php/Transformation_between_Terrestrial_Frames
+        * By Hernández-Pajares, Technical University of Catalonia, Spain.
+        * \param Lk Longitude of the ascending node LAMBDAk.
+        * \param ik Inclination of the orbital plane.
+        * \param uk Argument of latitude.
+        * \param rk Radial distance rk.
+        * \param pos triple object returned with computed coordinates.
+        */
+        void applyRotations(float& Lk, float& ik, float& uk, 
+                            float& rk, triple& pos);
 
 };
 

@@ -104,8 +104,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ab4c4ab34aa1059755e812e153d101bec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor with Input files.  <a href="#ab4c4ab34aa1059755e812e153d101bec">More...</a><br /></td></tr>
 <tr class="separator:ab4c4ab34aa1059755e812e153d101bec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a03ddfd1902b235cb225bfa450c01be3c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnavigation.html#a03ddfd1902b235cb225bfa450c01be3c">getPositionR</a> (<a class="el" href="classephemerisR.html">ephemerisR</a> &amp;initialConditions, int h, <a class="el" href="classtriple.html">triple</a> &amp;pos)</td></tr>
-<tr class="memdesc:a03ddfd1902b235cb225bfa450c01be3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to compute GLONASS satellite position.  <a href="#a03ddfd1902b235cb225bfa450c01be3c">More...</a><br /></td></tr>
+<tr class="memdesc:a03ddfd1902b235cb225bfa450c01be3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to compute GLONASS satellite positions.  <a href="#a03ddfd1902b235cb225bfa450c01be3c">More...</a><br /></td></tr>
 <tr class="separator:a03ddfd1902b235cb225bfa450c01be3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada025f5dc80afd4dc403ddeeb00a80ab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnavigation.html#ada025f5dc80afd4dc403ddeeb00a80ab">getPositionGE</a> (<a class="el" href="classephemerisGE.html">ephemerisGE</a> &amp;initial, int t, <a class="el" href="classtriple.html">triple</a> &amp;pos)</td></tr>
+<tr class="memdesc:ada025f5dc80afd4dc403ddeeb00a80ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to compute GPS/Galileo/BeiDou satellite positions.  <a href="#ada025f5dc80afd4dc403ddeeb00a80ab">More...</a><br /></td></tr>
+<tr class="separator:ada025f5dc80afd4dc403ddeeb00a80ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -142,6 +145,12 @@ std::vector&lt; std::vector&lt; <a class="el" href="classephemerisGE.html">ephem
 Private Member Functions</h2></td></tr>
 <tr class="memitem:a5764a3f340904cc404b6a879058bd0b9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnavigation.html#a5764a3f340904cc404b6a879058bd0b9">navigation</a> ()</td></tr>
 <tr class="separator:a5764a3f340904cc404b6a879058bd0b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae52d2b1bdf4a4a9788fb68094f0d4319"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnavigation.html#ae52d2b1bdf4a4a9788fb68094f0d4319">eccAnomaly</a> (float M, float e)</td></tr>
+<tr class="memdesc:ae52d2b1bdf4a4a9788fb68094f0d4319"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to compute eccentricity anomaly Ek.  <a href="#ae52d2b1bdf4a4a9788fb68094f0d4319">More...</a><br /></td></tr>
+<tr class="separator:ae52d2b1bdf4a4a9788fb68094f0d4319"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4bb73c26bd6b5ea5e0ac517cc3557984"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnavigation.html#a4bb73c26bd6b5ea5e0ac517cc3557984">applyRotations</a> (float &amp;Lk, float &amp;ik, float &amp;uk, float &amp;rk, <a class="el" href="classtriple.html">triple</a> &amp;pos)</td></tr>
+<tr class="memdesc:a4bb73c26bd6b5ea5e0ac517cc3557984"><td class="mdescLeft">&#160;</td><td class="mdescRight">This Function apply rotations around uk, ik and Lk.  <a href="#a4bb73c26bd6b5ea5e0ac517cc3557984">More...</a><br /></td></tr>
+<tr class="separator:a4bb73c26bd6b5ea5e0ac517cc3557984"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><dl class="section author"><dt>Author</dt><dd>Muhammad Owais </dd></dl>
@@ -196,6 +205,166 @@ Private Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a4bb73c26bd6b5ea5e0ac517cc3557984"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void navigation::applyRotations </td>
+          <td>(</td>
+          <td class="paramtype">float &amp;&#160;</td>
+          <td class="paramname"><em>Lk</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float &amp;&#160;</td>
+          <td class="paramname"><em>ik</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float &amp;&#160;</td>
+          <td class="paramname"><em>uk</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float &amp;&#160;</td>
+          <td class="paramname"><em>rk</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classtriple.html">triple</a> &amp;&#160;</td>
+          <td class="paramname"><em>pos</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This Function apply rotations around uk, ik and Lk. </p>
+<p>This Function apply rotations around uk, ik and Lk, Rotation == | Xk | | rk | | Yk | = R3(-Lk)R1(-ik)R3(-uk) | 0 | | Zk | | 0 | Wwhere R1 and R3 are the rotation matrices defined at: <a href="http://www.navipedia.net/index.php/Transformation_between_Terrestrial_Frames">http://www.navipedia.net/index.php/Transformation_between_Terrestrial_Frames</a> By Hernández-Pajares, Technical University of Catalonia, Spain. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Lk</td><td>Longitude of the ascending node LAMBDAk. </td></tr>
+    <tr><td class="paramname">ik</td><td>Inclination of the orbital plane. </td></tr>
+    <tr><td class="paramname">uk</td><td>Argument of latitude. </td></tr>
+    <tr><td class="paramname">rk</td><td>Radial distance rk. </td></tr>
+    <tr><td class="paramname">pos</td><td>triple object returned with computed coordinates. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ae52d2b1bdf4a4a9788fb68094f0d4319"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float navigation::eccAnomaly </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>M</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>e</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Function to compute eccentricity anomaly Ek. </p>
+<p>This Function computes eccentricity anomaly Ek by Solving (iteratively) the Kepler equation for the eccentricity anomaly, using Newton–Raphson method, Equation &ndash;&gt; Mk = Ek - ( e * Sin(Ek) ) </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">M</td><td>mean anomaly for reference time tk. </td></tr>
+    <tr><td class="paramname">e</td><td>eccentricity. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ada025f5dc80afd4dc403ddeeb00a80ab"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void navigation::getPositionGE </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classephemerisGE.html">ephemerisGE</a> &amp;&#160;</td>
+          <td class="paramname"><em>initial</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>t</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classtriple.html">triple</a> &amp;&#160;</td>
+          <td class="paramname"><em>pos</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Function to compute GPS/Galileo/BeiDou satellite positions. </p>
+<p>This function calculates GPS/Galileo/BeiDou satellite coordinates given an <a class="el" href="classephemerisGE.html">ephemerisGE</a> object and time for which coordinates are required. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">initial</td><td><a class="el" href="classephemerisR.html">ephemerisR</a> object containing initial Keplerian elements. </td></tr>
+    <tr><td class="paramname">t</td><td>Integer time for which coordinates are to be computed. </td></tr>
+    <tr><td class="paramname">pos</td><td>triple object returned with computed coordinates. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnavigation_ada025f5dc80afd4dc403ddeeb00a80ab_cgraph.png" border="0" usemap="#classnavigation_ada025f5dc80afd4dc403ddeeb00a80ab_cgraph" alt=""/></div>
+<map name="classnavigation_ada025f5dc80afd4dc403ddeeb00a80ab_cgraph" id="classnavigation_ada025f5dc80afd4dc403ddeeb00a80ab_cgraph">
+<area shape="rect" id="node2" href="classnavigation.html#ae52d2b1bdf4a4a9788fb68094f0d4319" title="Function to compute eccentricity anomaly Ek. " alt="" coords="234,5,395,32"/>
+<area shape="rect" id="node3" href="classnavigation.html#a4bb73c26bd6b5ea5e0ac517cc3557984" title="This Function apply rotations around uk, ik and Lk. " alt="" coords="227,56,403,83"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
 <a class="anchor" id="a03ddfd1902b235cb225bfa450c01be3c"></a>
 <div class="memitem">
 <div class="memproto">
@@ -226,7 +395,7 @@ Private Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Function to compute GLONASS satellite position. </p>
+<p>Function to compute GLONASS satellite positions. </p>
 <p>This function calculates GLONASS satellite coordinates given an <a class="el" href="classephemerisR.html">ephemerisR</a> object, and a step size. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">initialConditions</td><td><a class="el" href="classephemerisR.html">ephemerisR</a> object containing initial conditions. </td></tr>

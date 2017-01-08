@@ -59,13 +59,6 @@ class ephemerisGE
         float Crs;      //Orbital radius correction
         float Cic;      //Inclination correction
         float Cis;      //Inclination correction
-        
-        void position(int, triple&);
-        
-    private:
-        float eccAnomaly(float, float);
-        void applyRotations(float&, float&, float&, float&, triple&);
-
 
 };
 

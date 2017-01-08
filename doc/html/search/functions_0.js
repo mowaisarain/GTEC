@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['dump',['dump',['../classtriple.html#abb55cfbb75afa61b1b10208edbb84553',1,'triple']]]
+  ['applyrotations',['applyRotations',['../classnavigation.html#a4bb73c26bd6b5ea5e0ac517cc3557984',1,'navigation']]]
 ];
