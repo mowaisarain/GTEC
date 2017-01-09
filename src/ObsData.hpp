@@ -217,9 +217,10 @@ class ObsData
         
     //! Stores matrix B.
     /*! This is stored matrix B. B is a boolean matrix relating each value in 
-     * vector S to a given arc number. The i^{th} row of B has only one 
-     * non-zero (a one) in the j^{th} column, relating i^{th} value in vector S
-     * to j^{th} arc numbers defined in S_arcnum. Size of B is (size_of_S x numArcs).
+     * vector S to a given arc number. The \f$ i^{th} \f$ row of B has only one 
+     * non-zero in the \f$ j^{th} \f$ column, relating \f$ i^{th} \f$ value in vector S
+     * to \f$ j^{th} \f$ arc number defined by @ref S_arcnum. Size of B is 
+     * ( @ref size_of_S \f$ x \f$ @ref numArcs ).
      */
         double* B;        
 

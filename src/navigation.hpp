@@ -104,11 +104,11 @@ class navigation
         
         
         //!Function to convert ECEF to ellipsoidal coordinates.
-        /*!This function converts ECEF cartesian coordinates (x,y,z)to
-         * ellipsoidal coordinates (%phi,%lambda,h) respectively lattitude, 
+        /*!This function converts ECEF cartesian coordinates \f$ (x,y,z) \f$ to
+         * ellipsoidal coordinates \f$ (\varphi,\lambda,h) \f$ respectively lattitude, 
          * longitude, and height. 
         * \param ecef ECEF cartesian coordinates.
-        * \param ellipsoid output ellipsoidal coordinates (%phi,%lambda,h).
+        * \param ellipsoid output ellipsoidal coordinates \f$ (\varphi,\lambda,h) \f$ .
         */        
         void ecefToEllipsoidal(const triple& ecef, triple& ellipsoid);
 
