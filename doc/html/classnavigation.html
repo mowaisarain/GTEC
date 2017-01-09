@@ -109,6 +109,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ada025f5dc80afd4dc403ddeeb00a80ab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnavigation.html#ada025f5dc80afd4dc403ddeeb00a80ab">getPositionGE</a> (<a class="el" href="classephemerisGE.html">ephemerisGE</a> &amp;initial, int t, <a class="el" href="classtriple.html">triple</a> &amp;pos)</td></tr>
 <tr class="memdesc:ada025f5dc80afd4dc403ddeeb00a80ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to compute GPS/Galileo/BeiDou satellite positions.  <a href="#ada025f5dc80afd4dc403ddeeb00a80ab">More...</a><br /></td></tr>
 <tr class="separator:ada025f5dc80afd4dc403ddeeb00a80ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4625b66fdb344a059b00a4a8440b66a2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnavigation.html#a4625b66fdb344a059b00a4a8440b66a2">ecefToEllipsoidal</a> (const <a class="el" href="classtriple.html">triple</a> &amp;ecef, <a class="el" href="classtriple.html">triple</a> &amp;ellipsoid)</td></tr>
+<tr class="memdesc:a4625b66fdb344a059b00a4a8440b66a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to convert ECEF to ellipsoidal coordinates.  <a href="#a4625b66fdb344a059b00a4a8440b66a2">More...</a><br /></td></tr>
+<tr class="separator:a4625b66fdb344a059b00a4a8440b66a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -267,6 +270,16 @@ Private Member Functions</h2></td></tr>
   </dd>
 </dl>
 
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnavigation_a4bb73c26bd6b5ea5e0ac517cc3557984_cgraph.png" border="0" usemap="#classnavigation_a4bb73c26bd6b5ea5e0ac517cc3557984_cgraph" alt=""/></div>
+<map name="classnavigation_a4bb73c26bd6b5ea5e0ac517cc3557984_cgraph" id="classnavigation_a4bb73c26bd6b5ea5e0ac517cc3557984_cgraph">
+<area shape="rect" id="node2" href="classnavigation.html#a4625b66fdb344a059b00a4a8440b66a2" title="Function to convert ECEF to ellipsoidal coordinates. " alt="" coords="229,5,417,32"/>
+</map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="ae52d2b1bdf4a4a9788fb68094f0d4319"></a>
@@ -306,6 +319,41 @@ Private Member Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">M</td><td>mean anomaly for reference time tk. </td></tr>
     <tr><td class="paramname">e</td><td>eccentricity. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a4625b66fdb344a059b00a4a8440b66a2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void navigation::ecefToEllipsoidal </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classtriple.html">triple</a> &amp;&#160;</td>
+          <td class="paramname"><em>ecef</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classtriple.html">triple</a> &amp;&#160;</td>
+          <td class="paramname"><em>ellipsoid</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Function to convert ECEF to ellipsoidal coordinates. </p>
+<p>This function converts ECEF cartesian coordinates (x,y,z)to ellipsoidal coordinates (phi,lambda,h) respectively lattitude, longitude, and height. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ecef</td><td>ECEF cartesian coordinates. </td></tr>
+    <tr><td class="paramname">ellipsoid</td><td>output ellipsoidal coordinates (phi,lambda,h). </td></tr>
   </table>
   </dd>
 </dl>
@@ -359,6 +407,7 @@ Here is the call graph for this function:</div>
 <map name="classnavigation_ada025f5dc80afd4dc403ddeeb00a80ab_cgraph" id="classnavigation_ada025f5dc80afd4dc403ddeeb00a80ab_cgraph">
 <area shape="rect" id="node2" href="classnavigation.html#ae52d2b1bdf4a4a9788fb68094f0d4319" title="Function to compute eccentricity anomaly Ek. " alt="" coords="234,5,395,32"/>
 <area shape="rect" id="node3" href="classnavigation.html#a4bb73c26bd6b5ea5e0ac517cc3557984" title="This Function apply rotations around uk, ik and Lk. " alt="" coords="227,56,403,83"/>
+<area shape="rect" id="node4" href="classnavigation.html#a4625b66fdb344a059b00a4a8440b66a2" title="Function to convert ECEF to ellipsoidal coordinates. " alt="" coords="451,56,639,83"/>
 </map>
 </div>
 </p>

@@ -102,13 +102,24 @@ class navigation
         */
         void getPositionGE(ephemerisGE& initial, int t , triple& pos);
         
+        
+        //!Function to convert ECEF to ellipsoidal coordinates.
+        /*!This function converts ECEF cartesian coordinates (x,y,z)to
+         * ellipsoidal coordinates (%phi,%lambda,h) respectively lattitude, 
+         * longitude, and height. 
+        * \param ecef ECEF cartesian coordinates.
+        * \param ellipsoid output ellipsoidal coordinates (%phi,%lambda,h).
+        */        
+        void ecefToEllipsoidal(const triple& ecef, triple& ellipsoid);
+
+        
+        
 
     private:
         navigation();
         /**< Default Constructor. 
         * Hidden, cannot be used.
         */
-        
         
         //!Function to compute eccentricity anomaly Ek.
         /*!This Function computes eccentricity anomaly Ek by Solving (iteratively) 

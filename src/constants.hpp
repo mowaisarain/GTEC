@@ -77,6 +77,12 @@ const double mu = 3.986005e+14;
 const double mu_WGS84 = 3.986004418e+14;
 const double wE = 7.2921150e-05;  //Earth's rotation rate in radians per sec.
 
+//Euatorial radius of earth elipsoid in meters (semi-major axis)
+const double a_WGS84 = 6378137.0;
+
+//Polar radius of earth elipsoid in meters (semi-minor axis)
+const double b_WGS84 = 6356752.314245;
+
 
 //////////////////////////// PZ-90 Constants ///////////////////////////////////
 // Reference: http://www.navipedia.net/index.php/GLONASS_Satellite_Coordinates_Computation

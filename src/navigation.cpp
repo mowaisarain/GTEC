@@ -941,3 +941,44 @@ void navigation::applyRotations(float& Lk, float& ik, float& uk,
 };
 
 
+
+// This routine has some precision problem !
+void ecefToEllipsoidal(const triple& ecef, triple& ellipsoid)
+{
+	double phi0 = 0.0;
+	double h0 = 0.0;
+	double p = sqrt(ecef.X * ecef.X + ecef.Y * ecef.Y);
+	double Ni;
+	double change_phi;
+	double change_h;
+    
+    //eccentricity squared of elipse cross-section
+    double e2 = 1.0 - ( (b_WGS84 * b_WGS84) / (a_WGS84 * a_WGS84) );  
+
+	int iter = 0;
+    
+    //Calculation of Longitude
+	ellipsoid.Y = atan(ecef.Y/ecef.X);  
+
+	//calculate phi(Latitude) by iterative method
+	//first set initial values
+	phi0 = atan( ecef.Z / ( ( 1.0 - e2 ) * p ) );
+	
+	do
+	{
+		iter += 1;
+		Ni = a_WGS84 / sqrt( 1.0 - e2 * sin(phi0) * sin(phi0));
+		ellipsoid.Z = ( p / cos(phi0) ) - Ni;
+		ellipsoid.X = atan( ecef.Z / ( ( 1.0 - e2 * ( Ni / ( Ni + ellipsoid.Z ) ) ) * p ) );
+		change_phi = abs( ( (ecef.X - phi0) / ecef.X ) * 100.0 );
+		change_h = abs( ( (ellipsoid.Z - h0) / ellipsoid.Z ) * 100.0 );
+		phi0 = ecef.X;
+		h0 = ellipsoid.Z;
+	}
+	while(change_phi > 0.0000005 || change_h > 0.0000005);
+
+};
+
+
+
+
