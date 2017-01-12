@@ -34,9 +34,10 @@
 
 #------------------------------------------------------------------------------
 CC      = g++
-BOOSTLIB = /usr/local/lib
-CFLAGS  = -std=c++11
-LDFLAGS = -lboost_system -lboost_filesystem
+# BOOSTLIB  defines boost lib path
+# BOOSTINC  defines boost include path
+CFLAGS  = -std=c++11 -I$(BOOSTINC) -L$(BOOSTLIB)
+LDFLAGS = -static -lboost_system -lboost_filesystem
 PROGRAM = GTEC
 SRCDIR  = src
 OBJS = inout.o int_pair.o ptr_pair.o internalTime.o ObsData.o navigation.o triple.o GTEC.o
