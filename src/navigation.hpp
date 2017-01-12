@@ -2,7 +2,7 @@
     GTEC -  A high performance standardized implementation of 
     Multi Constellation GNSS Derived TEC Calibration 
     (Model by T/ICT4D Lab ICTP).
-    Copyright (C) 2016,2017  Muhammad Owais
+    Copyright (C) 2016,2017 Muhammad Owais
     
     This file is part of GTEC.
 
@@ -27,13 +27,8 @@
 
 */
 
-
-
-
-
 #ifndef __NAVIGATION__
 #define __NAVIGATION__
-
 
 #include "internalTime.hpp"
 #include <vector>
@@ -45,106 +40,102 @@
  * @author Muhammad Owais
  * @date 05/12/16
  * @file navigation.hpp
- * @brief This class navigation data.
+ * @brief This is class navigation data.
  * 
  * This class defines navigation data, stored after reading RINEX 
  * navigation files, for different constellations.
  */
 class navigation
 {
-    public:
-    
-        //!Member function read
-        /*!Member function read parses input navigation files and constructs
+public:
+    //!Member function read
+    /*!Member function read parses input navigation files and constructs
         * internal navigation structure.
         */
-        void read();
-        
-        //!Constructor with Input files
-        /*!Constructs navigation object by reading input navigation files
+    void read();
+
+    //!Constructor with Input files
+    /*!Constructs navigation object by reading input navigation files
         * defined by fnames.
         * \param fnames Vector of Navigation file names.
         */
-        navigation(std::vector<std::string > fnames);
+    navigation(std::vector<std::string> fnames);
 
-        std::vector<std::string > fileNames; //!< list of file names to read from
+    std::vector<std::string> fileNames; //!< list of file names to read from
 
-        float version;  //!< Stores RINEX version
-        int leapSeconds;    //!< Stores leapSeconds from Navigation files
-        
+    float version;   //!< Stores RINEX version
+    int leapSeconds; //!< Stores leapSeconds from Navigation files
 
-        //!Vector to store objects of type ephemerisGE for GPS
-        std::vector< std::vector<ephemerisGE > > ephemeris_G;
-        //!Vector to store objects of type ephemerisGE for Galileo
-        std::vector< std::vector<ephemerisGE > > ephemeris_E;
-        //!Vector to store objects of type ephemerisR for GLONASS
-        std::vector< std::vector<ephemerisR > > ephemeris_R;
-        //!Vector to store objects of type ephemerisGE for BeiDou
-        std::vector< std::vector<ephemerisGE > > ephemeris_C;
-        
-        
-        //!Function to compute GLONASS satellite positions.
-        /*!This function calculates GLONASS satellite coordinates given
+    //!Vector to store objects of type ephemerisGE for GPS
+    std::vector<std::vector<ephemerisGE> > ephemeris_G;
+    //!Vector to store objects of type ephemerisGE for Galileo
+    std::vector<std::vector<ephemerisGE> > ephemeris_E;
+    //!Vector to store objects of type ephemerisR for GLONASS
+    std::vector<std::vector<ephemerisR> > ephemeris_R;
+    //!Vector to store objects of type ephemerisGE for BeiDou
+    std::vector<std::vector<ephemerisGE> > ephemeris_C;
+
+    //!Function to compute GLONASS satellite positions.
+    /*!This function calculates GLONASS satellite coordinates given
         * an ephemerisR object, and a step size.
         * \param initialConditions ephemerisR object containing initial conditions.
         * \param h Integer step size for next coordinate.
         * \param pos triple object returned with computed coordinates.
         */
-        void getPositionR(ephemerisR& initialConditions, int h , triple& pos);
-        
-        
-        //!Function to compute GPS/Galileo/BeiDou satellite positions.
-        /*!This function calculates GPS/Galileo/BeiDou satellite coordinates given
+    void getPositionR(ephemerisR& initialConditions, int h, triple& pos);
+
+    //!Function to compute GPS/Galileo/BeiDou satellite positions.
+    /*!This function calculates GPS/Galileo/BeiDou satellite coordinates given
         * an ephemerisGE object and time for which coordinates are required.
         * \param initial ephemerisGE object containing initial Keplerian elements.
         * \param t Integer time for which coordinates are to be computed.
         * \param pos triple object returned with computed coordinates.
         */
-        void getPositionGE(ephemerisGE& initial, int t , triple& pos);
-        
-        
-        //!Function to convert ECEF to ellipsoidal coordinates.
-        /*!This function converts ECEF cartesian coordinates \f$ (x,y,z) \f$ to
+    void getPositionGE(ephemerisGE& initial, int t, triple& pos);
+
+    //!Function to convert ECEF to ellipsoidal coordinates.
+    /*!This function converts ECEF cartesian coordinates \f$ (x,y,z) \f$ to
          * ellipsoidal coordinates \f$ (\varphi,\lambda,h) \f$ respectively lattitude, 
          * longitude, and height. 
         * \param ecef ECEF cartesian coordinates.
         * \param ellipsoid output ellipsoidal coordinates \f$ (\varphi,\lambda,h) \f$ .
-        */        
-        void ecefToEllipsoidal(const triple& ecef, triple& ellipsoid);
+        */
+    void ecefToEllipsoidal(const triple& ecef, triple& ellipsoid);
 
-        
-        //!Function to compute satellite elevation and azimuth.
-        /*!This function computes satellite elevation and azimuth given marker (receiver station) position
+    //!Function to compute satellite elevation and azimuth.
+    /*!This function computes satellite elevation and azimuth given marker (receiver station) position
 	 * in ECEF and ellipsoidal coordinates and satellite position in ECEF coordinates. This function implements
 	 * elevation/azimuth computation as described in 
+     * <a href="http://www.navipedia.net/index.php/Transformations_between_ECEF_and_ENU_coordinates">
+     * Transformations between ECEF and ENU coordinates 
+     * J. Sanz Subirana, J.M. Juan Zornoza and M. Hernández-Pajares, 
+     * Technical University of Catalonia, Spain.
+     * </a>
 	 * \param markerECEF ECEF cartesian coordinates for marker (receiver station) as a @ref triple object.
          * \param sat ellipsoidal coordinates for satellite as a @ref triple object.
          * \param markerEllip ellipsoidal coordinates for marker (receiver station) as a @ref triple object.
          * \param elevation output satellite elevation.
          * \param azimuth output satellite azimuth.
          */
-	void satElevAzim(triple& markerECEF, triple& sat, triple& markerEllip, double& elevation, double& azimuth);
+    void satElevAzim(triple& markerECEF, triple& sat, triple& markerEllip, double& elevation, double& azimuth);
 
-
-
-    private:
-        navigation();
-        /**< Default Constructor. 
+private:
+    navigation();
+    /**< Default Constructor. 
         * Hidden, cannot be used.
         */
-        
-        //!Function to compute eccentricity anomaly Ek.
-        /*!This Function computes eccentricity anomaly Ek by Solving (iteratively) 
+
+    //!Function to compute eccentricity anomaly Ek.
+    /*!This Function computes eccentricity anomaly Ek by Solving (iteratively) 
         * the Kepler equation for the eccentricity anomaly, using 
         * Newton–Raphson method, Equation -->  Mk = Ek - ( e * Sin(Ek) )
         * \param M mean anomaly for reference time tk.
         * \param e eccentricity.
         */
-        float eccAnomaly(float M, float e);
-        
-        
-        //!This Function apply rotations around uk, ik and Lk.
-        /*!This Function apply rotations around uk, ik and Lk, 
+    float eccAnomaly(float M, float e);
+
+    //!This Function apply rotations around uk, ik and Lk.
+    /*!This Function apply rotations around uk, ik and Lk, 
         * Rotation ==
         * | Xk |                           | rk |
         * | Yk |  =  R3(-Lk)R1(-ik)R3(-uk) | 0  |
@@ -158,9 +149,7 @@ class navigation
         * \param rk Radial distance rk.
         * \param pos triple object returned with computed coordinates.
         */
-        void applyRotations(float& Lk, float& ik, float& uk, 
-                            float& rk, triple& pos);
-
+    void applyRotations(float& Lk, float& ik, float& uk, float& rk, triple& pos);
 };
 
 #endif

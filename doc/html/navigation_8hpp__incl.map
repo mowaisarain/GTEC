@@ -1,6 +1,6 @@
-<map id="/home/mowais/GTEC/src/navigation.hpp" name="/home/mowais/GTEC/src/navigation.hpp">
-<area shape="rect" id="node2" href="$internalTime_8hpp.html" title="Class defining internal time format. " alt="" coords="5,95,124,121"/>
-<area shape="rect" id="node5" href="$ephemerisGE_8hpp_source.html" title="ephemerisGE.hpp" alt="" coords="231,95,357,121"/>
-<area shape="rect" id="node8" href="$ephemerisR_8hpp_source.html" title="ephemerisR.hpp" alt="" coords="382,95,499,121"/>
-<area shape="rect" id="node6" href="$triple_8hpp.html" title="This class defines a 3&#45;D Coordinate. " alt="" coords="330,169,405,196"/>
+<map id="navigation.hpp" name="navigation.hpp">
+<area shape="rect" id="node2" href="$internalTime_8hpp.html" title="Class defining internal time format. " alt="" coords="5,80,124,107"/>
+<area shape="rect" id="node5" href="$ephemerisGE_8hpp_source.html" title="ephemerisGE.hpp" alt="" coords="231,80,357,107"/>
+<area shape="rect" id="node8" href="$ephemerisR_8hpp_source.html" title="ephemerisR.hpp" alt="" coords="382,80,499,107"/>
+<area shape="rect" id="node6" href="$triple_8hpp.html" title="This class defines a 3&#45;D Coordinate. " alt="" coords="330,155,405,181"/>
 </map>

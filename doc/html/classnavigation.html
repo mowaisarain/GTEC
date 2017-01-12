@@ -112,13 +112,16 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a4625b66fdb344a059b00a4a8440b66a2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnavigation.html#a4625b66fdb344a059b00a4a8440b66a2">ecefToEllipsoidal</a> (const <a class="el" href="classtriple.html">triple</a> &amp;ecef, <a class="el" href="classtriple.html">triple</a> &amp;ellipsoid)</td></tr>
 <tr class="memdesc:a4625b66fdb344a059b00a4a8440b66a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to convert ECEF to ellipsoidal coordinates.  <a href="#a4625b66fdb344a059b00a4a8440b66a2">More...</a><br /></td></tr>
 <tr class="separator:a4625b66fdb344a059b00a4a8440b66a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add2f624027f5803ea320d3a0678bd021"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnavigation.html#add2f624027f5803ea320d3a0678bd021">satElevAzim</a> (<a class="el" href="classtriple.html">triple</a> &amp;markerECEF, <a class="el" href="classtriple.html">triple</a> &amp;sat, <a class="el" href="classtriple.html">triple</a> &amp;markerEllip, double &amp;elevation, double &amp;azimuth)</td></tr>
+<tr class="memdesc:add2f624027f5803ea320d3a0678bd021"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to compute satellite elevation and azimuth.  <a href="#add2f624027f5803ea320d3a0678bd021">More...</a><br /></td></tr>
+<tr class="separator:add2f624027f5803ea320d3a0678bd021"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a2811048f2c38af2f285af8bac24d6197"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2811048f2c38af2f285af8bac24d6197"></a>
-std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnavigation.html#a2811048f2c38af2f285af8bac24d6197">fileNames</a></td></tr>
-<tr class="memdesc:a2811048f2c38af2f285af8bac24d6197"><td class="mdescLeft">&#160;</td><td class="mdescRight">list of file names to read from <br /></td></tr>
-<tr class="separator:a2811048f2c38af2f285af8bac24d6197"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39479d73ee439f7d9d17dae8911bb421"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a39479d73ee439f7d9d17dae8911bb421"></a>
+std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnavigation.html#a39479d73ee439f7d9d17dae8911bb421">fileNames</a></td></tr>
+<tr class="memdesc:a39479d73ee439f7d9d17dae8911bb421"><td class="mdescLeft">&#160;</td><td class="mdescRight">list of file names to read from <br /></td></tr>
+<tr class="separator:a39479d73ee439f7d9d17dae8911bb421"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa3e5a45dd2cec476b4e9547e26523ec3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa3e5a45dd2cec476b4e9547e26523ec3"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnavigation.html#aa3e5a45dd2cec476b4e9547e26523ec3">version</a></td></tr>
 <tr class="memdesc:aa3e5a45dd2cec476b4e9547e26523ec3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores RINEX version. <br /></td></tr>
@@ -127,22 +130,22 @@ float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
 int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnavigation.html#a2b1fc9382510a80d7c50752dfbeaca77">leapSeconds</a></td></tr>
 <tr class="memdesc:a2b1fc9382510a80d7c50752dfbeaca77"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores leapSeconds from Navigation files. <br /></td></tr>
 <tr class="separator:a2b1fc9382510a80d7c50752dfbeaca77"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a100045b675e85a5b155f538e66feedca"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a100045b675e85a5b155f538e66feedca"></a>
-std::vector&lt; std::vector&lt; <a class="el" href="classephemerisGE.html">ephemerisGE</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnavigation.html#a100045b675e85a5b155f538e66feedca">ephemeris_G</a></td></tr>
-<tr class="memdesc:a100045b675e85a5b155f538e66feedca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector to store objects of type <a class="el" href="classephemerisGE.html">ephemerisGE</a> for GPS. <br /></td></tr>
-<tr class="separator:a100045b675e85a5b155f538e66feedca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afeb429ed06a575338d9c4dee16f82969"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afeb429ed06a575338d9c4dee16f82969"></a>
-std::vector&lt; std::vector&lt; <a class="el" href="classephemerisGE.html">ephemerisGE</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnavigation.html#afeb429ed06a575338d9c4dee16f82969">ephemeris_E</a></td></tr>
-<tr class="memdesc:afeb429ed06a575338d9c4dee16f82969"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector to store objects of type <a class="el" href="classephemerisGE.html">ephemerisGE</a> for Galileo. <br /></td></tr>
-<tr class="separator:afeb429ed06a575338d9c4dee16f82969"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acc536be73b10ee4bd1c32052a4539429"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acc536be73b10ee4bd1c32052a4539429"></a>
-std::vector&lt; std::vector&lt; <a class="el" href="classephemerisR.html">ephemerisR</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnavigation.html#acc536be73b10ee4bd1c32052a4539429">ephemeris_R</a></td></tr>
-<tr class="memdesc:acc536be73b10ee4bd1c32052a4539429"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector to store objects of type <a class="el" href="classephemerisR.html">ephemerisR</a> for GLONASS. <br /></td></tr>
-<tr class="separator:acc536be73b10ee4bd1c32052a4539429"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acb4ab62e83def3e3e9da0dd7555c7542"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acb4ab62e83def3e3e9da0dd7555c7542"></a>
-std::vector&lt; std::vector&lt; <a class="el" href="classephemerisGE.html">ephemerisGE</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnavigation.html#acb4ab62e83def3e3e9da0dd7555c7542">ephemeris_C</a></td></tr>
-<tr class="memdesc:acb4ab62e83def3e3e9da0dd7555c7542"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector to store objects of type <a class="el" href="classephemerisGE.html">ephemerisGE</a> for BeiDou. <br /></td></tr>
-<tr class="separator:acb4ab62e83def3e3e9da0dd7555c7542"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8bccc2dbf47cd9861a3b93d7f68e00fa"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8bccc2dbf47cd9861a3b93d7f68e00fa"></a>
+std::vector&lt; std::vector&lt; <a class="el" href="classephemerisGE.html">ephemerisGE</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnavigation.html#a8bccc2dbf47cd9861a3b93d7f68e00fa">ephemeris_G</a></td></tr>
+<tr class="memdesc:a8bccc2dbf47cd9861a3b93d7f68e00fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector to store objects of type <a class="el" href="classephemerisGE.html">ephemerisGE</a> for GPS. <br /></td></tr>
+<tr class="separator:a8bccc2dbf47cd9861a3b93d7f68e00fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8726b14f06358a32221919a4393cceb6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8726b14f06358a32221919a4393cceb6"></a>
+std::vector&lt; std::vector&lt; <a class="el" href="classephemerisGE.html">ephemerisGE</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnavigation.html#a8726b14f06358a32221919a4393cceb6">ephemeris_E</a></td></tr>
+<tr class="memdesc:a8726b14f06358a32221919a4393cceb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector to store objects of type <a class="el" href="classephemerisGE.html">ephemerisGE</a> for Galileo. <br /></td></tr>
+<tr class="separator:a8726b14f06358a32221919a4393cceb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac987b7f50aa724a80a0271b8c3e5e81c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac987b7f50aa724a80a0271b8c3e5e81c"></a>
+std::vector&lt; std::vector&lt; <a class="el" href="classephemerisR.html">ephemerisR</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnavigation.html#ac987b7f50aa724a80a0271b8c3e5e81c">ephemeris_R</a></td></tr>
+<tr class="memdesc:ac987b7f50aa724a80a0271b8c3e5e81c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector to store objects of type <a class="el" href="classephemerisR.html">ephemerisR</a> for GLONASS. <br /></td></tr>
+<tr class="separator:ac987b7f50aa724a80a0271b8c3e5e81c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7afff3a1c8ac1eaea031ffd0ddd53ffc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7afff3a1c8ac1eaea031ffd0ddd53ffc"></a>
+std::vector&lt; std::vector&lt; <a class="el" href="classephemerisGE.html">ephemerisGE</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnavigation.html#a7afff3a1c8ac1eaea031ffd0ddd53ffc">ephemeris_C</a></td></tr>
+<tr class="memdesc:a7afff3a1c8ac1eaea031ffd0ddd53ffc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector to store objects of type <a class="el" href="classephemerisGE.html">ephemerisGE</a> for BeiDou. <br /></td></tr>
+<tr class="separator:a7afff3a1c8ac1eaea031ffd0ddd53ffc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
@@ -276,6 +279,7 @@ Here is the call graph for this function:</div>
 <div class="center"><img src="classnavigation_a4bb73c26bd6b5ea5e0ac517cc3557984_cgraph.png" border="0" usemap="#classnavigation_a4bb73c26bd6b5ea5e0ac517cc3557984_cgraph" alt=""/></div>
 <map name="classnavigation_a4bb73c26bd6b5ea5e0ac517cc3557984_cgraph" id="classnavigation_a4bb73c26bd6b5ea5e0ac517cc3557984_cgraph">
 <area shape="rect" id="node2" href="classnavigation.html#a4625b66fdb344a059b00a4a8440b66a2" title="Function to convert ECEF to ellipsoidal coordinates. " alt="" coords="229,5,417,32"/>
+<area shape="rect" id="node3" href="classnavigation.html#add2f624027f5803ea320d3a0678bd021" title="Function to compute satellite elevation and azimuth. " alt="" coords="242,56,405,83"/>
 </map>
 </div>
 </p>
@@ -407,7 +411,8 @@ Here is the call graph for this function:</div>
 <map name="classnavigation_ada025f5dc80afd4dc403ddeeb00a80ab_cgraph" id="classnavigation_ada025f5dc80afd4dc403ddeeb00a80ab_cgraph">
 <area shape="rect" id="node2" href="classnavigation.html#ae52d2b1bdf4a4a9788fb68094f0d4319" title="Function to compute eccentricity anomaly Ek. " alt="" coords="234,5,395,32"/>
 <area shape="rect" id="node3" href="classnavigation.html#a4bb73c26bd6b5ea5e0ac517cc3557984" title="This Function apply rotations around uk, ik and Lk. " alt="" coords="227,56,403,83"/>
-<area shape="rect" id="node4" href="classnavigation.html#a4625b66fdb344a059b00a4a8440b66a2" title="Function to convert ECEF to ellipsoidal coordinates. " alt="" coords="451,56,639,83"/>
+<area shape="rect" id="node4" href="classnavigation.html#a4625b66fdb344a059b00a4a8440b66a2" title="Function to convert ECEF to ellipsoidal coordinates. " alt="" coords="451,31,639,57"/>
+<area shape="rect" id="node5" href="classnavigation.html#add2f624027f5803ea320d3a0678bd021" title="Function to compute satellite elevation and azimuth. " alt="" coords="463,81,626,108"/>
 </map>
 </div>
 </p>
@@ -484,9 +489,65 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
+<a class="anchor" id="add2f624027f5803ea320d3a0678bd021"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void navigation::satElevAzim </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classtriple.html">triple</a> &amp;&#160;</td>
+          <td class="paramname"><em>markerECEF</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classtriple.html">triple</a> &amp;&#160;</td>
+          <td class="paramname"><em>sat</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classtriple.html">triple</a> &amp;&#160;</td>
+          <td class="paramname"><em>markerEllip</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double &amp;&#160;</td>
+          <td class="paramname"><em>elevation</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double &amp;&#160;</td>
+          <td class="paramname"><em>azimuth</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Function to compute satellite elevation and azimuth. </p>
+<p>This function computes satellite elevation and azimuth given marker (receiver station) position in ECEF and ellipsoidal coordinates and satellite position in ECEF coordinates. This function implements elevation/azimuth computation as described in <a href="http://www.navipedia.net/index.php/Transformations_between_ECEF_and_ENU_coordinates">Transformations between ECEF and ENU coordinates J. Sanz Subirana, J.M. Juan Zornoza and M. Hernández-Pajares, Technical University of Catalonia, Spain. </a> </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">markerECEF</td><td>ECEF cartesian coordinates for marker (receiver station) as a <a class="el" href="classtriple.html">triple</a> object. </td></tr>
+    <tr><td class="paramname">sat</td><td>ellipsoidal coordinates for satellite as a <a class="el" href="classtriple.html">triple</a> object. </td></tr>
+    <tr><td class="paramname">markerEllip</td><td>ellipsoidal coordinates for marker (receiver station) as a <a class="el" href="classtriple.html">triple</a> object. </td></tr>
+    <tr><td class="paramname">elevation</td><td>output satellite elevation. </td></tr>
+    <tr><td class="paramname">azimuth</td><td>output satellite azimuth. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/mowais/GTEC/src/<a class="el" href="navigation_8hpp_source.html">navigation.hpp</a></li>
-<li>/home/mowais/GTEC/src/navigation.cpp</li>
+<li><a class="el" href="navigation_8hpp_source.html">navigation.hpp</a></li>
+<li>navigation.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

@@ -3,6 +3,7 @@ var searchData=
   ['s',['S',['../classObsData.html#ae146296cfaa4ca7c6928c10094114212',1,'ObsData']]],
   ['s_5farcnum',['S_arcnum',['../classObsData.html#a92a5a64cb8c4ad485ec0d17b153f520e',1,'ObsData']]],
   ['s_5fprn',['S_prn',['../classObsData.html#a938a00b94a0048a18cf7df0bb69c3898',1,'ObsData']]],
+  ['satelevazim',['satElevAzim',['../classnavigation.html#add2f624027f5803ea320d3a0678bd021',1,'navigation']]],
   ['second',['second',['../classinternalTime.html#aafd970e60fded9bf97705d683e39f07e',1,'internalTime']]],
   ['setarcstartend',['setArcStartEnd',['../classObsData.html#ae7060972a38009b1e02e2f618fe1a0a4',1,'ObsData']]],
   ['setsysflags',['setSysFlags',['../classObsData.html#a146c39d0e4a4f5981a204ca2f2553c47',1,'ObsData']]],
