@@ -982,3 +982,50 @@ void ecefToEllipsoidal(const triple& ecef, triple& ellipsoid)
 
 
 
+//Routine to calculate satellite elevation
+void satElevAzim(triple& markerECEF, triple& sat, triple& markerEllip, double& elevation, double& azimuth)
+{
+	//compute line of sight vector
+	double p[3];
+
+	double e[3];
+	double n[3];
+	double u[3];
+
+	double diff[3];
+	double mag;
+
+	
+	diff[0] = sat.X - markerECEF.X;
+	diff[1] = sat.Y - markerECEF.Y;
+	diff[2] = sat.Z - markerECEF.Z;
+
+	mag = sqrt( (diff[0] * diff[0]) + (diff[1] * diff[1]) + (diff[2] * diff[2]) );
+
+	p[0] = diff[0] / mag;
+	p[1] = diff[1] / mag;
+	p[2] = diff[2] / mag;
+
+	e[0] = -1 * sin(markerEllip.X);
+	e[1] = cos(markerEllip.X);
+	e[2] = 0.0;
+
+	n[0] = -1 * cos(markerEllip.X) * sin(markerEllip.Y);
+	n[1] = -1 * sin(markerEllip.X) * sin(markerEllip.Y);
+	n[2] = cos(markerEllip.Y);
+
+	u[0] = cos(markerEllip.X) * cos(markerEllip.Y);
+	u[1] = sin(markerEllip.X) * cos(markerEllip.Y);
+	u[2] = sin(markerEllip.Y);
+
+	elevation =  asin( (p[0] * u[0]) + (p[1] * u[1]) + (p[2] * u[2]) );
+	azimuth =  atan( ((p[0] * e[0]) + (p[1] * e[1]) + (p[2] * e[2])) / ((p[0] * n[0]) + (p[1] * n[1]) + (p[2] * n[2])) );
+};
+
+
+
+
+
+
+
+

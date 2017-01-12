@@ -113,7 +113,19 @@ class navigation
         void ecefToEllipsoidal(const triple& ecef, triple& ellipsoid);
 
         
-        
+        //!Function to compute satellite elevation and azimuth.
+        /*!This function computes satellite elevation and azimuth given marker (receiver station) position
+	 * in ECEF and ellipsoidal coordinates and satellite position in ECEF coordinates. This function implements
+	 * elevation/azimuth computation as described in 
+	 * \param markerECEF ECEF cartesian coordinates for marker (receiver station) as a @ref triple object.
+         * \param sat ellipsoidal coordinates for satellite as a @ref triple object.
+         * \param markerEllip ellipsoidal coordinates for marker (receiver station) as a @ref triple object.
+         * \param elevation output satellite elevation.
+         * \param azimuth output satellite azimuth.
+         */
+	void satElevAzim(triple& markerECEF, triple& sat, triple& markerEllip, double& elevation, double& azimuth);
+
+
 
     private:
         navigation();
