@@ -102,6 +102,9 @@ public:
         */
     void ecefToEllipsoidal(const triple& ecef, triple& ellipsoid);
 
+    
+    
+    
     //!Function to compute satellite elevation and azimuth.
     /*!This function computes satellite elevation and azimuth given marker (receiver station) position
 	 * in ECEF and ellipsoidal coordinates and satellite position in ECEF coordinates. This function implements
@@ -118,6 +121,24 @@ public:
          * \param azimuth output satellite azimuth.
          */
     void satElevAzim(triple& markerECEF, triple& sat, triple& markerEllip, double& elevation, double& azimuth);
+    
+    
+    
+    
+    //!Function to compute IPP and zenith angle over IPP.
+    /*!//This function calculates IPP ionospheric pierce point in ECEF cartesian coordinates 
+     * and zenith angle over IPP using sphere-line euation given reference height of ionosphere, 
+     * marker (receiver station), and satellite position as inputs. 
+     * An integer status is returned describing solution type.
+	 * \param marker ECEF cartesian coordinates for marker (receiver station) as a @ref triple object.
+         * \param sat ECEF cartesian coordinates for satellite as a @ref triple object.
+         * \param rh Ionosphere reference height in Kilometers.
+         * \param IPP output ECEF cartesian coordinates for IPP as a @ref triple object.
+         * \param coschi output zenith angle over IPP.
+         */    
+    int computeIPP(const triple& marker, const triple& sat, const double& rh, triple& IPP, double& coschi);
+
+    
 
 private:
     navigation();

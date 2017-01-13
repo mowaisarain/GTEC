@@ -1025,6 +1025,155 @@ void satElevAzim(triple& markerECEF, triple& sat, triple& markerEllip, double& e
 
 
 
+//This routine calculates IPP ionospheric pierce point in cartesian
+//using sphere-line euation and reference height of ionosphere (given as input)
+//marker (station) and satellite positions are also inputs
+int computeIPP(const triple& marker, const triple& sat, const double& rh, triple& IPP, double& coschi)
+{
+	int status;
+	double scaling = 1000000.0;
+
+	//define radius of sphere as radius of earth + reference height of ionosphere
+	double r = 6371000.0 + rh * 1000.0 ; //radius in meters, rh given in km
+	//scale down
+	r = r / scaling;
+
+	//Substituting the equation of the line into the sphere gives a quadratic equation of the form
+	// a u2 + b u + c = 0
+	// where:
+	// a = (x2 - x1)2 + (y2 - y1)2 + (z2 - z1)2
+	// b = 2[ (x2 - x1) (x1 - x3) + (y2 - y1) (y1 - y3) + (z2 - z1) (z1 - z3) ]
+	// c = x32 + y32 + z32 + x12 + y12 + z12 - 2[x3 x1 + y3 y1 + z3 z1] - r2 
+	
+	//Defining a,b,c
+
+	double a,b,c;
+	
+	//scale down coordinates
+	double mx = marker.X / scaling;
+	double my = marker.Y / scaling;
+	double mz = marker.Z / scaling;
+	double sx = sat.X / scaling;
+	double sy = sat.Y / scaling;
+	double sz = sat.Z / scaling;
+
+	a = (sx - mx)*(sx - mx) + (sy - my)*(sy - my) + (sz - mz)*(sz - mz);
+	b = 2.0 * ( (sx - mx)*(mx - 0.0) + (sy - my)*(my - 0.0) + (sz - mz)*(mz - 0.0) );
+	c = (mx * mx) + (my * my) + (mz * mz) - r*r;
+	
+	
+	//vector for line of sight
+	triple los;
+	los.X = sx - mx; los.Y = sy - my; los.Z = sz - mz;
+
+	//magnitude of line of sight
+	double mag_los = sqrt( (los.X * los.X) + (los.Y * los.Y) + (los.Z * los.Z) );
+	
+	//Direction Unit vector for los
+	triple d_los;
+	d_los.X = los.X / mag_los;
+	d_los.X = los.Y / mag_los;
+	d_los.X = los.Z / mag_los;
+	
+
+	//The solutions to this quadratic are described by:
+	// ( -b +- sqrt( b*b -4*a*c ) ) / 2*a
+	// The exact behaviour is determined by the expression within the square root:
+	// b*b -4*a*c
+	// If this is less than 0 then the line does not intersect the sphere: return -1
+	// If it equals 0 then the line is a tangent to the sphere intersecting it at one point, namely at u = -b/2a,
+	// which is not possible as marker is inside sphere so line of sight caannot be a tangent: return -2
+	// If it is greater then 0 the line intersects the sphere at two points.
+
+	// Decide exact behaviour
+	
+	double eb = b*b - 4*a*c;
+	double u1 = 0.0;
+	double u2 = 0.0;
+	triple vec_u1;
+	triple vec_u2;
+	
+	double u1d = 0.0;
+	double u2d = 0.0;
+	
+	double adotb = 0.0;
+	double mag_IPP = 0.0;
+	
+	if(eb < 0.0)
+	{
+		status = -1;
+		return status;
+	}
+	else if(eb == 0.0)
+	{
+		status = -2;
+		return status;
+	}
+	else if(eb > 0.0)
+	{
+		u1 = ( (-1 * b) + sqrt(eb) ) / (2 * a);
+		u2 = ( (-1 * b) - sqrt(eb) ) / (2 * a);
+		// calculate both points
+		vec_u1.X = d_los.X * u1;
+		vec_u1.Y = d_los.Y * u1;
+		vec_u1.Z = d_los.Z * u1;
+
+		vec_u2.X = d_los.X * u2;
+		vec_u2.Y = d_los.Y * u2;
+		vec_u2.Z = d_los.Z * u2;
+		// to both solutions add marker vector to obtain ipp from origin
+		vec_u1.X += mx;
+		vec_u1.Y += my;
+		vec_u1.Z += mz;
+
+		vec_u2.X += mx;
+		vec_u2.Y += my;
+		vec_u2.Z += mz;
+		
+		//Now both vectors start from origin Earth's Center
+		// select right solution by selecting shortest distance from solution points to satellite
+		
+		u1d = sqrt( (sx - vec_u1.X)*(sx - vec_u1.X) + (sy - vec_u1.Y)*(sy - vec_u1.Y) + (sz - vec_u1.Z)*(sz - vec_u1.Z) );
+		u2d = sqrt( (sx - vec_u2.X)*(sx - vec_u2.X) + (sy - vec_u2.Y)*(sy - vec_u2.Y) + (sz - vec_u2.Z)*(sz - vec_u2.Z) );
+
+		if(u1d < u2d)
+		{
+			IPP.X = vec_u1.X;
+			IPP.Y = vec_u1.Y;
+			IPP.Z = vec_u1.Z;
+			status = 0;
+		}else
+		{
+			IPP.X = vec_u2.X;
+			IPP.Y = vec_u2.Y;
+			IPP.Z = vec_u2.Z;
+			status = 0;			
+		}
+		
+			
+		//Now calculate coschi between los vector and IPP vector
+		//by cos(x) = a.b / |a||b|, where a is los vector and b is IPP vector
+
+		adotb = (los.X * IPP.X) + (los.Y * IPP.Y) + (los.Z * IPP.Z);
+		mag_IPP = sqrt( (IPP.X * IPP.X) + (IPP.Y * IPP.Y) + (IPP.Z * IPP.Z) );
+		coschi = acos( adotb / (mag_los * mag_IPP) );
+		
+
+		IPP.X  *= scaling;
+		IPP.Y  *= scaling;
+		IPP.Z  *= scaling;
+
+		return status;
+	}
+};
+
+
+
+
+
+
+
+
 
 
 
