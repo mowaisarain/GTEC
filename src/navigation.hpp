@@ -98,7 +98,7 @@ public:
          * ellipsoidal coordinates \f$ (\varphi,\lambda,h) \f$ respectively lattitude, 
          * longitude, and height. 
         * \param ecef ECEF cartesian coordinates.
-        * \param ellipsoid output ellipsoidal coordinates \f$ (\varphi,\lambda,h) \f$ .
+        * \param ellipsoid Output ellipsoidal coordinates \f$ (\varphi,\lambda,h) \f$ .
         */
     void ecefToEllipsoidal(const triple& ecef, triple& ellipsoid);
 
@@ -117,8 +117,8 @@ public:
 	 * \param markerECEF ECEF cartesian coordinates for marker (receiver station) as a @ref triple object.
          * \param sat ellipsoidal coordinates for satellite as a @ref triple object.
          * \param markerEllip ellipsoidal coordinates for marker (receiver station) as a @ref triple object.
-         * \param elevation output satellite elevation.
-         * \param azimuth output satellite azimuth.
+         * \param elevation Output satellite elevation.
+         * \param azimuth Output satellite azimuth.
          */
     void satElevAzim(triple& markerECEF, triple& sat, triple& markerEllip, double& elevation, double& azimuth);
     
@@ -126,15 +126,15 @@ public:
     
     
     //!Function to compute IPP and zenith angle over IPP.
-    /*!//This function calculates IPP ionospheric pierce point in ECEF cartesian coordinates 
-     * and zenith angle over IPP using sphere-line euation given reference height of ionosphere, 
-     * marker (receiver station), and satellite position as inputs. 
+    /*!This function computes IPP (Ionospheric Pierce Point) in ECEF cartesian coordinates 
+     * and zenith angle over IPP using sphere-line euation. Reference height of ionosphere, 
+     * marker (receiver station), and satellite position are given as inputs. 
      * An integer status is returned describing solution type.
 	 * \param marker ECEF cartesian coordinates for marker (receiver station) as a @ref triple object.
          * \param sat ECEF cartesian coordinates for satellite as a @ref triple object.
          * \param rh Ionosphere reference height in Kilometers.
-         * \param IPP output ECEF cartesian coordinates for IPP as a @ref triple object.
-         * \param coschi output zenith angle over IPP.
+         * \param IPP Output ECEF cartesian coordinates for IPP as a @ref triple object.
+         * \param coschi Output zenith angle over IPP.
          */    
     int computeIPP(const triple& marker, const triple& sat, const double& rh, triple& IPP, double& coschi);
 

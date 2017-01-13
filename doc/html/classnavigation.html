@@ -115,6 +115,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:add2f624027f5803ea320d3a0678bd021"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnavigation.html#add2f624027f5803ea320d3a0678bd021">satElevAzim</a> (<a class="el" href="classtriple.html">triple</a> &amp;markerECEF, <a class="el" href="classtriple.html">triple</a> &amp;sat, <a class="el" href="classtriple.html">triple</a> &amp;markerEllip, double &amp;elevation, double &amp;azimuth)</td></tr>
 <tr class="memdesc:add2f624027f5803ea320d3a0678bd021"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to compute satellite elevation and azimuth.  <a href="#add2f624027f5803ea320d3a0678bd021">More...</a><br /></td></tr>
 <tr class="separator:add2f624027f5803ea320d3a0678bd021"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e04fd47bc168e5297ea5299ef7491ae"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnavigation.html#a8e04fd47bc168e5297ea5299ef7491ae">computeIPP</a> (const <a class="el" href="classtriple.html">triple</a> &amp;marker, const <a class="el" href="classtriple.html">triple</a> &amp;sat, const double &amp;rh, <a class="el" href="classtriple.html">triple</a> &amp;IPP, double &amp;coschi)</td></tr>
+<tr class="memdesc:a8e04fd47bc168e5297ea5299ef7491ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to compute IPP and zenith angle over IPP.  <a href="#a8e04fd47bc168e5297ea5299ef7491ae">More...</a><br /></td></tr>
+<tr class="separator:a8e04fd47bc168e5297ea5299ef7491ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -280,9 +283,66 @@ Here is the call graph for this function:</div>
 <map name="classnavigation_a4bb73c26bd6b5ea5e0ac517cc3557984_cgraph" id="classnavigation_a4bb73c26bd6b5ea5e0ac517cc3557984_cgraph">
 <area shape="rect" id="node2" href="classnavigation.html#a4625b66fdb344a059b00a4a8440b66a2" title="Function to convert ECEF to ellipsoidal coordinates. " alt="" coords="229,5,417,32"/>
 <area shape="rect" id="node3" href="classnavigation.html#add2f624027f5803ea320d3a0678bd021" title="Function to compute satellite elevation and azimuth. " alt="" coords="242,56,405,83"/>
+<area shape="rect" id="node4" href="classnavigation.html#a8e04fd47bc168e5297ea5299ef7491ae" title="Function to compute IPP and zenith angle over IPP. " alt="" coords="243,107,404,133"/>
 </map>
 </div>
 </p>
+
+</div>
+</div>
+<a class="anchor" id="a8e04fd47bc168e5297ea5299ef7491ae"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int navigation::computeIPP </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classtriple.html">triple</a> &amp;&#160;</td>
+          <td class="paramname"><em>marker</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classtriple.html">triple</a> &amp;&#160;</td>
+          <td class="paramname"><em>sat</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double &amp;&#160;</td>
+          <td class="paramname"><em>rh</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classtriple.html">triple</a> &amp;&#160;</td>
+          <td class="paramname"><em>IPP</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double &amp;&#160;</td>
+          <td class="paramname"><em>coschi</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Function to compute IPP and zenith angle over IPP. </p>
+<p>This function computes IPP (Ionospheric Pierce Point) in ECEF cartesian coordinates and zenith angle over IPP using sphere-line euation. Reference height of ionosphere, marker (receiver station), and satellite position are given as inputs. An integer status is returned describing solution type. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">marker</td><td>ECEF cartesian coordinates for marker (receiver station) as a <a class="el" href="classtriple.html">triple</a> object. </td></tr>
+    <tr><td class="paramname">sat</td><td>ECEF cartesian coordinates for satellite as a <a class="el" href="classtriple.html">triple</a> object. </td></tr>
+    <tr><td class="paramname">rh</td><td>Ionosphere reference height in Kilometers. </td></tr>
+    <tr><td class="paramname">IPP</td><td>Output ECEF cartesian coordinates for IPP as a <a class="el" href="classtriple.html">triple</a> object. </td></tr>
+    <tr><td class="paramname">coschi</td><td>Output zenith angle over IPP. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -357,7 +417,7 @@ Here is the call graph for this function:</div>
 <p>This function converts ECEF cartesian coordinates <img class="formulaInl" alt="$ (x,y,z) $" src="form_0.png"/> to ellipsoidal coordinates <img class="formulaInl" alt="$ (\varphi,\lambda,h) $" src="form_5.png"/> respectively lattitude, longitude, and height. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">ecef</td><td>ECEF cartesian coordinates. </td></tr>
-    <tr><td class="paramname">ellipsoid</td><td>output ellipsoidal coordinates <img class="formulaInl" alt="$ (\varphi,\lambda,h) $" src="form_5.png"/> . </td></tr>
+    <tr><td class="paramname">ellipsoid</td><td>Output ellipsoidal coordinates <img class="formulaInl" alt="$ (\varphi,\lambda,h) $" src="form_5.png"/> . </td></tr>
   </table>
   </dd>
 </dl>
@@ -411,8 +471,9 @@ Here is the call graph for this function:</div>
 <map name="classnavigation_ada025f5dc80afd4dc403ddeeb00a80ab_cgraph" id="classnavigation_ada025f5dc80afd4dc403ddeeb00a80ab_cgraph">
 <area shape="rect" id="node2" href="classnavigation.html#ae52d2b1bdf4a4a9788fb68094f0d4319" title="Function to compute eccentricity anomaly Ek. " alt="" coords="234,5,395,32"/>
 <area shape="rect" id="node3" href="classnavigation.html#a4bb73c26bd6b5ea5e0ac517cc3557984" title="This Function apply rotations around uk, ik and Lk. " alt="" coords="227,56,403,83"/>
-<area shape="rect" id="node4" href="classnavigation.html#a4625b66fdb344a059b00a4a8440b66a2" title="Function to convert ECEF to ellipsoidal coordinates. " alt="" coords="451,31,639,57"/>
-<area shape="rect" id="node5" href="classnavigation.html#add2f624027f5803ea320d3a0678bd021" title="Function to compute satellite elevation and azimuth. " alt="" coords="463,81,626,108"/>
+<area shape="rect" id="node4" href="classnavigation.html#a4625b66fdb344a059b00a4a8440b66a2" title="Function to convert ECEF to ellipsoidal coordinates. " alt="" coords="451,5,639,32"/>
+<area shape="rect" id="node5" href="classnavigation.html#add2f624027f5803ea320d3a0678bd021" title="Function to compute satellite elevation and azimuth. " alt="" coords="463,56,626,83"/>
+<area shape="rect" id="node6" href="classnavigation.html#a8e04fd47bc168e5297ea5299ef7491ae" title="Function to compute IPP and zenith angle over IPP. " alt="" coords="464,107,625,133"/>
 </map>
 </div>
 </p>
@@ -537,8 +598,8 @@ Here is the call graph for this function:</div>
     <tr><td class="paramname">markerECEF</td><td>ECEF cartesian coordinates for marker (receiver station) as a <a class="el" href="classtriple.html">triple</a> object. </td></tr>
     <tr><td class="paramname">sat</td><td>ellipsoidal coordinates for satellite as a <a class="el" href="classtriple.html">triple</a> object. </td></tr>
     <tr><td class="paramname">markerEllip</td><td>ellipsoidal coordinates for marker (receiver station) as a <a class="el" href="classtriple.html">triple</a> object. </td></tr>
-    <tr><td class="paramname">elevation</td><td>output satellite elevation. </td></tr>
-    <tr><td class="paramname">azimuth</td><td>output satellite azimuth. </td></tr>
+    <tr><td class="paramname">elevation</td><td>Output satellite elevation. </td></tr>
+    <tr><td class="paramname">azimuth</td><td>Output satellite azimuth. </td></tr>
   </table>
   </dd>
 </dl>
