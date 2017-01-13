@@ -40,8 +40,8 @@ CFLAGS  = -std=c++11 -I$(BOOSTINC) -L$(BOOSTLIB)
 LDFLAGS = -static -lboost_system -lboost_filesystem
 PROGRAM = GTEC
 SRCDIR  = src
-OBJS = inout.o int_pair.o ptr_pair.o internalTime.o ObsData.o navigation.o triple.o GTEC.o
-SRCS = $(SRCDIR)/inout.cpp $(SRCDIR)/int_pair.cpp $(SRCDIR)/ptr_pair.cpp $(SRCDIR)/internalTime.cpp $(SRCDIR)/ObsData.cpp $(SRCDIR)/navigation.cpp $(SRCDIR)/triple.cpp $(SRCDIR)/GTEC.cpp
+OBJS = inout.o int_pair.o ptr_pair.o internalTime.o ObsData.o navigation.o triple.o igrf.o GTEC.o
+SRCS = $(SRCDIR)/inout.cpp $(SRCDIR)/int_pair.cpp $(SRCDIR)/ptr_pair.cpp $(SRCDIR)/internalTime.cpp $(SRCDIR)/ObsData.cpp $(SRCDIR)/navigation.cpp $(SRCDIR)/triple.cpp $(SRCDIR)/GTEC.cpp $(SRCDIR)/GTEC.cpp
 #------------------------------------------------------------------------------
 
 $(PROGRAM): $(OBJS)
@@ -68,6 +68,9 @@ ObsData.o:  $(SRCDIR)/ObsData.cpp
 triple.o:  $(SRCDIR)/triple.cpp
 	$(CC) -c $(SRCDIR)/triple.cpp $(CFLAGS)
 
+igrf.o:  $(SRCDIR)/igrf.cpp
+	$(CC) -c $(SRCDIR)/igrf.cpp $(CFLAGS)
+	
 GTEC.o:  $(SRCDIR)/GTEC.cpp
 	$(CC) -c $(SRCDIR)/GTEC.cpp $(CFLAGS)
 
