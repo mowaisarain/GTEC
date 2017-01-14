@@ -38,44 +38,61 @@
 
 
 
-const int ndim = 15;
-const int mdim = 15;
-const int tdim = 200;
+
+class igrf
+{
+    
+public:
+
+    igrf(std::string fname);
+    
+    double getMODIP(double& r,
+                    double& lat,
+                    double& lon,
+                    int& t);
+
+    
+private:
+
+    const int nDim = 15;
+    const int mDim = 15;
+    const int tDim = 200;
+    const int pnmDim = 81;
+
+    double* gnm;
+    double* hnm;
+    double* svg;
+    double* svh;
+    double* pnm;
+
+    igrf();
+    ~igrf();
+    
+    std::vector<std::string> linesplit(std::string str);
+    
+    void getGaussCoeff( const int &t, 
+                        const int &n, 
+                        const int &m, 
+                        double &gnmt, 
+                        double &hnmt );
+    
+    int checkInput();
+    
+    void computePnm(double& theta);
+
+    double computeV(double& r,
+                  double& theta,
+                  double& phi,
+                  int &t);
+                  
+    double computeI(double& r,
+                    double& lat,
+                    double& lon,
+                    int& t);
+    
+};
 
 
-std::vector<std::string> linesplit(std::string str);
-
-int getGaussCoeffIGRF( std::string fname, float* gnm, float* hnm, float* svg, float* svh );
-
-
-void getGaussCoeff(const float* gnm,
-		   const float* hnm, 
-		   const float* svg,
-		   const float* svh, 
-		   const int &t, 
-		   const int &n, 
-		   const int &m, 
-		   float &gnmt, 
-		   float &hnmt );
-
-
-
-int checkInput(const float* gnm, const float* hnm, const float* svg, const float* svh);
-
-void calculatePnm(float &theta, float* pnm );
-
-float computeV(const float &r, float &theta, const float &phi, int &t, 
-	float *gnm, 
-	float *hnm, 
-	float *svg, 
-	float *svh,
-	float *pnm );
-
-float computeI(float &r, float &lat, float &lon, int &t,
-	float *gnm, 
-	float *hnm, 
-	float *svg, 
-	float *svh );
 
 
 #endif
