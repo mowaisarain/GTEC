@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['ephemerisge',['ephemerisGE',['../classephemerisGE.html',1,'']]],
-  ['ephemerisr',['ephemerisR',['../classephemerisR.html',1,'']]]
+  ['igrf',['igrf',['../classigrf.html',1,'']]],
+  ['internaltime',['internalTime',['../classinternalTime.html',1,'']]]
 ];

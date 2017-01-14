@@ -85,8 +85,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pri-methods">Private Member Functions</a> &#124;
-<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classigrf-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">igrf Class Reference</div>  </div>
@@ -103,57 +101,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a3cd3a832082a0f9899b4788b25cb81b6"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classigrf.html#a3cd3a832082a0f9899b4788b25cb81b6">getMODIP</a> (<a class="el" href="classtriple.html">triple</a> &amp;pos, int &amp;t)</td></tr>
 <tr class="memdesc:a3cd3a832082a0f9899b4788b25cb81b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to compute MODIP.  <a href="#a3cd3a832082a0f9899b4788b25cb81b6">More...</a><br /></td></tr>
 <tr class="separator:a3cd3a832082a0f9899b4788b25cb81b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
-Private Member Functions</h2></td></tr>
-<tr class="memitem:a9a15edbdd5e21608eedda478161519b7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9a15edbdd5e21608eedda478161519b7"></a>
-std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>linesplit</b> (std::string str)</td></tr>
-<tr class="separator:a9a15edbdd5e21608eedda478161519b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2d0675c99e35fd9e79c936f1c411391e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2d0675c99e35fd9e79c936f1c411391e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>getGaussCoeff</b> (const int &amp;t, const int &amp;n, const int &amp;m, double &amp;gnmt, double &amp;hnmt)</td></tr>
-<tr class="separator:a2d0675c99e35fd9e79c936f1c411391e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acf572eec70e939919bd1e7b829c98a25"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acf572eec70e939919bd1e7b829c98a25"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>checkInput</b> ()</td></tr>
-<tr class="separator:acf572eec70e939919bd1e7b829c98a25"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad6e24d239adda5e4c2cc017a151382f9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad6e24d239adda5e4c2cc017a151382f9"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>computePnm</b> (double &amp;theta)</td></tr>
-<tr class="separator:ad6e24d239adda5e4c2cc017a151382f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5da85e26348bf39ba787d195113aec59"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5da85e26348bf39ba787d195113aec59"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>computeV</b> (double &amp;r, double &amp;theta, double &amp;phi, int &amp;t)</td></tr>
-<tr class="separator:a5da85e26348bf39ba787d195113aec59"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a84caf327d016dd2b9464eb8a9a6b9220"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a84caf327d016dd2b9464eb8a9a6b9220"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>computeI</b> (double &amp;r, double &amp;lat, double &amp;lon, int &amp;t)</td></tr>
-<tr class="separator:a84caf327d016dd2b9464eb8a9a6b9220"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
-Private Attributes</h2></td></tr>
-<tr class="memitem:a5144acfcfe4851cc9634cb73f09a7212"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5144acfcfe4851cc9634cb73f09a7212"></a>
-const int&#160;</td><td class="memItemRight" valign="bottom"><b>nDim</b> = 15</td></tr>
-<tr class="separator:a5144acfcfe4851cc9634cb73f09a7212"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a98695434d6db03a420c23b97f033da75"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a98695434d6db03a420c23b97f033da75"></a>
-const int&#160;</td><td class="memItemRight" valign="bottom"><b>mDim</b> = 15</td></tr>
-<tr class="separator:a98695434d6db03a420c23b97f033da75"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a835859babf0b2698e50fbe517081aed6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a835859babf0b2698e50fbe517081aed6"></a>
-const int&#160;</td><td class="memItemRight" valign="bottom"><b>tDim</b> = 200</td></tr>
-<tr class="separator:a835859babf0b2698e50fbe517081aed6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a95b1ae1a028c0394d6da4168305788ac"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a95b1ae1a028c0394d6da4168305788ac"></a>
-const int&#160;</td><td class="memItemRight" valign="bottom"><b>pnmDim</b> = 81</td></tr>
-<tr class="separator:a95b1ae1a028c0394d6da4168305788ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5fa9c9f9e47ef347818edb0aadb073c5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5fa9c9f9e47ef347818edb0aadb073c5"></a>
-double *&#160;</td><td class="memItemRight" valign="bottom"><b>gnm</b></td></tr>
-<tr class="separator:a5fa9c9f9e47ef347818edb0aadb073c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab82402c7f02b7219699ccc9055514843"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab82402c7f02b7219699ccc9055514843"></a>
-double *&#160;</td><td class="memItemRight" valign="bottom"><b>hnm</b></td></tr>
-<tr class="separator:ab82402c7f02b7219699ccc9055514843"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac4327afa9ba25b087609b5fadaee511c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac4327afa9ba25b087609b5fadaee511c"></a>
-double *&#160;</td><td class="memItemRight" valign="bottom"><b>svg</b></td></tr>
-<tr class="separator:ac4327afa9ba25b087609b5fadaee511c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a79406d7c97d811164d1ce243b980c01a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a79406d7c97d811164d1ce243b980c01a"></a>
-double *&#160;</td><td class="memItemRight" valign="bottom"><b>svh</b></td></tr>
-<tr class="separator:a79406d7c97d811164d1ce243b980c01a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac76bcd64e97b9cc67485ac615e17c53f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac76bcd64e97b9cc67485ac615e17c53f"></a>
-double *&#160;</td><td class="memItemRight" valign="bottom"><b>pnm</b></td></tr>
-<tr class="separator:ac76bcd64e97b9cc67485ac615e17c53f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><dl class="section author"><dt>Author</dt><dd>Muhammad Owais </dd></dl>
