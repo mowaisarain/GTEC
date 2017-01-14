@@ -35,20 +35,43 @@
 #include <string>
 #include <vector>
 #include <cmath>
+#include "triple.hpp"
 
 
-
+/**
+ * @class igrf
+ * @author Muhammad Owais
+ * @date 14/01/17
+ * @file igrf.hpp
+ * @brief This class implements IGRF model.
+ * 
+ * This class implements IGRF (International Geomagnetic Reference Field) model, 
+ * as defined in <a href="https://www.ngdc.noaa.gov/IAGA/vmod/igrf.html">IGRF Web Site</a>.
+ * An instance of this class could be created using a generation of IGRF coefficients, 
+ * currently <a href="http://earth-planets-space.springeropen.com/articles/10.1186/s40623-015-0228-9">IGRF-12</a>
+ * which would be valid for years 1900 to 2020. 
+ */
 
 class igrf
 {
     
 public:
 
+    //!Constructor with Input file
+    /*!Constructs igrf object by reading input IGRF coefficients file.
+        * \param fname IGRF coefficients file name.
+        */
     igrf(std::string fname);
     
-    double getMODIP(double& r,
-                    double& lat,
-                    double& lon,
+    
+    //!Function to compute MODIP.
+    /*!This function compute MODIP (Modified Dip) given ellipsoidal coordinates of 
+     * the point and time (in unit of years).
+        * \param pos ellipsoidal coordinates of the point as @ref triple object.
+        * \param t time (in unit of years).
+        * \return Returns computed MODIP.
+        */    
+    double getMODIP(triple& pos,
                     int& t);
 
     

@@ -348,12 +348,13 @@ double igrf::computeI(double& r,
 
 
 
-double igrf::getMODIP(double& r,
-                      double& lat,
-                      double& lon,
+double igrf::getMODIP(triple& pos,
                       int& t)
                       {
-                          return atan( computeI(r,lat,lon,t) / sqrt(cos(lat)) );
+                          //pos.X is latitude
+                          //pos.Y is longitude
+                          //pos.Z is height
+                          return atan( computeI(pos.Z,pos.X,pos.Y,t) / sqrt(cos(pos.X)) );
                       }
 
 
