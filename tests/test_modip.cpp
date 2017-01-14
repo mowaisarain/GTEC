@@ -29,19 +29,31 @@
 
 #include "triple.hpp"
 #include "igrf.hpp"
+#include <cmath>
 
 
 int main()
 {
     //Reference point Trieste-Italy
-    //Latitude 45° 38' 42" N   Longitude 13° 46' 37" E (in Deg,Min,Sec)
-    //Latitude 45.645°       Longitude 13.77694°   (in Decimal Degrees)
-    //Elevation/Height      350.0 km   Mean Sea Level
+    //Latitude 45° 38' N   Longitude 13° 46' E (in Deg,Min,Sec)
+    //Latitude 45.633°       Longitude 13.767°   (in Decimal Degrees)
+    //Year  2017
+    //Elevation/Height      350000.0 meters
     
-    //Calculated Inclination from online model
-    //https://www.ngdc.noaa.gov/geomag-web/?model=igrf#igrfwmm
-    //Inclination = 61° 30' 11" or 61.50306°
-    //MODIP = atan(I / sqrt(cos(lat))) == I = 
+    //Calculated reference point Inclination from online model http://wdc.kugi.kyoto-u.ac.jp/igrf/point/index.html
+    //Inclination = 61.557°
+    //MODIP = atan(I / sqrt(cos(phi)))
+    double online_I = 61.50306;
+    double online_phi = 45.645;
+    double online_height = 350000; //in meters
+        
+    
+    double online_modip = atan( online_I / sqrt( cos( online_phi ) ) );
+    
+    //create IGRF object
+    igrf igrf12();
+    
+    double modip = 
     
     //create position object
     triple pos(45.645, 13.77694, 350.0);
