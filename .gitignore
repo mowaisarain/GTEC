@@ -48,3 +48,4 @@ build/*
 # Executeable
 GTEC
 GTEC.x
+test_*
