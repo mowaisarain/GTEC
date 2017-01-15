@@ -74,6 +74,11 @@ public:
     double getMODIP(triple& pos,
                     int& t);
 
+
+                    
+    ~igrf();
+
+
     
 private:
 
@@ -89,7 +94,6 @@ private:
     double* pnm;
 
     igrf();
-    ~igrf();
     
     std::vector<std::string> linesplit(std::string str);
     
