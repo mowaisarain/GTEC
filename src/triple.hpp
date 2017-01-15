@@ -69,7 +69,7 @@ class triple
      * \param y  Y Coordinate
      * \param z  Z Coordinate
     */    
-    triple(double& x, double& y, double& z);
+    triple(const double& x, const double& y, const double& z);
 };
 
 

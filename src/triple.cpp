@@ -49,7 +49,7 @@
 
    
     //Custom constructor
-    triple::triple(double& x, double& y, double& z)
+    triple::triple(const double& x, const double& y, const double& z)
     {
         X = x;
         Y = y;
