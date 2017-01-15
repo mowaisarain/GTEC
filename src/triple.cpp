@@ -37,3 +37,21 @@
 	{
 		s << X <<  " " << Y << " " << Z << "\n";
 	};
+    
+ 
+    //Default constructor
+    triple::triple()
+    {
+        X = 0.0;
+        Y = 0.0;
+        Z = 0.0;
+    };
+
+   
+    //Custom constructor
+    triple::triple(double& x, double& y, double& z)
+    {
+        X = x;
+        Y = y;
+        Z = z;
+    };

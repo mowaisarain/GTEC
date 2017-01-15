@@ -55,6 +55,21 @@ class triple
      * \param s output stream
     */    
 	void dump(std::ostream& s);
+    
+    
+    
+    //!Default constructor
+    /*!Constructor creating triple object initialized to zero.
+    */    
+    triple();
+    
+    //!Custom constructor
+    /*!Constructor creating triple object with three doubles given as input.
+     * \param x  X Coordinate
+     * \param y  Y Coordinate
+     * \param z  Z Coordinate
+    */    
+    triple(double& x, double& y, double& z);
 };
 
 
