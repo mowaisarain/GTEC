@@ -32,8 +32,15 @@
 #include <cmath>
 
 
-int main()
+int main(int argc, char* argv[])
 {
+    if(argc != 2)
+    {
+        std::cout << "Usage " << argv[0] << " <igrf-file-name>\n";
+        return 1;
+    }
+    
+    
     //Reference point Trieste-Italy
     //Latitude 45° 38' N   Longitude 13° 46' E (in Deg,Min,Sec)
     //Latitude 45.633°       Longitude 13.767°   (in Decimal Degrees)
@@ -50,17 +57,29 @@ int main()
     
     double online_modip = atan( online_I / sqrt( cos( online_phi ) ) );
     
-    //create IGRF object
-    igrf igrf12();
-    
-    double modip = 
-    
     //create position object
     triple pos(45.645, 13.77694, 350.0);
     
     //set time in unit of Years
     int t = 2017;
     
+    //create IGRF object
+    igrf igrf12(argv[1]);
     
+    //compute modip from class method
+    double modip = igrf12.getMODIP(pos,t);
+    
+    if(online_modip != modip)
+    {
+        std::cout << "***FAIL***\n";
+        std::cout << "Actual MODIP: " << online_modip << std::endl;
+        std::cout << "Computed MODIP: " << modip << std::endl;
+        return 2;
+    }
+    else
+    {
+        std::cout << "***PASS***\n";
+        return 0;
+    }
     
 }

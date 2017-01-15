@@ -30,8 +30,6 @@
 
 
 
-
-
 #------------------------------------------------------------------------------
 CC      = g++
 # BOOSTLIB  defines boost lib path
@@ -42,6 +40,11 @@ PROGRAM = GTEC
 SRCDIR  = src
 OBJS = inout.o int_pair.o ptr_pair.o internalTime.o ObsData.o navigation.o triple.o igrf.o GTEC.o
 SRCS = $(SRCDIR)/inout.cpp $(SRCDIR)/int_pair.cpp $(SRCDIR)/ptr_pair.cpp $(SRCDIR)/internalTime.cpp $(SRCDIR)/ObsData.cpp $(SRCDIR)/navigation.cpp $(SRCDIR)/triple.cpp $(SRCDIR)/GTEC.cpp $(SRCDIR)/GTEC.cpp
+TESTSDIR = tests
+TESTSSRC = $(TESTSDIR)/test_modip.cpp
+TESTS = test_modip
+CTSTFLAGS = -std=c++11 -I$(SRCDIR)
+
 #------------------------------------------------------------------------------
 
 $(PROGRAM): $(OBJS)
@@ -75,10 +78,17 @@ GTEC.o:  $(SRCDIR)/GTEC.cpp
 	$(CC) -c $(SRCDIR)/GTEC.cpp $(CFLAGS)
 
 
-all: $(PROGRAM)
+.PHONY: tests
+tests: $(TESTS)
 
+test_modip: $(TESTSDIR)/test_modip.cpp
+	$(CC) $(TESTSDIR)/test_modip.cpp $(CTSTFLAGS) -o test_modip 
+
+
+.PHONY: all
+all: $(PROGRAM) tests
 
 .PHONY: clean
 clean:
-	rm -f $(PROGRAM)
+	rm -f $(PROGRAM) $(TESTS)
 	rm -f *.o
