@@ -81,8 +81,11 @@ GTEC.o:  $(SRCDIR)/GTEC.cpp
 .PHONY: tests
 tests: $(TESTS)
 
-test_modip: $(TESTSDIR)/test_modip.cpp
-	$(CC) $(TESTSDIR)/test_modip.cpp $(CTSTFLAGS) -o test_modip 
+test_modip: test_modip.o triple.o igrf.o
+	$(CC) test_modip.o triple.o igrf.o -o test_modip 
+
+test_modip.o: $(TESTSDIR)/test_modip.cpp
+	$(CC) -c $(TESTSDIR)/test_modip.cpp $(CTSTFLAGS)
 
 
 .PHONY: all
