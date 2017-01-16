@@ -86,6 +86,19 @@ private:
     const int mDim = 15;
     const int tDim = 200;
     const int pnmDim = 81;
+    
+    //!Number of time columns in igrf-12 coefficients file
+    const int numTimeCols = 23;
+    
+    //!Column size in igrf-12 coefficients file
+    const int colSize = 208;
+    
+    //!Total size of array to store all values present in igrf-12 coefficients file
+    int arraySize;
+    
+    //!Array pointer
+    double* igrfCoeffs;
+        
 
     double* gnm;
     double* hnm;
@@ -118,8 +131,6 @@ private:
                     int& t);
     
 };
-
-
 
 
 #endif

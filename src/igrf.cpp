@@ -66,6 +66,15 @@ igrf::igrf(std::string fname)
     double* svg = new double[nDim * mDim];
     double* svh = new double[nDim * mDim];
     
+    
+    
+    arraySize = numTimeCols * colSize;
+    igrfCoeffs = (double*) calloc(arraySize,sizeof(double));
+    
+    
+    
+    
+    
     std::ifstream igrf_file;
     igrf_file.open(fname);
     std::string line;
@@ -366,4 +375,5 @@ igrf::~igrf()
     delete[] hnm;
     delete[] svh;
     delete[] svg;
+    free(igrfCoeffs);
 };
