@@ -133,7 +133,23 @@ private:
                     double& lon,
                     int& t);
     
+    
+    inline int getOffSetG(int n, int m, int t);
+    inline int getOffSetH(int n, int m, int t);
+    
 };
+
+
+int igrf::getOffSetG(int n, int m, int t)
+{
+  return ((t-1900)/5)*colSize + nBlockStart[n-1] + 2*m;
+}
+
+int igrf::getOffSetH(int n, int m, int t)
+{
+  return ((t-1900)/5)*colSize + nBlockStart[n-1] + 2*m+1;
+}
+
 
 
 #endif
