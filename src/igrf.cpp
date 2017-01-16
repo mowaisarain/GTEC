@@ -142,7 +142,7 @@ igrf::igrf(std::string fname)
     if(status != 0)
         {
             std::cout << "Invalid igrf file..\n"; 
-            std::cout << "Exiting with non zero exit status.."; 
+            std::cout << "Exiting with non zero exit status..\n"; 
             exit(-1);
         }
 };
@@ -151,34 +151,51 @@ igrf::igrf(std::string fname)
 
 int igrf::checkInput()
 {
-    double hnm331900 = 523;
-    double gnm321955 = 1288;
+    double hnm331900 = 523.0;
+    double gnm321955 = 1288.0;
     double svg43 = 4.1;
     double svh53 = -1.2;
-    //double one = hnm[3][3][0];
-    double one = hnm[3 * mDim * tDim + 3 * tDim + 0];
+    
+    int n,m,t,os,year;
+    
+    //set test1 hnm(t)
+    n = 3;
+    m = 3;
+    year = 1900;
+    t = (year - 1900) / 5;
+    os = t*colSize + nBlockStart[n-1] + 2*m+1;
+    double one = igrfCoeffs[os];
 
-    //double two = gnm[3][2][55];
-    double two = gnm[3 * mDim * tDim + 2 * tDim + 55];
+    //set test1 gnm(t)
+    n = 3;
+    m = 2;
+    year = 1955;
+    t = (year - 1900) / 5;
+    os = t*colSize + nBlockStart[n-1] + 2*m;
+    double two = igrfCoeffs[os];
 
-    //double three = svg[4][3];
-    double three = svg[4 * mDim + 3];
+    //set test1 secular variation g upto 2020
+    n = 4;
+    m = 3;
+    year = 2020; //for secular variation g (The last column)
+    t = (year - 1900) / 5;
+    os = t*colSize + nBlockStart[n-1] + 2*m;
+    double three = igrfCoeffs[os];
 
-    //double four = svh[5][3];
-    double four = svh[5 * mDim + 3];
+    //set test1 secular variation h upto 2020
+    n = 5;
+    m = 3;
+    year = 2020; //for secular variation h (The last column)
+    t = (year - 1900) / 5;
+    os = t*colSize + nBlockStart[n-1] + 2*m+1;
+    double four = igrfCoeffs[os];
 
-    if((hnm331900 == one) && (gnm321955 == two) && (svg43 == three) && (svh53 == four))
+    if(  (hnm331900 - one + gnm321955 - two + svg43 - three + svh53 - four) < 1E-6    )
         {
-            //std::cout << "SUCCESS\n";
             return 0;
         }
     else
         {
-            //std::cout << hnm331900 << " " << one << "\n";
-            //std::cout << gnm321955 << " " << two << "\n";
-            //std::cout << svg43 << " " << three << "\n";
-            //std::cout << svh53 << " " << four << "\n";
-            //std::cout << "FAIL\n";
             return -1;
         }
 };

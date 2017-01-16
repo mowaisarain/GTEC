@@ -65,7 +65,7 @@ int main(int argc, char* argv[])
     
     //create IGRF object
     igrf igrf12(argv[1]);
-    
+    exit(0);
     //compute modip from class method
     double modip = igrf12.getMODIP(pos,t);
     
