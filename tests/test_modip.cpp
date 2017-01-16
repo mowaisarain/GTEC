@@ -47,18 +47,18 @@ int main(int argc, char* argv[])
     //Year  2017
     //Elevation/Height      350000.0 meters
     
+    double latitude = 45.633 * M_PI / 180.0;  //in radians
+    double longitude = 13.767 * M_PI / 180.0;  //in radians
+    double height = 350000;  //in meters
+    
     //Calculated reference point Inclination from online model http://wdc.kugi.kyoto-u.ac.jp/igrf/point/index.html
     //Inclination = 61.557°
     //MODIP = atan(I / sqrt(cos(phi)))
-    double online_I = 61.50306;
-    double online_phi = 45.645;
-    double online_height = 350000; //in meters
-        
-    
-    double online_modip = atan( online_I / sqrt( cos( online_phi ) ) );
+    double online_I = 61.50306 * M_PI / 180.0;  //in radians    
+    double online_modip = atan( online_I / sqrt( cos( latitude ) ) );  //in radians  
     
     //create position object
-    triple pos(45.645, 13.77694, 350.0);
+    triple pos(latitude, longitude, height);
     
     //set time in unit of Years
     int t = 2017;
