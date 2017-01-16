@@ -99,35 +99,34 @@ igrf::igrf(std::string fname)
                             m = stoi(fields[2]);
                             if(fields[0] == "g")
                                 {
-                                    for(std::pair<int, std::vector<std::string>::iterator>
-                                            i(0, fields.begin() + 3);
-                                        i.first < colSize && i.second != fields.end() - 1;
-                                        ++i.first, ++i.second)
+                                    for(std::pair<int, std::vector<std::string>::iterator> i(0, fields.begin() + 3);
+                                        i.first < colSize && i.second != fields.end(); ++i.first, ++i.second)
                                         {
-					    //calculate offset
-					    
-                                            t = std::stoi(*i.first) - 1900;
-                                            gnm[n * mDim * tDim + m * tDim + t] = std::stof(*i.second);
+					    //calculate offset for year(time)
+					    offSet = i.first * colSize;
+					    //calculate offset for nBlock
+					    offSet = offSet + nBlockStart[n-1];
+					    //calculate offset for g
+					    offSet = offSet + (2 * m);
+					    //set value at offset
+                                            igrfCoeffs[offSet] = std::stof(*i.second);
                                         }
-                                    svg[n * mDim + m] = std::stof(fields.back());
                                 }
                             else if(fields[0] == "h")
                                 {
-                                    for(std::pair<std::vector<std::string>::iterator, std::vector<std::string>::iterator>
-                                            i(years.begin() + 3, fields.begin() + 3);
-                                        i.first != years.end() - 1 && i.second != fields.end() - 1;
-                                        ++i.first, ++i.second)
+                                    for(std::pair<int, std::vector<std::string>::iterator> i(0, fields.begin() + 3);
+                                        i.first < colSize && i.second != fields.end(); ++i.first, ++i.second)
                                         {
-                                            t = std::stoi(*i.first) - 1900;
-                                            hnm[n * mDim * tDim + m * tDim + t] = std::stof(*i.second);
+					    //calculate offset for year(time)
+					    offSet = i.first * colSize;
+					    //calculate offset for nBlock
+					    offSet = offSet + nBlockStart[n-1];
+					    //calculate offset for g
+					    offSet = offSet + (2 * m + 1);
+					    //set value at offset
+					    igrfCoeffs[offSet] = std::stof(*i.second);
                                         }
-                                    svh[n * mDim + m] = std::stof(fields.back());
                                 }
-                        }
-                    else if(linecount == 4)
-                        {
-                            for(std::vector<std::string>::iterator it = fields.begin(); it != fields.end(); ++it)
-                                years.push_back(*it);
                         }
                 }
             igrf_file.close();
