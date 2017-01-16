@@ -136,15 +136,6 @@ igrf::igrf(std::string fname)
             std::cout << "Unable to open igrf file\n";
             exit(-1);
         }
-
-    //check input
-    int status = checkInput();
-    if(status != 0)
-        {
-            std::cout << "Invalid igrf file..\n"; 
-            std::cout << "Exiting with non zero exit status..\n"; 
-            exit(-1);
-        }
 };
 
 
@@ -155,40 +146,18 @@ int igrf::checkInput()
     double gnm321955 = 1288.0;
     double svg43 = 4.1;
     double svh53 = -1.2;
-    
-    int n,m,t,os,year;
-    
+        
     //set test1 hnm(t)
-    n = 3;
-    m = 3;
-    year = 1900;
-    t = (year - 1900) / 5;
-    os = t*colSize + nBlockStart[n-1] + 2*m+1;
-    double one = igrfCoeffs[os];
+    double one = igrfCoeffs[getOffSetH(3,3,1900)];
 
     //set test1 gnm(t)
-    n = 3;
-    m = 2;
-    year = 1955;
-    t = (year - 1900) / 5;
-    os = t*colSize + nBlockStart[n-1] + 2*m;
-    double two = igrfCoeffs[os];
+    double two = igrfCoeffs[getOffSetG(3,2,1955)];
 
     //set test1 secular variation g upto 2020
-    n = 4;
-    m = 3;
-    year = 2020; //for secular variation g (The last column)
-    t = (year - 1900) / 5;
-    os = t*colSize + nBlockStart[n-1] + 2*m;
-    double three = igrfCoeffs[os];
+    double three = igrfCoeffs[getOffSetG(4,3,2020)];
 
     //set test1 secular variation h upto 2020
-    n = 5;
-    m = 3;
-    year = 2020; //for secular variation h (The last column)
-    t = (year - 1900) / 5;
-    os = t*colSize + nBlockStart[n-1] + 2*m+1;
-    double four = igrfCoeffs[os];
+    double four = igrfCoeffs[getOffSetH(5,3,2020)];
 
     if(  (hnm331900 - one + gnm321955 - two + svg43 - three + svh53 - four) < 1E-6    )
         {
@@ -199,6 +168,9 @@ int igrf::checkInput()
             return -1;
         }
 };
+
+
+
 
 void igrf::getGaussCoeff(const int& t,
                         const int& n,
