@@ -88,7 +88,7 @@ private:
     const int pnmDim = 81;
     
     //!Number of time columns in igrf-12 coefficients file
-    const int numTimeCols = 23;
+    const int numTimeCols = 25;
     
     //!Column size in igrf-12 coefficients file
     const int colSize = 208;
@@ -98,6 +98,9 @@ private:
     
     //!Array pointer
     double* igrfCoeffs;
+    
+    //!start offsets for blocks of n
+    int nBlockStart[13] = {0,4,10,18,28,40,54,70,88,108,130,154,180};
         
 
     double* gnm;

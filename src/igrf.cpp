@@ -83,6 +83,8 @@ igrf::igrf(std::string fname)
     std::vector<std::string> years;
 
     int n, m, t;
+    
+    int offSet = 0;
 
     if(igrf_file.is_open())
         {
@@ -97,11 +99,13 @@ igrf::igrf(std::string fname)
                             m = stoi(fields[2]);
                             if(fields[0] == "g")
                                 {
-                                    for(std::pair<std::vector<std::string>::iterator, std::vector<std::string>::iterator>
-                                            i(years.begin() + 3, fields.begin() + 3);
-                                        i.first != years.end() - 1 && i.second != fields.end() - 1;
+                                    for(std::pair<int, std::vector<std::string>::iterator>
+                                            i(0, fields.begin() + 3);
+                                        i.first < colSize && i.second != fields.end() - 1;
                                         ++i.first, ++i.second)
                                         {
+					    //calculate offset
+					    
                                             t = std::stoi(*i.first) - 1900;
                                             gnm[n * mDim * tDim + m * tDim + t] = std::stof(*i.second);
                                         }
