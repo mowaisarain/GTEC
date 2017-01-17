@@ -82,9 +82,6 @@ public:
     
 private:
 
-    const int nDim = 15;
-    const int mDim = 15;
-    const int tDim = 200;
     const int pnmDim = 81;
     
     //!Number of time columns in igrf-12 coefficients file
@@ -99,25 +96,16 @@ private:
     //!Array pointer
     double* igrfCoeffs;
     
+    //!Array pointer
+    double* pnm;
+    
     //!start offsets for blocks of n
     int nBlockStart[13] = {0,4,10,18,28,40,54,70,88,108,130,154,180};
-        
 
-    double* gnm;
-    double* hnm;
-    double* svg;
-    double* svh;
-    double* pnm;
 
     igrf();
     
     std::vector<std::string> linesplit(std::string str);
-    
-    void getGaussCoeff( const int &t, 
-                        const int &n, 
-                        const int &m, 
-                        double &gnmt, 
-                        double &hnmt );
     
     int checkInput();
     

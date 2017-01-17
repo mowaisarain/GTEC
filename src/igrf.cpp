@@ -57,19 +57,14 @@ std::vector<std::string> igrf::linesplit(std::string str)
     return str_vec;
 };
 
+
+
 igrf::igrf(std::string fname)
 {
     //Allocate memory
-    double* pnm = new double[pnmDim];
-    double* gnm = new double[nDim * mDim * tDim];
-    double* hnm = new double[nDim * mDim * tDim];
-    double* svg = new double[nDim * mDim];
-    double* svh = new double[nDim * mDim];
-    
-    
-    
     arraySize = numTimeCols * colSize;
     igrfCoeffs = (double*) calloc(arraySize,sizeof(double));
+    pnm = (double*) calloc(pnmDim,sizeof(double));
     
     
     
@@ -170,42 +165,6 @@ int igrf::checkInput()
 };
 
 
-
-
-void igrf::getGaussCoeff(const int& t,
-                        const int& n,
-                        const int& m,
-                        double& gnmt,
-                        double& hnmt)
-{
-
-    if(t < 1900 || t > 2020)
-        {
-            std::cout << "Invalid year for IGRF12\n";
-            exit(-1);
-        }
-
-    int ti = t - 1900;
-    int T0 = ti - (ti % 5);
-    int T05 = T0 + 5;
-
-    if(ti == 115)
-        {
-            gnmt = gnm[n * mDim * tDim + m * tDim + ti];
-            hnmt = hnm[n * mDim * tDim + m * tDim + ti];
-        }
-    else if(ti > 115)
-        {
-            gnmt = svg[n * mDim + m];
-            hnmt = svh[n * mDim + m];
-        }
-    else
-        {
-            gnmt = (gnm[n * mDim * tDim + m * tDim + T05] - gnm[n * mDim * tDim + m * tDim + T0]) / 5;
-            hnmt = (hnm[n * mDim * tDim + m * tDim + T05] - hnm[n * mDim * tDim + m * tDim + T0]) / 5;
-        }
-};
-
 void igrf::computePnm(double& theta)
 {
     //Reference: http://ciks.cbt.nist.gov/~garbocz/paper134/node10.html
@@ -283,6 +242,8 @@ void igrf::computePnm(double& theta)
     pnm[80] = 2027025.0 * s8;
 };
 
+
+
 double igrf::computeV(double& r,
               double& theta,
               double& phi,
@@ -299,7 +260,9 @@ double igrf::computeV(double& r,
         {
             for(int m = 0; m <= n; ++m)
                 {
-                    getGaussCoeff(t, n, m, gnmt, hnmt);
+                    gnmt = igrfCoeffs[getOffSetG(n,m,t)];
+                    hnmt = igrfCoeffs[getOffSetH(n,m,t)];
+                    
                     cosmphi = std::cos(m * phi);
                     sinmphi = std::sin(m * phi);
                     powr = std::pow(base, n + 1);
@@ -362,10 +325,6 @@ double igrf::getMODIP(triple& pos,
 //Destructor
 igrf::~igrf()
 {
-    delete[] pnm;
-    delete[] gnm;
-    delete[] hnm;
-    delete[] svh;
-    delete[] svg;
     free(igrfCoeffs);
+    free(pnm);
 };
