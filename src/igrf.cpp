@@ -275,10 +275,14 @@ double igrf::computeV(double& r,
 
 
 
-double igrf::computeI(double& r,
+void igrf::computeField(double& r,
                       double& lat,
                       double& lon,
-                      int& t)
+                      int& t,
+                      double& H,
+                      double& F,
+                      double& D,
+                      double& I)
 {
     //Compute co-latitude
     double theta = 90.0 - lat;
@@ -303,11 +307,17 @@ double igrf::computeI(double& r,
 
     double dP = (computeV(r, theta, dphi, t) - Fx) / delta;
     double Y = (-1.0 / r * sin(theta)) * dP;
-
     double Z = (computeV(dr, theta, phi, t) - Fx) / delta;
-
-    double H = sqrt(X * X + Y * Y);
-    return atan(Z / H);
+    double X2 = X*X;
+    double Y2 = Y*Y;
+    double Z2 = Z*Z;
+    double X2Y2 = X2+Y2;
+    double X2Y2Z2 = X2Y2 + Z2;
+    
+    H = sqrt(X2Y2);
+    F = sqrt(X2Y2Z2);
+    D = atan(Y/X);
+    I = atan(Z/H);
 };
 
 
@@ -315,10 +325,9 @@ double igrf::computeI(double& r,
 double igrf::getMODIP(triple& pos,
                       int& t)
                       {
-                          //pos.X is latitude
-                          //pos.Y is longitude
-                          //pos.Z is height
-                          return atan( computeI(pos.Z,pos.X,pos.Y,t) / sqrt(cos(pos.X)) );
+                          double H, F, D, I;
+                          computeField(pos.Z,pos.X,pos.Y,t,H,F,D,I);
+                          return atan( I / sqrt(cos(pos.X)) );
                       }
 
 

@@ -73,7 +73,16 @@ public:
         */    
     double getMODIP(triple& pos,
                     int& t);
-
+                    
+                    
+    void computeField(double& r,
+                      double& lat,
+                      double& lon,
+                      int& t,
+                      double& H,
+                      double& F,
+                      double& D,
+                      double& I);
 
                     
     ~igrf();
@@ -115,11 +124,6 @@ private:
                   double& theta,
                   double& phi,
                   int &t);
-                  
-    double computeI(double& r,
-                    double& lat,
-                    double& lon,
-                    int& t);
     
     
     inline int getOffSetG(int n, int m, int t);
