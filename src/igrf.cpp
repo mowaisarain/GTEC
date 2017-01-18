@@ -170,9 +170,10 @@ void igrf::computePnm(double& theta)
     //Reference: http://ciks.cbt.nist.gov/~garbocz/paper134/node10.html
 
     double x = std::cos(theta);
-    double s = std::sqrt(1.0 - (x * x));
-
     double x2 = x * x;
+
+    double s = std::sqrt(1.0 - x2);
+
     double x3 = x2 * x;
     double x4 = x3 * x;
     double x5 = x4 * x;

@@ -49,7 +49,7 @@ int main(int argc, char* argv[])
     
     double latitude = 45.633 * M_PI / 180.0;  //in radians
     double longitude = 13.767 * M_PI / 180.0;  //in radians
-    double height = 350000;  //in meters
+    double height = 6721200;  //in meters
     
     //Calculated reference point Inclination from online model http://wdc.kugi.kyoto-u.ac.jp/igrf/point/index.html
     //Inclination = 61.557°
@@ -68,12 +68,22 @@ int main(int argc, char* argv[])
     //exit(0);
     //compute modip from class method
     double modip = igrf12.getMODIP(pos,t);
+    double H,F,D,I;
+    igrf12.computeField(pos.Z,pos.X,pos.Y,t,H,F,D,I);
     
     if(online_modip != modip)
     {
         std::cout << "***FAIL***\n";
         std::cout << "Actual MODIP: " << online_modip << std::endl;
         std::cout << "Computed MODIP: " << modip << std::endl;
+        std::cout <<  std::endl;
+        
+        std::cout << "Field Components: " << std::endl;
+        std::cout << "Horizontal Intensity (H):\t" << H << std::endl;
+        std::cout << "Total Intensity (F):\t" << F << std::endl;
+        std::cout << "Declination (D):\t" << D << std::endl;
+        std::cout << "Inclination (I):\t" << I << std::endl;
+        
         return 2;
     }
     else
