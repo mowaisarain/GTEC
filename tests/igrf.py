@@ -10,8 +10,8 @@ for i in years:
 a = 6371.2 #Earth radius in Kms
 latitude = 27.174
 longitude = 65.795
-t= int(2015)
-height = 0. #height in Kilometers
+t= int(2014)
+height = 350. #height in Kilometers
 r = height + a  #radial distance in Kilometers
 theta = (90.0) - latitude #co-latitude
 phi = 0.0
