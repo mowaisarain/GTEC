@@ -1,5 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import scipy.special as sp
+
 ###################################################################
 str = "1900 1905 1910 1915 1920 1925 1930 1935 1940 1945 1950 1955 1960 1965 1970 1975 1980 1985 1990 1995   2000    2005    2010   2015 2020"
 years = str.split()
@@ -10,15 +12,18 @@ for i in years:
 a = 6371.2 #Earth radius in Kms
 latitude = 27.174
 longitude = 65.795
-t= int(2014)
+t= int(2012)
 height = 350. #height in Kilometers
 r = height + a  #radial distance in Kilometers
-theta = (90.0) - latitude #co-latitude
+theta = ((90.0) - latitude) * 0.017453292519943295 #co-latitude in radians
 phi = 0.0
 if longitude < 0.0:
     phi = 360.0 + longitude
 else:
     phi = longitude;
+phi = phi * 0.017453292519943295 #radians
+#################################################
+sp_pnm, sp_d_pnm = sp.lpmn(13,13,np.cos(theta))
 #################################################
 
 def getPnm(n,m,theta):
@@ -134,10 +139,13 @@ def hnmt(n,m,t):
 ####################################################
 def computeV(r,theta,phi,t):
     global a
+    global sp_pnm
+    sppnm = 0.0
     summation = 0.0
     for n in range(1,9):
         for m in range(n+1):
-            summation += (a/r)**(n+1) * (gnmt(n,m,t) * np.cos(m*phi)) * (hnmt(n,m,t) * np.sin(m*phi) * getPnm(n,m,theta))
+            sppnm = sp_pnm[m,n]
+            summation += (a/r)**(n+1) * (gnmt(n,m,t) * np.cos(m*phi)) * (hnmt(n,m,t) * np.sin(m*phi) * sppnm)
     return a * summation
 ####################################################
 
@@ -149,8 +157,8 @@ def computeField():
   
   epsilon = 7./3 - 4./3 -1
   
-  #delta = np.sqrt(epsilon) * (abs(theta) * np.sqrt(epsilon))
-  delta = 1.0E-10
+  delta = np.sqrt(epsilon) * (abs(theta) * np.sqrt(epsilon))
+  #delta = 0.01
   Fx = computeV(r,theta,phi,t)
   Fxph = computeV(r,theta+delta,phi,t)
   Fxmh = computeV(r,theta-delta,phi,t)
@@ -159,13 +167,13 @@ def computeField():
   X =  factor * derivative
   print "delta: ", delta
   print "Fx: ", Fx
-  print "derivative: ", derivative
+  print "derivative: ", derivative, " Fxph: ", Fxph," Fxmh: ", Fxmh 
   print "factor: ", factor
   print "X: ", X
 
   
-  #delta = np.sqrt(epsilon) * (abs(phi) * np.sqrt(epsilon))
-  delta = 1.0E-10
+  delta = np.sqrt(epsilon) * (abs(phi) * np.sqrt(epsilon))
+  #delta = 1.0E-10
   Fy = computeV(r,theta,phi,t)
   Fyph = computeV(r,theta,phi+delta,t)
   Fymh = computeV(r,theta,phi-delta,t)
@@ -178,8 +186,8 @@ def computeField():
   print "factor: ", factor
   print "Y: ", Y
   
-  #delta = np.sqrt(epsilon) * (abs(r) * np.sqrt(epsilon))
-  delta = 1.0E-10
+  delta = np.sqrt(epsilon) * (abs(r) * np.sqrt(epsilon))
+  #delta = 1.0E-10
   Fz = computeV(r,theta,phi,t)
   Fzph = computeV(r+delta,theta,phi,t)
   Fzmh = computeV(r-delta,theta,phi,t)
@@ -218,14 +226,9 @@ print "Output"
 print "------"
 print "H: ", H
 print "F: ", F
-print "D: ", D #, "Radians  ", D * (180./np.pi), " Degrees" 
-print "I: ", I #, "Radians  ", I * (180./np.pi), " Degrees" 
+print "D: ", D * 57.29577951308232 #Degrees 
+print "I: ", I * 57.29577951308232 #Degrees 
 print "X: ", X
-print "Z: ", Z
 print "Y: ", Y
-
-
-
-
-
+print "Z: ", Z
 
