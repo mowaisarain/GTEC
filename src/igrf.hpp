@@ -58,10 +58,10 @@ class igrf
 public:
 
     //!Constructor with Input file
-    /*!Constructs igrf object by reading input IGRF coefficients file.
-        * \param fname IGRF coefficients file name.
+    /*!Constructs igrf object by reading input computed IGRF Model file, given Model year as @ref igrf_Year.
+        * \param igrf_Year IGRF Model year. 
         */
-    igrf(std::string fname);
+    igrf(int igrf_Year);
     
     
     //!Function to compute MODIP.
@@ -90,7 +90,14 @@ public:
 
     
 private:
-
+  
+  
+    //!Inclation on lat/long grid for IPP at height 350 KMs.
+    double* ippI;
+    
+    //!Inclation on lat/long grid for station at height 0 KMs surface.
+    double* stationI;    
+    
     const int pnmDim = 81;
     
     //!Number of time columns in igrf-12 coefficients file

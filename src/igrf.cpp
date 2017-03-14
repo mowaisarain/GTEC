@@ -59,78 +59,95 @@ std::vector<std::string> igrf::linesplit(std::string str)
 
 
 
-igrf::igrf(std::string fname)
+igrf::igrf(int igrf_Year)
 {
     //Allocate memory
-    arraySize = numTimeCols * colSize;
-    igrfCoeffs = (double*) calloc(arraySize,sizeof(double));
-    pnm = (double*) calloc(pnmDim,sizeof(double));
+    arraySize = 181 * 360;
+    ippI = (double*) malloc( arraySize * sizeof(double) );    
+    stationI = (double*) malloc( arraySize * sizeof(double) );
     
     
+    std::string fnameIPP;
+    std::string fnameStation;
+
+    //set filename
+    if(igrf_Year >= 2015 && igrf_Year < 2020)
+    {
+      fnameIPP = "igrf_2015_IPP.txt";
+      fnameStation = "igrf_2015_station.txt";
+    }
+    else if(igrf_Year >= 2010)
+    {
+      fnameIPP = "igrf_2010_IPP.txt";
+      fnameStation = "igrf_2010_station.txt";
+    }
+    else if(igrf_Year >= 2005)
+    {
+      fnameIPP = "igrf_2005_IPP.txt";
+      fnameStation = "igrf_2005_station.txt";
+    }
+    else if(igrf_Year >= 2000)
+    {
+      fnameIPP = "igrf_2000_IPP.txt";
+      fnameStation = "igrf_2000_station.txt";
+    }
+    else
+    {
+      std::cout << "Invalid year for IGRF." << std::endl;
+      exit(-1);
+    }
     
+    std::ifstream igrfFileIPP;
+    std::ifstream igrfFileStation;
+
+    igrfFileIPP.open(fnameIPP);
+    igrfFileStation.open(fnameStation);
     
-    
-    std::ifstream igrf_file;
-    igrf_file.open(fname);
     std::string line;
     int linecount = 0;
     std::vector<std::string> fields;
-    std::vector<std::string> years;
 
-    int n, m, t;
-    
-    int offSet = 0;
 
-    if(igrf_file.is_open())
+    if(igrfFileIPP.is_open())
         {
-            while(getline(igrf_file, line))
-                {
-                    linecount += 1;
-                    fields = linesplit(line);
-
-                    if(linecount > 4)
-                        {
-                            n = stoi(fields[1]);
-                            m = stoi(fields[2]);
-                            if(fields[0] == "g")
-                                {
-                                    for(std::pair<int, std::vector<std::string>::iterator> i(0, fields.begin() + 3);
-                                        i.first < colSize && i.second != fields.end(); ++i.first, ++i.second)
-                                        {
-					    //calculate offset for year(time)
-					    offSet = i.first * colSize;
-					    //calculate offset for nBlock
-					    offSet = offSet + nBlockStart[n-1];
-					    //calculate offset for g
-					    offSet = offSet + (2 * m);
-					    //set value at offset
-                                            igrfCoeffs[offSet] = std::stof(*i.second);
-                                        }
-                                }
-                            else if(fields[0] == "h")
-                                {
-                                    for(std::pair<int, std::vector<std::string>::iterator> i(0, fields.begin() + 3);
-                                        i.first < colSize && i.second != fields.end(); ++i.first, ++i.second)
-                                        {
-					    //calculate offset for year(time)
-					    offSet = i.first * colSize;
-					    //calculate offset for nBlock
-					    offSet = offSet + nBlockStart[n-1];
-					    //calculate offset for g
-					    offSet = offSet + (2 * m + 1);
-					    //set value at offset
-					    igrfCoeffs[offSet] = std::stof(*i.second);
-                                        }
-                                }
-                        }
-                }
-            igrf_file.close();
-        }
+	    //skip initial 4 lines
+	    getline(igrfFileIPP, line);
+	    getline(igrfFileIPP, line);
+	    getline(igrfFileIPP, line);
+	    getline(igrfFileIPP, line);
+	    for (int i=0; i<arraySize; ++i)
+	    {
+	      getline(igrfFileIPP, line);
+	      fields = linesplit(line);
+	      ippI[i] = std::stof(fields[3]);
+	    }
+	}
     else
         {
-            std::cout << "Unable to open igrf file\n";
+            std::cout << "Unable to open igrf IPP file\n";
             exit(-1);
         }
+        
+    if(igrfFileStation.is_open())
+        {
+	    //skip initial 4 lines
+	    getline(igrfFileStation, line);
+	    getline(igrfFileStation, line);
+	    getline(igrfFileStation, line);
+	    getline(igrfFileStation, line);
+	    for (int i=0; i<arraySize; ++i)
+	    {
+	      getline(igrfFileStation, line);
+	      fields = linesplit(line);
+	      stationI[i] = std::stof(fields[3]);
+	    }
+	}
+    else
+        {
+            std::cout << "Unable to open igrf Station file\n";
+            exit(-1);
+        }        
+        
 };
 
 
