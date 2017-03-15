@@ -36,6 +36,10 @@ system::system(ObsData& odata, navigation& ndata, solutionMethod solType)
 {
   //set system options
   method = solType;
+  
+  //set ObsData and navigation pointers
+  od = &odata;
+  nd = &ndata;
 };
 
 
@@ -45,6 +49,22 @@ system::system(ObsData& odata, navigation& ndata)
 {
   //set default system options
   method = GENERAL;
+  
+  //set ObsData and navigation pointers
+  od = &odata;
+  nd = &ndata;
+};
+
+
+//This function builds and stores B
+void system::buildB()
+{
+    //Build B
+    B = (double*) calloc(od->size_of_S * od->numArcs, sizeof(double));
+    for(int i=0; i < od->size_of_S; ++i)
+    {
+        B[ i*(od->numArcs) + od->S_arcnum[i] ] = 1.0;
+    }
 };
 
 
@@ -53,6 +73,7 @@ system::system(ObsData& odata, navigation& ndata)
 void system::cleanUp()
 {
   //cleanUp workspace
+  free(B);
 };
 
 

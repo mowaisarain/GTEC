@@ -71,7 +71,29 @@ class system
 	 * @param ndata Navigation data (@ref navigation).
 	 */
         system(ObsData& odata, navigation& ndata);
+	
+	
+	//! Pointer to @ref ObsData object.
+	ObsData* od; 
+	
+	//! Pointer to @ref navigation object.
+	navigation* nd; 
 
+	
+        //! Stores matrix B.
+        /*! This is stored matrix B. B is a boolean matrix relating each value in 
+         * vector S to a given arc number. The \f$ i^{th} \f$ row of B has only one 
+         * non-zero in the \f$ j^{th} \f$ column, relating \f$ i^{th} \f$ value in vector S
+         * to \f$ j^{th} \f$ arc number defined by @ref S_arcnum. Size of B is 
+         * ( @ref size_of_S \f$ x \f$ @ref numArcs ).
+         */
+        double* B;
+
+        //! Builds matrix B.
+        /*! This function builds and stores matrix B.
+         */
+        void buildB();
+	
 
 	//!Clean-up function.
         /*!This function cleans up internal workspace, should be called before the end 

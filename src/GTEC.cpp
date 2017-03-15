@@ -36,6 +36,7 @@
 #include "navigation.hpp"
 #include "inout.hpp"
 #include "ObsData.hpp"
+#include "system.hpp"
 
 
 
@@ -469,10 +470,17 @@ int main(int argc, char* argv[])
 //    }
 
 
+    
+    //Create system object
+    system sys(obs, navdata);
+    
+    
     //building B
     std::cout << "building matrix B..\n";
-    obs.buildB();
+    sys.buildB();
     
-    obs.cleanUp();
-	return 0;
+    sys.cleanUp();
+	
+    
+    return 0;
 }

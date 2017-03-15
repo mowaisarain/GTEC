@@ -1275,27 +1275,4 @@ int ObsData::dumpArcValuePtrsAll()
 
 
 
-//This function builds and stores B
-void ObsData::buildB()
-{
-    //Build B
-    B = (double*) calloc(size_of_S * numArcs, sizeof(double));
-    for(int i=0; i < size_of_S; ++i)
-    {
-        B[i*numArcs + S_arcnum[i]] = 1.0;
-    }
-};
-
-
-//This function cleans up internal workspace 
-//should be called before end of object's lifetime.
-void ObsData::cleanUp()
-{
-    //Deallocate B
-    free(B);
-};
-
-
-
-
 

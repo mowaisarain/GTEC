@@ -73,14 +73,6 @@ class ObsData
 
 
 
-
-	//!Clean-up function.
-    /*!This function cleans up internal workspace, should be called before end 
-     * of object's lifetime.
-	 */
-        void cleanUp();
-
-
 	
         int dumpArc(char, int);
         int dumpArcByTime(char, int);
@@ -215,14 +207,7 @@ class ObsData
         int numArcs;
         
         
-    //! Stores matrix B.
-    /*! This is stored matrix B. B is a boolean matrix relating each value in 
-     * vector S to a given arc number. The \f$ i^{th} \f$ row of B has only one 
-     * non-zero in the \f$ j^{th} \f$ column, relating \f$ i^{th} \f$ value in vector S
-     * to \f$ j^{th} \f$ arc number defined by @ref S_arcnum. Size of B is 
-     * ( @ref size_of_S \f$ x \f$ @ref numArcs ).
-     */
-        double* B;        
+        
 
         
 	std::vector<int> prnid;
@@ -260,10 +245,7 @@ class ObsData
         
 
 
-    //! Builds matrix B.
-    /*! This function builds and stores matrix B.
-     */
-        void buildB();
+
         
         
         
