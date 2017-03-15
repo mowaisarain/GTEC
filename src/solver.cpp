@@ -29,10 +29,10 @@
 
 
 
-#include "system.hpp"
+#include "solver.hpp"
 
 //Constructor with system options
-system::system(ObsData& odata, navigation& ndata, solutionMethod solType)
+solver::solver(ObsData& odata, navigation& ndata, solutionMethod solType)
 {
   //set system options
   method = solType;
@@ -45,7 +45,7 @@ system::system(ObsData& odata, navigation& ndata, solutionMethod solType)
 
 
 //Constructor with default system options
-system::system(ObsData& odata, navigation& ndata)
+solver::solver(ObsData& odata, navigation& ndata)
 {
   //set default system options
   method = GENERAL;
@@ -57,7 +57,7 @@ system::system(ObsData& odata, navigation& ndata)
 
 
 //This function builds and stores B
-void system::buildB()
+void solver::buildB()
 {
     //Build B
     B = (double*) calloc(od->size_of_S * od->numArcs, sizeof(double));
@@ -70,7 +70,7 @@ void system::buildB()
 
 //This function cleans up internal workspace 
 //should be called before end of object's lifetime.
-void system::cleanUp()
+void solver::cleanUp()
 {
   //cleanUp workspace
   free(B);

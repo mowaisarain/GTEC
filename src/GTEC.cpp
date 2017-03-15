@@ -36,7 +36,7 @@
 #include "navigation.hpp"
 #include "inout.hpp"
 #include "ObsData.hpp"
-#include "system.hpp"
+#include "solver.hpp"
 
 
 
@@ -471,8 +471,8 @@ int main(int argc, char* argv[])
 
 
     
-    //Create system object
-    system sys(obs, navdata);
+    //Create solver object
+    solver sys(obs, navdata);
     
     
     //building B

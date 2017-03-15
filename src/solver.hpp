@@ -28,8 +28,8 @@
 */
 
 
-#ifndef __SYSTEM__
-#define __SYSTEM__
+#ifndef __SOLVER__
+#define __SOLVER__
 
 
 #include "ObsData.hpp"
@@ -38,39 +38,39 @@
 
 
 /**
- * @class system
+ * @class solver
  * @author Muhammad Owais
  * @date 15/03/17
  * @file system.hpp
  * @brief Class defining system assembly.
  * 
- * This Class Defines how system must be assembled from observation and navigation data. This class also defines 
+ * This Class Defines how system would be assembled from observation and navigation data. This class also defines 
  * the final system solver to be used.  
  */
 
-class system
+class solver
 {
     public:
 	
 	
 	//!Constructor with observation/navigation data and system options.
-        /*!Constructs system object for linear system assembly, given an observation data (@ref ObsData), 
+        /*!Constructs solver object for linear system assembly, given an observation data (@ref ObsData), 
 	 * navigation data (@ref navigation), and system options (@ref solutionMethod).
 	 * @param odata Observation data (@ref ObsData).
 	 * @param ndata Navigation data (@ref navigation).
 	 * @param solType Option defining solution method (@ref solutionMethod).
 	 */
-        system(ObsData& odata, navigation& ndata, solutionMethod solType);
+        solver(ObsData& odata, navigation& ndata, solutionMethod solType);
 
 
 	
 	//!Constructor with observation/navigation data and with default system options.
-        /*!Constructs system object for linear system assembly, given an observation data (@ref ObsData), 
+        /*!Constructs solver object for linear system assembly, given an observation data (@ref ObsData), 
 	 * navigation data (@ref navigation), and system options set to defaults (using general LU decomposition).
 	 * @param odata Observation data (@ref ObsData).
 	 * @param ndata Navigation data (@ref navigation).
 	 */
-        system(ObsData& odata, navigation& ndata);
+        solver(ObsData& odata, navigation& ndata);
 	
 	
 	//! Pointer to @ref ObsData object.
@@ -104,8 +104,8 @@ class system
 
     private:
       
-        system(); //!< default hidden Constructor 
-	solutionMethod method; //!< @ref solutionMethod enumeration defining type of solution.       
+        solver(); //!< default hidden Constructor 
+	    solutionMethod method; //!< @ref solutionMethod enumeration defining type of solution.       
 
 
 };
