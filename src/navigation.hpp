@@ -139,6 +139,12 @@ public:
     int computeIPP(const triple& marker, const triple& sat, const double& rh, triple& IPP, double& coschi);
 
     
+    
+    //! Builds matrix A.
+    /*! This function builds and stores matrix A. Matrix A stored data vTECeq based on a polynomial
+     */
+    void buildA();
+    
 
 private:
     navigation();

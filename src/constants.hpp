@@ -94,4 +94,28 @@ const double b_WGS84 = 6356752.314245;
 //
 ////////////////////////////////////////////////////////////////////////////////
 
+
+//System Solution Options
+enum solutionMethod
+{
+  CHOLESKY,   //! Use Cholesky decomposition
+  GENERAL,    //! Use General LU decomposition
+  ITERATIVE,  //! Use iterative conjugate gradient method
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #endif
