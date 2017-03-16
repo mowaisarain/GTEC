@@ -155,7 +155,7 @@ void inout::process_Inputs(int ac, char* args[])
                     value = line.substr(line.find( '=' )+1);
                     try
                     {
-                        sampingTime = stoi(value);
+                        samplingTime = stoi(value);
                     }
                     catch (std::exception& e)
                     {
@@ -289,7 +289,8 @@ void inout::checkInputFiles()
                     else if (tmp.size() == 38)
                     {
                         std::cout << tmp << "  " << tmp.size() << "\n";
-                        fileDay = stoi(tmp.substr(16, 3));
+                        fileDay = stoi(tmp.substr(16, 3));        //std::cout << "<<<<< " << i <<  " >>>>>>>>\n";
+
                         std::cout << fileDay << "\n";
                         if (fileDay >= dayStart && fileDay <= dayEnd)
                         {
@@ -350,7 +351,7 @@ void inout::dump(std::ostream& s)
     s << "First day of year: " << firstDayOfYear << "\n";
     s << "Input Directory: " << inputDirectory << "\n";
     s << "System string: " << satSys << "\n";
-    s << "Sampling Time: " << sampingTime << "\n";
+    s << "Sampling Time: " << samplingTime << "\n";
     s << "Minimum Arc Length: " << minArcLen << "\n";
     s << "Interpolation Interval: " << intrpolIntrvl << "\n";
     s << "Interpolation Degree: " << deg << "\n";

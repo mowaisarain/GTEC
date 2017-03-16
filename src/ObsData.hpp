@@ -92,11 +92,17 @@ class ObsData
 	
 	
 	
-        void dumpNonZeroArcs();
-	
-	
+	//!Function to perform Arc Marking.
+        /*!This function performs arc marking considering minimum lenght of arc 
+	 * and minimum data rejection from arc start/end.
+	 * @param rejHours Hours of data to reject from start and end of arc.
+	 * @param minArcHours Hours of data considered minimum for an arc.
+	 */
+         void markArcStartEnd(int& rejHours, int& minArcHours);
 
 	
+	
+        void dumpNonZeroArcs();
 	
 	
         int dumpArcBinaryPtrsAll();
@@ -197,6 +203,10 @@ class ObsData
         
         
         int size_of_S; //!< Indicates size of @ref S.
+
+        
+        int istart; //!< Indicates arc start index after rejected data.
+        int iend; //!< Indicates arc end index after rejected data.
         
         std::vector<int_pair > intse;
 	
@@ -206,13 +216,8 @@ class ObsData
 	 */
         int numArcs;
         
-        
-        
 
-        
 	std::vector<int> prnid;
-        
-            
         
 
         int GPS_Mark[32];

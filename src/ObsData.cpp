@@ -1273,6 +1273,158 @@ int ObsData::dumpArcValuePtrsAll()
 
 
 
+void ObsData::markArcStartEnd(int& rejHours, int& minArcHours)
+{
+    
+    istart = (rejHours * 60 * 60 ) / interval;
+    iend = timeline_main.size() - istart;
+    int minimum = (minArcHours * 60 * 60) / interval;
+
+    //start Marking
+    bool started = false;
+    int startidx = 0;
+    int endidx = 0;
+    int id = 0;
+    for(auto prn : GPS_ucTEC)
+    {
+        id += 1;
+        started = false;
+        startidx = 0;
+        endidx = 0;      
+        for(int i=istart;i<iend;++i)
+        {
+            if(prn[i] != 0.0)
+                if(started)
+                    continue;
+                else
+                {
+                    started = true;
+                    startidx = i;
+                }
+            else
+                if(started)
+                {
+                    endidx = i-1;
+                    if((i - startidx) >= minimum )
+                    {
+                        intse.push_back(int_pair(startidx,endidx));
+                        prnid.push_back(id);
+                    }
+                    started = false;
+                    startidx = endidx = 0;
+                }
+        }
+    }
+    
+    //For GLONASS
+    for(auto prn : GLO_ucTEC)
+    {
+        id += 1;
+        started = false;
+        startidx = 0;
+        endidx = 0;      
+        for(int i=istart;i<iend;++i)
+        {
+            if(prn[i] != 0.0)
+                if(started)
+                    continue;
+                else
+                {
+                    started = true;
+                    startidx = i;
+                }
+            else
+                if(started)
+                {
+                    endidx = i-1;
+                    if((i - startidx) >= minimum )
+                    {
+                        intse.push_back(int_pair(startidx,endidx));
+                        prnid.push_back(id);
+                    }
+                    started = false;
+                    startidx = endidx = 0;
+                }
+        }
+    }    
+    
+    //For GALILEO
+    for(auto prn : GAL_ucTEC)
+    {
+        id += 1;
+        started = false;
+        startidx = 0;
+        endidx = 0;      
+        for(int i=istart;i<iend;++i)
+        {
+            if(prn[i] != 0.0)
+                if(started)
+                    continue;
+                else
+                {
+                    started = true;
+                    startidx = i;
+                }
+            else
+                if(started)
+                {
+                    endidx = i-1;
+                    if((i - startidx) >= minimum )
+                    {
+                        intse.push_back(int_pair(startidx,endidx));
+                        prnid.push_back(id);
+                    }
+                    started = false;
+                    startidx = endidx = 0;
+                }
+        }
+    }    
+    
+    //For BEIDOU
+    for(auto prn : BDU_ucTEC)
+    {
+        id += 1;
+        started = false;
+        startidx = 0;
+        endidx = 0;      
+        for(int i=istart;i<iend;++i)
+        {
+            if(prn[i] != 0.0)
+                if(started)
+                    continue;
+                else
+                {
+                    started = true;
+                    startidx = i;
+                }
+            else
+                if(started)
+                {
+                    endidx = i-1;
+                    if((i - startidx) >= minimum )
+                    {
+                        intse.push_back(int_pair(startidx,endidx));
+                        prnid.push_back(id);
+                    }
+                    started = false;
+                    startidx = endidx = 0;
+                }
+        }
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

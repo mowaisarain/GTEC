@@ -52,7 +52,7 @@ class inout
     std::string inputDirectory;
     std::string satSys;
     std::string marker;
-    int sampingTime;
+    int samplingTime;
     int firstDayOfYear;
     int year;
     

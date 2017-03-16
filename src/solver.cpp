@@ -79,4 +79,124 @@ void solver::cleanUp()
 
 
 
+void solver::buildS(int& samplingtime)
+{
+    od->numArcs = od->intse.size();
+    int i,j;
+    float* tmptr = NULL;
+    int ecount = 0;
+    //number of epochs in sampling time
+    int nepochs_st = (samplingtime * 60) / od->interval;  
+    int st = 0; //nth sampling time
+
+    int Sstart = 0;
+    int id = 0;
+    
+    for(i = od->istart; i < od->iend; ++i)
+    {
+        ecount += 1;
+        //use this as index across all prn to get data for ith epoch
+        id = 0;
+        for (auto arc : od->GPS_ucTEC)
+        {
+            id +=1;
+            for (j=0; j< od->numArcs; ++j)
+            {
+                if( od->prnid[j] == id )
+                {
+                    if(i >= od->intse[j].start && i <= od->intse[j].end )
+                    {
+                        //Now this value is a non zero and belongs to 
+                        //jth arc_Number and jth prn_id
+                        //push this info in respective vectors
+                        od->S.push_back(arc[i]);
+                        //arc numbers start from zero '0'
+                        od->S_arcnum.push_back(j);
+                        //prn IDs are in the range [1-120]G32+R24+E30+C34
+                        od->S_prn.push_back(id);
+                    }
+                }
+            }
+        }        
+        
+        for (auto arc : od->GLO_ucTEC)
+        {
+            id +=1;
+            for (j=0; j< od->numArcs; ++j)
+            {
+                if( od->prnid[j] == id )
+                {
+                    if(i >= od->intse[j].start && i <= od->intse[j].end )
+                    {
+                        //Now this value is a non zero and belongs to 
+                        //jth arc_Number and jth prn_id
+                        //push this info in respective vectors
+                        od->S.push_back(arc[i]);
+                        //arc numbers start from zero '0'
+                        od->S_arcnum.push_back(j);
+                        //prn IDs are in the range [1-120]G32+R24+E30+C34
+                        od->S_prn.push_back(id);
+                    }
+                }
+            }
+        }       
+        
+        for (auto arc : od->GAL_ucTEC)
+        {
+            id +=1;
+            for (j=0; j< od->numArcs; ++j)
+            {
+                if( od->prnid[j] == id )
+                {
+                    if(i >= od->intse[j].start && i <= od->intse[j].end )
+                    {
+                        //Now this value is a non zero and belongs to 
+                        //jth arc_Number and jth prn_id
+                        //push this info in respective vectors
+                        od->S.push_back(arc[i]);
+                        //arc numbers start from zero '0'
+                        od->S_arcnum.push_back(j);
+                        //prn IDs are in the range [1-120]G32+R24+E30+C34
+                        od->S_prn.push_back(id);
+                    }
+                }
+            }
+        }   
+        
+        for (auto arc : od->BDU_ucTEC)
+        {
+            id +=1;
+            for (j=0; j< od->numArcs; ++j)
+            {
+                if( od->prnid[j] == id )
+                {
+                    if(i >= od->intse[j].start && i <= od->intse[j].end )
+                    {
+                        //Now this value is a non zero and belongs to 
+                        //jth arc_Number and jth prn_id
+                        //push this info in respective vectors
+                        od->S.push_back(arc[i]);
+                        //arc numbers start from zero '0'
+                        od->S_arcnum.push_back(j);
+                        //prn IDs are in the range [1-120]G32+R24+E30+C34
+                        od->S_prn.push_back(id);
+                    }
+                }
+            }
+        }
+        
+        if(ecount == nepochs_st)
+        {            
+            //Done for this Sampling time reset variables
+            st += 1;//increment sampling time counter 0 is the 1st sampling time
+            ecount = 0; //reset epoch counter
+            Sstart = od->S.size();
+        }
+        
+    }
+    
+};
+
+
+
 

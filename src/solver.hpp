@@ -89,10 +89,22 @@ class solver
          */
         double* B;
 
-        //! Builds matrix B.
+        
+	//!Builds vector S.
+        /*!This function builds and stores vector S given interval duration in minutes for which
+	 * vTECeq Coefficients are freezed.
+	 * @param samplingtime Input duration for which vTECeq Coefficients are freezed.
+         */	
+	void buildS(int& samplingtime);
+	
+	
+	
+	//! Builds matrix B.
         /*! This function builds and stores matrix B.
          */
         void buildB();
+	
+	
 	
 
 	//!Clean-up function.
