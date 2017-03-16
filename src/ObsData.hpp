@@ -181,24 +181,7 @@ class ObsData
         //std::vector<int> Aprn3;
         
 	
-        //! Stores vector S (non-calibrated TEC).
-        /*! This vector stores all computed non-calibrated TEC values, arranged by
-	 *  epochs. This is the input vector given to the system solver.
-	 */
-        std::vector<double> S;
-	
-        //! Stores arc numbers for @ref S.
-        /*! This vector stores for each element in @ref S , a corresponding value 
-	 *  indicating the its arc number. Arc numbers are defined by pre_processing phase
-	 *  using @ref pre_process.
-	 */	
-        std::vector<int> S_arcnum;
-	
-	//! Stores Satellite IDs for @ref S.
-        /*! This vector stores for each element in @ref S , a corresponding value 
-	 *  indicating the its Satellite ID.
-	 */
-        std::vector<int> S_prn;
+
         
         
         

@@ -89,7 +89,28 @@ class solver
          */
         double* B;
 
+	
+
+        //! Stores vector S (non-calibrated TEC).
+        /*! This vector stores all computed non-calibrated TEC values, arranged by
+	 *  epochs.
+	 */
+        std::vector<double> S;
+	
+        //! Stores arc numbers for @ref S.
+        /*! This vector stores for each element in @ref S , a corresponding value 
+	 *  indicating its arc number. Arc numbers are defined by pre_processing phase
+	 *  using @ref pre_process.
+	 */	
+        std::vector<int> S_arcnum;
+	
+	//! Stores Satellite IDs for @ref S.
+        /*! This vector stores for each element in @ref S , a corresponding value 
+	 *  indicating its Satellite ID.
+	 */
+        std::vector<int> S_prn;
         
+	
 	//!Builds vector S.
         /*!This function builds and stores vector S given interval duration in minutes for which
 	 * vTECeq Coefficients are freezed.

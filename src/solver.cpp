@@ -63,7 +63,7 @@ void solver::buildB()
     B = (double*) calloc(od->size_of_S * od->numArcs, sizeof(double));
     for(int i=0; i < od->size_of_S; ++i)
     {
-        B[ i*(od->numArcs) + od->S_arcnum[i] ] = 1.0;
+        B[ i*(od->numArcs) + S_arcnum[i] ] = 1.0;
     }
 };
 
@@ -109,11 +109,11 @@ void solver::buildS(int& samplingtime)
                         //Now this value is a non zero and belongs to 
                         //jth arc_Number and jth prn_id
                         //push this info in respective vectors
-                        od->S.push_back(arc[i]);
+                        S.push_back(arc[i]);
                         //arc numbers start from zero '0'
-                        od->S_arcnum.push_back(j);
+                        S_arcnum.push_back(j);
                         //prn IDs are in the range [1-120]G32+R24+E30+C34
-                        od->S_prn.push_back(id);
+                        S_prn.push_back(id);
                     }
                 }
             }
@@ -131,11 +131,11 @@ void solver::buildS(int& samplingtime)
                         //Now this value is a non zero and belongs to 
                         //jth arc_Number and jth prn_id
                         //push this info in respective vectors
-                        od->S.push_back(arc[i]);
+                        S.push_back(arc[i]);
                         //arc numbers start from zero '0'
-                        od->S_arcnum.push_back(j);
+                        S_arcnum.push_back(j);
                         //prn IDs are in the range [1-120]G32+R24+E30+C34
-                        od->S_prn.push_back(id);
+                        S_prn.push_back(id);
                     }
                 }
             }
@@ -153,11 +153,11 @@ void solver::buildS(int& samplingtime)
                         //Now this value is a non zero and belongs to 
                         //jth arc_Number and jth prn_id
                         //push this info in respective vectors
-                        od->S.push_back(arc[i]);
+                        S.push_back(arc[i]);
                         //arc numbers start from zero '0'
-                        od->S_arcnum.push_back(j);
+                        S_arcnum.push_back(j);
                         //prn IDs are in the range [1-120]G32+R24+E30+C34
-                        od->S_prn.push_back(id);
+                        S_prn.push_back(id);
                     }
                 }
             }
@@ -175,11 +175,11 @@ void solver::buildS(int& samplingtime)
                         //Now this value is a non zero and belongs to 
                         //jth arc_Number and jth prn_id
                         //push this info in respective vectors
-                        od->S.push_back(arc[i]);
+                        S.push_back(arc[i]);
                         //arc numbers start from zero '0'
-                        od->S_arcnum.push_back(j);
+                        S_arcnum.push_back(j);
                         //prn IDs are in the range [1-120]G32+R24+E30+C34
-                        od->S_prn.push_back(id);
+                        S_prn.push_back(id);
                     }
                 }
             }
@@ -190,7 +190,7 @@ void solver::buildS(int& samplingtime)
             //Done for this Sampling time reset variables
             st += 1;//increment sampling time counter 0 is the 1st sampling time
             ecount = 0; //reset epoch counter
-            Sstart = od->S.size();
+            Sstart = S.size();
         }
         
     }
