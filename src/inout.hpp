@@ -60,6 +60,7 @@ class inout
     int minArcLen;
     int intrpolIntrvl;
     int deg;
+    int numCoeffs;
     
 
     //Observation file names from imput directory

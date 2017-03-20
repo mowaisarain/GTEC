@@ -210,6 +210,27 @@ void inout::process_Inputs(int ac, char* args[])
                     //Set marker (station) name
                     marker = line.substr(line.find( '=' )+1);
                 }
+                else if (parameter == "NUMCOEFFS")
+                {
+                    value = line.substr(line.find( '=' )+1);
+                    //Set numCoeffs
+                    try
+                    {
+                        numCoeffs = stoi(value);
+                    }
+                    catch (std::exception& e)
+                    {
+                        std::cout << "Invalid parameter value in config file at line: " << lineNumber << "\n";
+                        exit(1);
+                    }
+                    //numCoeffs should be 6 or 9
+                    if(numCoeffs != 6 || numCoeffs != 9)
+                    {
+                        std::cout << "Invalid parameter value in config file at line: " << lineNumber << "\n";
+                        std::cout << "Valid value for NUMCOEFFS is 6 or 9.\n";
+                        exit(1);
+                    }
+                }
                 else
                 {
                     //Invalid parameter
