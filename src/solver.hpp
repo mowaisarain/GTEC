@@ -89,7 +89,14 @@ class solver
          */
         double* B;
 
-	
+
+        //!Stores matrix A.
+        /*!This is stored matrix A. A stores the data for vTECeq polynomial
+         * representation using 6 or 9 coefficients.
+         */
+        double* A;
+
+
 
         //! Stores vector S (non-calibrated TEC).
         /*! This vector stores all computed non-calibrated TEC values, arranged by

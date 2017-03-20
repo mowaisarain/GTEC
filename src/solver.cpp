@@ -74,6 +74,7 @@ void solver::cleanUp()
 {
   //cleanUp workspace
   free(B);
+  free(A);
 };
 
 
@@ -204,7 +205,10 @@ void solver::buildA(int numCoeffs)
 {
     if (numCoeffs == 6)
     {
-        //6 coefficients polynomial
+        //Allocate A
+        A = (double*) malloc( S.size() * numCoeffs * sizeof(double) );
+        
+         
     }
     else if (numCoeffs == 9)
     {
