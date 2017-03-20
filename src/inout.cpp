@@ -224,7 +224,7 @@ void inout::process_Inputs(int ac, char* args[])
                         exit(1);
                     }
                     //numCoeffs should be 6 or 9
-                    if(numCoeffs != 6 || numCoeffs != 9)
+                    if(numCoeffs != 6 && numCoeffs != 9)
                     {
                         std::cout << "Invalid parameter value in config file at line: " << lineNumber << "\n";
                         std::cout << "Valid value for NUMCOEFFS is 6 or 9.\n";

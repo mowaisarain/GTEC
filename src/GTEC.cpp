@@ -83,7 +83,11 @@ int main(int argc, char* argv[])
     sys.buildB();
     std::cout << "Done building B..\n";
 
-    
+
+    //building A
+    std::cout << "building A..\n";
+    sys.buildA(io.numCoeffs);
+    std::cout << "Done building A..\n";
     
     sys.cleanUp();
 

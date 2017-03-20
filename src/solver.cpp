@@ -200,7 +200,7 @@ void solver::buildS(int& samplingtime)
 
 
 
-void buildA(int numCoeffs)
+void solver::buildA(int numCoeffs)
 {
     if (numCoeffs == 6)
     {
