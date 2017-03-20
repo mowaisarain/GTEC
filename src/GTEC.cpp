@@ -74,7 +74,7 @@ int main(int argc, char* argv[])
     //building S
     std::cout << "building S..\n";
     sys.buildS(io.samplingTime);
-    std::cout << "Size of S: " << obs.S.size() << " Number of Arcs: " << obs.numArcs << "\n";
+    std::cout << "Size of S: " << sys.S.size() << " Number of Arcs: " << obs.numArcs << "\n";
     std::cout << "Done building S..\n\n";
 
 
