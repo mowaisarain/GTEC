@@ -84,6 +84,8 @@ public:
         */
     void getPositionR(ephemerisR& initialConditions, int h, triple& pos);
 
+
+
     //!Function to compute GPS/Galileo/BeiDou satellite positions.
     /*!This function calculates GPS/Galileo/BeiDou satellite coordinates given
         * an ephemerisGE object and time for which coordinates are required.
@@ -92,6 +94,8 @@ public:
         * \param pos triple object returned with computed coordinates.
         */
     void getPositionGE(ephemerisGE& initial, int t, triple& pos);
+
+
 
     //!Function to convert ECEF to ellipsoidal coordinates.
     /*!This function converts ECEF cartesian coordinates \f$ (x,y,z) \f$ to

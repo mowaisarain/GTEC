@@ -187,11 +187,21 @@ void solver::buildS(int& samplingtime)
         }
         
         if(ecount == nepochs_st)
-        {            
-            //Done for this Sampling time reset variables
+        {
+           
+/*          //Done for this Sampling time reset variables
             st += 1;//increment sampling time counter 0 is the 1st sampling time
             ecount = 0; //reset epoch counter
-            Sstart = S.size();
+            Sstart = S.size();*/
+            
+            SdimVec.push_back( S.size() - count );
+            OffSetVec.push_back( count );
+            count = S.size();
+            if( SdimVec.back() > SdimbMax )
+            {
+                SdimbMax = SdimVec.back();
+            }
+            numBlocks += 1;
         }
         
     }

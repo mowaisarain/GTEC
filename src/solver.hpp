@@ -103,6 +103,21 @@ class solver
 	 *  epochs.
 	 */
         std::vector<double> S;
+        
+        //!Stores vector S block dimensions.
+        /*!This vector stores S block dimensions, which is the number of 
+         * Values in S vector belonging to @ref samplingTime interval.
+         */
+        std::vector<int> SdimVec;
+        
+        
+        
+        //!Stores vector S block offsets.
+        /*!This vector stores S block offsets. The \f$ i^{th} value in this vector 
+         * represents the offset of block number \f$ (i + 1).
+         */
+        std::vector<int> OffSetVec;
+        
 	
         //! Stores arc numbers for @ref S.
         /*! This vector stores for each element in @ref S , a corresponding value 
