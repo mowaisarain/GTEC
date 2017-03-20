@@ -200,3 +200,22 @@ void solver::buildS(int& samplingtime)
 
 
 
+void buildA(int numCoeffs)
+{
+    if (numCoeffs == 6)
+    {
+        //6 coefficients polynomial
+    }
+    else if (numCoeffs == 9)
+    {
+        //9 coefficients polynomial
+        std::cout << "Polynomial not defined for: numCoeffs = 9.\n";
+        exit(1);
+    }
+    else 
+    {
+        std::cout << "Invalid Parameter: numCoeffs.\n";
+        exit(1);
+    }
+};
+

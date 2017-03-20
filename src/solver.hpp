@@ -125,7 +125,12 @@ class solver
          */
         void buildB();
 	
-	
+	//! Builds matrix A.
+        /*!This function builds and stores matrix A given number of 
+         * coefficients in polynomial.
+         * @param numCoeffs The number of coefficients in VTECeq polynomial (6 or 9).
+         */
+        void buildA(int numCoeffs);	
 	
 
 	//!Clean-up function.
