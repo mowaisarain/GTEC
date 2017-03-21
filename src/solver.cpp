@@ -30,6 +30,7 @@
 
 
 #include "solver.hpp"
+#include "triple.hpp"
 
 //Constructor with system options
 solver::solver(ObsData& odata, navigation& ndata, solutionMethod solType)
@@ -95,6 +96,9 @@ void solver::buildS(int& samplingtime)
     int Scount = 0; //value count in vector S
     int numBlocks = 0; //sampling block count
     
+    int timeDiff;
+    triple satPostion;
+    
     for(i = od->istart; i < od->iend; ++i)
     {
         ecount += 1;
@@ -117,6 +121,23 @@ void solver::buildS(int& samplingtime)
                         S_arcnum.push_back(j);
                         //prn IDs are in the range [1-120]G32+R24+E30+C34
                         S_prn.push_back(id);
+			
+			
+			//Get position
+			for(int n=0; n < nd->ephemeris_G[id-1].size() - 1 ; ++n)
+			{
+			  timeDiff =  od->timeline_main[i] - 
+				      nd->ephemeris_G[id-1][n].Toc;
+			  if ( timeDiff > 0 && timeDiff <= 7200) //2 hours
+			  {
+			    nd->getPositionGE(nd->ephemeris_G[n], 
+					      timeDiff, 
+					      satPostion);
+			  }
+			}
+			
+			
+			
                     }
                 }
             }
