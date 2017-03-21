@@ -160,12 +160,16 @@ class solver
          * of object's lifetime.
 	 */
         void cleanUp();
+	
+	
+	//!Maximum sampling block size for vector S.
+	int SdimbMax;
 
 
     private:
       
         solver(); //!< default hidden Constructor 
-	    solutionMethod method; //!< @ref solutionMethod enumeration defining type of solution.       
+        solutionMethod method; //!< @ref solutionMethod enumeration defining type of solution.       
 
 
 };

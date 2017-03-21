@@ -92,6 +92,8 @@ void solver::buildS(int& samplingtime)
 
     int Sstart = 0;
     int id = 0;
+    int Scount = 0; //value count in vector S
+    int numBlocks = 0; //sampling block count
     
     for(i = od->istart; i < od->iend; ++i)
     {
@@ -194,9 +196,9 @@ void solver::buildS(int& samplingtime)
             ecount = 0; //reset epoch counter
             Sstart = S.size();*/
             
-            SdimVec.push_back( S.size() - count );
-            OffSetVec.push_back( count );
-            count = S.size();
+            SdimVec.push_back( S.size() - Scount );
+            OffSetVec.push_back( Scount );
+            Scount = S.size();
             if( SdimVec.back() > SdimbMax )
             {
                 SdimbMax = SdimVec.back();
