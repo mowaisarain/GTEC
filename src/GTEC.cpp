@@ -68,7 +68,7 @@ int main(int argc, char* argv[])
 
 
     //Create solver object
-    solver sys(obs, navdata);
+    solver sys(obs, navdata, io);
 
     
     //building S

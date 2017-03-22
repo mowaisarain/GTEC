@@ -61,9 +61,9 @@ class inout
     int intrpolIntrvl;
     int deg;
     int numCoeffs;
-    
+    int rh;
 
-    //Observation file names from imput directory
+     //Observation file names from imput directory
 	std::vector<std::string> obsfiles;	 
     
     //Navigation file names from imput directory

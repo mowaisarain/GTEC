@@ -943,7 +943,7 @@ void navigation::applyRotations(float& Lk, float& ik, float& uk,
 
 
 // This routine has some precision problem !
-void ecefToEllipsoidal(const triple& ecef, triple& ellipsoid)
+void navigation::ecefToEllipsoidal(const triple& ecef, triple& ellipsoid)
 {
 	double phi0 = 0.0;
 	double h0 = 0.0;
@@ -983,7 +983,7 @@ void ecefToEllipsoidal(const triple& ecef, triple& ellipsoid)
 
 
 //Routine to calculate satellite elevation
-void satElevAzim(triple& markerECEF, triple& sat, triple& markerEllip, double& elevation, double& azimuth)
+void navigation::satElevAzim(triple& markerECEF, triple& sat, triple& markerEllip, double& elevation, double& azimuth)
 {
 	//compute line of sight vector
 	double p[3];
@@ -1028,7 +1028,7 @@ void satElevAzim(triple& markerECEF, triple& sat, triple& markerEllip, double& e
 //This routine calculates IPP ionospheric pierce point in cartesian
 //using sphere-line euation and reference height of ionosphere (given as input)
 //marker (station) and satellite positions are also inputs
-int computeIPP(const triple& marker, const triple& sat, const double& rh, triple& IPP, double& coschi)
+int navigation::computeIPP(const triple& marker, const triple& sat, const double& rh, triple& IPP, double& coschi)
 {
 	int status;
 	double scaling = 1000000.0;

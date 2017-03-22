@@ -231,6 +231,27 @@ void inout::process_Inputs(int ac, char* args[])
                         exit(1);
                     }
                 }
+                else if (parameter == "REFHEIGHT")
+                {
+                    //Set reference ionosphere height
+                    value = line.substr(line.find( '=' )+1);
+                    try
+                    {
+                        rh = stoi(value);
+                    }
+                    catch (std::exception& e)
+                    {
+                        std::cout << "Invalid parameter value in config file at line: " << lineNumber << "\n";
+                        exit(1);
+                    }
+                    //Ionosphere height range (150-600)
+                    if(rh < 150 || rh > 600)
+                    {
+                        std::cout << "Invalid parameter value in config file at line: " << lineNumber << "\n";
+                        std::cout << "Valid range for REFHEIGHT is (150-600).\n";
+                        exit(1);
+                    }
+                }
                 else
                 {
                     //Invalid parameter

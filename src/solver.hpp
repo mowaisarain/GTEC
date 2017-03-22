@@ -35,6 +35,7 @@
 #include "ObsData.hpp"
 #include "navigation.hpp"
 #include "constants.hpp"
+#include "inout.hpp"
 
 
 /**
@@ -60,7 +61,7 @@ class solver
 	 * @param ndata Navigation data (@ref navigation).
 	 * @param solType Option defining solution method (@ref solutionMethod).
 	 */
-        solver(ObsData& odata, navigation& ndata, solutionMethod solType);
+        solver(ObsData& odata, navigation& ndata, inout& in, solutionMethod solType);
 
 
 	
@@ -70,14 +71,17 @@ class solver
 	 * @param odata Observation data (@ref ObsData).
 	 * @param ndata Navigation data (@ref navigation).
 	 */
-        solver(ObsData& odata, navigation& ndata);
+        solver(ObsData& odata, navigation& ndata, inout& in);
 	
 	
 	//! Pointer to @ref ObsData object.
 	ObsData* od; 
 	
 	//! Pointer to @ref navigation object.
-	navigation* nd; 
+	navigation* nd;
+    
+	//! Pointer to @ref inout object.
+	inout* inp; 
 
 	
         //! Stores matrix B.

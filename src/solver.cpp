@@ -33,7 +33,7 @@
 #include "triple.hpp"
 
 //Constructor with system options
-solver::solver(ObsData& odata, navigation& ndata, solutionMethod solType)
+solver::solver(ObsData& odata, navigation& ndata, inout& in, solutionMethod solType)
 {
   //set system options
   method = solType;
@@ -41,12 +41,13 @@ solver::solver(ObsData& odata, navigation& ndata, solutionMethod solType)
   //set ObsData and navigation pointers
   od = &odata;
   nd = &ndata;
+  inp = &in;
 };
 
 
 
 //Constructor with default system options
-solver::solver(ObsData& odata, navigation& ndata)
+solver::solver(ObsData& odata, navigation& ndata, inout& in)
 {
   //set default system options
   method = GENERAL;
@@ -54,6 +55,7 @@ solver::solver(ObsData& odata, navigation& ndata)
   //set ObsData and navigation pointers
   od = &odata;
   nd = &ndata;
+  inp = &in;
 };
 
 
@@ -97,7 +99,10 @@ void solver::buildS(int& samplingtime)
     int numBlocks = 0; //sampling block count
     
     int timeDiff;
-    triple satPostion;
+    triple satXYZ;
+    triple satLatLon;
+    triple ippXYZ;
+    double zenith;
     
     for(i = od->istart; i < od->iend; ++i)
     {
@@ -130,10 +135,16 @@ void solver::buildS(int& samplingtime)
 				      nd->ephemeris_G[id-1][n].Toc;
 			  if ( timeDiff > 0 && timeDiff <= 7200) //2 hours
 			  {
-			    nd->getPositionGE(nd->ephemeris_G[n], 
+			    nd->getPositionGE(nd->ephemeris_G[id-1][n], 
 					      timeDiff, 
-					      satPostion);
+					      satXYZ);
+                //convert to Lat/Long
+                nd->ecefToEllipsoidal(satXYZ,satLatLon);
+                //Compute IPP and coschi
+                nd->computeIPP(od->MarkerPosition, satXYZ, inp->rh, ippXYZ, zenith);
+                
 			  }
+              
 			}
 			
 			
@@ -228,6 +239,7 @@ void solver::buildS(int& samplingtime)
         }
         
     }
+    
     
 };
 
