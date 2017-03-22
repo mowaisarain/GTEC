@@ -102,6 +102,8 @@ void solver::buildS(int& samplingtime)
     triple satXYZ;
     triple satLatLon;
     triple ippXYZ;
+    triple ippLatLon;
+    triple markerLatLon;
     double zenith;
     
     for(i = od->istart; i < od->iend; ++i)
@@ -138,11 +140,14 @@ void solver::buildS(int& samplingtime)
 			    nd->getPositionGE(nd->ephemeris_G[id-1][n], 
 					      timeDiff, 
 					      satXYZ);
-                //convert to Lat/Long
-                nd->ecefToEllipsoidal(satXYZ,satLatLon);
+                //convert satXYZ to Lat/Long
+                nd->ecefToEllipsoidal(satXYZ, satLatLon);
                 //Compute IPP and coschi
                 nd->computeIPP(od->MarkerPosition, satXYZ, inp->rh, ippXYZ, zenith);
-                
+                //convert ippXYZ to Lat/Long
+                nd->ecefToEllipsoidal(ippXYZ, ippLatLon);
+                //convert ippXYZ to Lat/Long
+                nd->ecefToEllipsoidal(od->MarkerPosition, markerLatLon);
 			  }
               
 			}
