@@ -957,8 +957,8 @@ void navigation::ecefToEllipsoidal(const triple& ecef, triple& ellipsoid)
 
 	int iter = 0;
     
-    //Calculation of Longitude
-	ellipsoid.Y = atan(ecef.Y/ecef.X);  
+    //Calculation of Longitude (East) in degrees
+	ellipsoid.Y = (atan(ecef.Y/ecef.X) * toDegrees) + 360.0;  
 
 	//calculate phi(Latitude) by iterative method
 	//first set initial values

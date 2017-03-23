@@ -34,6 +34,13 @@
 #ifndef CONSTANTS_HPP
 #define CONSTANTS_HPP
 
+
+
+const long double PI = 3.141592653589793L;
+const long double toDegrees = 57.29577951308232L;
+const long double toRadians = 0.017453292519943295L;
+
+
 const int GPS_SIZE = 32;
 const int GLO_SIZE = 24;
 const int GAL_SIZE = 30;
