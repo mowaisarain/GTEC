@@ -976,6 +976,9 @@ void navigation::ecefToEllipsoidal(const triple& ecef, triple& ellipsoid)
 		h0 = ellipsoid.Z;
 	}
 	while(change_phi > 0.0000005 || change_h > 0.0000005);
+    
+    //Latitude in degrees
+    ellipsoid.X = ellipsoid.X * toDegrees;
 
 };
 
