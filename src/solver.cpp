@@ -31,6 +31,7 @@
 
 #include "solver.hpp"
 #include "triple.hpp"
+#include <cmath>
 
 //Constructor with system options
 solver::solver(ObsData& odata, navigation& ndata, inout& in, solutionMethod solType)
@@ -106,6 +107,30 @@ void solver::buildS(int& samplingtime)
     triple markerLatLon;
     double zenith;
     
+    double xA;        
+    double yA;
+    double dt;
+    double PI2 = 2.0 * M_PI;
+    double varFactor = PI2 / 86400;
+    
+    int stStart = od->timeline_main[od->istart];            // valid first epoch
+    int tMid;
+    bool evenOdd = ( ( nepochs_st % 2) == 0 );
+    int tOffSet = (nepochs_st - 1) / 2;
+    int tOffSet1 = (nepochs_st / 2);
+    int tOffSet2 = (nepochs_st / 2) - 1;
+    
+    
+    if ( evenOdd )
+    {
+      tMid = ( od->timeline_main[od->istart + tOffSet1] +
+               od->timeline_main[od->istart + tOffSet2] ) / 2;
+    }
+    else
+    {
+      tMid = od->timeline_main[od->istart + tOffSet];
+    }
+    
     for(i = od->istart; i < od->iend; ++i)
     {
         ecount += 1;
@@ -140,14 +165,17 @@ void solver::buildS(int& samplingtime)
 			    nd->getPositionGE(nd->ephemeris_G[id-1][n], 
 					      timeDiff, 
 					      satXYZ);
-                //convert satXYZ to Lat/Long
-                nd->ecefToEllipsoidal(satXYZ, satLatLon);
-                //Compute IPP and coschi
-                nd->computeIPP(od->MarkerPosition, satXYZ, inp->rh, ippXYZ, zenith);
-                //convert ippXYZ to Lat/Long
-                nd->ecefToEllipsoidal(ippXYZ, ippLatLon);
-                //convert ippXYZ to Lat/Long
-                nd->ecefToEllipsoidal(od->MarkerPosition, markerLatLon);
+                            //convert satXYZ to Lat/Long
+                            nd->ecefToEllipsoidal(satXYZ, satLatLon);
+                            //Compute IPP and coschi
+                            nd->computeIPP(od->MarkerPosition, satXYZ, inp->rh, ippXYZ, zenith);    
+                            //convert ippXYZ to Lat/Long
+                            nd->ecefToEllipsoidal(ippXYZ, ippLatLon);
+                            //convert ippXYZ to Lat/Long
+                            nd->ecefToEllipsoidal(od->MarkerPosition, markerLatLon);
+                            
+                            xA = ippLatLon.Y - markerLatLon.Y + 
+                                 varFactor * ((od->timeline_main[i] - tMid)/60);
 			  }
               
 			}
@@ -241,6 +269,20 @@ void solver::buildS(int& samplingtime)
                 SdimbMax = SdimVec.back();
             }
             numBlocks += 1;
+            
+            
+            // set stStart and tMid
+            stStart = od->timeline_main[i+1];               // the next epoch
+            if (evenOdd)
+	    {
+                tMid = (od->timeline_main[(i+1) + tOffSet1] +
+			od->timeline_main[(i+1) + tOffSet2]) / 2;
+            }
+            else
+	    {
+                tMid = od->timeline_main[(i+1) + tOffSet];
+            }
+            
         }
         
     }
