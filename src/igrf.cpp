@@ -340,12 +340,19 @@ void igrf::computeField(double& r,
 
 
 
-double igrf::getMODIP(triple& pos,
-                      int& t)
+double igrf::getMODIP(const triple& pos)
                       {
-                          double H, F, D, I;
-                          computeField(pos.Z,pos.X,pos.Y,t,H,F,D,I);
-                          return atan( I / sqrt(cos(pos.X)) );
+                          //get inclination
+                          double lat1,lat2,lon1,lon2;
+                          lat1 = floor(pos.X);
+                          lon1 = floor(pos.Y);
+                          lat2 = ceil(pos.X);
+                          lon2 = ceil(pos.Y);
+                          
+                          std::cout << "original: " << pos.X << " " << pos.Y << std::endl;
+                          std::cout << "floor: " << lat1 << " " << lon1 << std::endl;
+                          std::cout << "ceil: " << lat2 << " " << lon2 << std::endl;
+                          std::cout << std::endl;
                       }
 
 

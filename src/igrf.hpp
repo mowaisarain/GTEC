@@ -66,13 +66,11 @@ public:
     
     //!Function to compute MODIP.
     /*!This function compute MODIP (Modified Dip) given ellipsoidal coordinates of 
-     * the point and time (in unit of years).
+     * the point.
         * \param pos ellipsoidal coordinates of the point as @ref triple object.
-        * \param t time (in unit of years).
         * \return Returns computed MODIP.
         */    
-    double getMODIP(triple& pos,
-                    int& t);
+    double getMODIP(const triple& pos);
                     
                     
     void computeField(double& r,

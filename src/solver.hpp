@@ -36,6 +36,7 @@
 #include "navigation.hpp"
 #include "constants.hpp"
 #include "inout.hpp"
+#include "igrf.hpp"
 
 
 /**
@@ -61,7 +62,8 @@ class solver
 	 * @param ndata Navigation data (@ref navigation).
 	 * @param solType Option defining solution method (@ref solutionMethod).
 	 */
-        solver(ObsData& odata, navigation& ndata, inout& in, solutionMethod solType);
+        solver(ObsData& odata, navigation& ndata, inout& in, 
+               igrf& igrfModel, solutionMethod solType);
 
 
 	
@@ -71,7 +73,7 @@ class solver
 	 * @param odata Observation data (@ref ObsData).
 	 * @param ndata Navigation data (@ref navigation).
 	 */
-        solver(ObsData& odata, navigation& ndata, inout& in);
+        solver(ObsData& odata, navigation& ndata, inout& in, igrf& igrfModel);
 	
 	
 	//! Pointer to @ref ObsData object.
@@ -81,7 +83,10 @@ class solver
 	navigation* nd;
     
 	//! Pointer to @ref inout object.
-	inout* inp; 
+	inout* inp;
+    
+//! Pointer to @ref igrf object.
+	igrf* igrfm; 
 
 	
         //! Stores matrix B.

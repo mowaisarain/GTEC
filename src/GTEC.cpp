@@ -67,8 +67,11 @@ int main(int argc, char* argv[])
     std::cout << "done preprocessing..\n\n";
 
 
+    //Create IGRF object
+    igrf igrfModel(io.year);
+
     //Create solver object
-    solver sys(obs, navdata, io);
+    solver sys(obs, navdata, io, igrfModel);
 
     
     //building S

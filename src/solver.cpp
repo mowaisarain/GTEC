@@ -34,7 +34,8 @@
 #include <cmath>
 
 //Constructor with system options
-solver::solver(ObsData& odata, navigation& ndata, inout& in, solutionMethod solType)
+solver::solver(ObsData& odata, navigation& ndata, inout& in, 
+               igrf& igrfModel, solutionMethod solType)
 {
   //set system options
   method = solType;
@@ -43,12 +44,13 @@ solver::solver(ObsData& odata, navigation& ndata, inout& in, solutionMethod solT
   od = &odata;
   nd = &ndata;
   inp = &in;
+  igrfm = &igrfModel;
 };
 
 
 
 //Constructor with default system options
-solver::solver(ObsData& odata, navigation& ndata, inout& in)
+solver::solver(ObsData& odata, navigation& ndata, inout& in, igrf& igrfModel)
 {
   //set default system options
   method = GENERAL;
@@ -57,6 +59,7 @@ solver::solver(ObsData& odata, navigation& ndata, inout& in)
   od = &odata;
   nd = &ndata;
   inp = &in;
+  igrfm = &igrfModel;
 };
 
 
