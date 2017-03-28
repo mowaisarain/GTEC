@@ -61,7 +61,7 @@ public:
     /*!Constructs igrf object by reading input computed IGRF Model file, given Model year as @ref igrf_Year.
         * \param igrf_Year IGRF Model year. 
         */
-    igrf(int igrf_Year);
+    igrf(int igrf_Year, std::string inpDir);
     
     
     //!Function to compute MODIP.
@@ -72,17 +72,7 @@ public:
         */    
     double getMODIP(const triple& pos);
                     
-                    
-    void computeField(double& r,
-                      double& lat,
-                      double& lon,
-                      int& t,
-                      double& H,
-                      double& F,
-                      double& D,
-                      double& I);
 
-                    
     ~igrf();
 
 
@@ -96,56 +86,16 @@ private:
     //!Inclation on lat/long grid for station at height 0 KMs surface.
     double* stationI;    
     
-    const int pnmDim = 81;
-    
-    //!Number of time columns in igrf-12 coefficients file
-    const int numTimeCols = 25;
-    
-    //!Column size in igrf-12 coefficients file
-    const int colSize = 208;
-    
+
     //!Total size of array to store all values present in igrf-12 coefficients file
     int arraySize;
     
-    //!Array pointer
-    double* igrfCoeffs;
-    
-    //!Array pointer
-    double* pnm;
-    
-    //!start offsets for blocks of n
-    int nBlockStart[13] = {0,4,10,18,28,40,54,70,88,108,130,154,180};
-
 
     igrf();
     
     std::vector<std::string> linesplit(std::string str);
-    
-    int checkInput();
-    
-    void computePnm(double& theta);
-
-    double computeV(double& r,
-                  double& theta,
-                  double& phi,
-                  int &t);
-    
-    
-    inline int getOffSetG(int n, int m, int t);
-    inline int getOffSetH(int n, int m, int t);
-    
+            
 };
-
-
-int igrf::getOffSetG(int n, int m, int t)
-{
-  return ((t-1900)/5)*colSize + nBlockStart[n-1] + 2*m;
-}
-
-int igrf::getOffSetH(int n, int m, int t)
-{
-  return ((t-1900)/5)*colSize + nBlockStart[n-1] + 2*m+1;
-}
 
 
 

@@ -34,7 +34,7 @@
 CC      = g++
 # BOOSTLIB  defines boost lib path
 # BOOSTINC  defines boost include path
-CFLAGS  = -std=c++11 -I$(BOOSTINC) -L$(BOOSTLIB)
+CFLAGS  = -std=c++11 -I$(BOOSTINC) -L$(BOOSTLIB) -g
 LDFLAGS = -static -lboost_system -lboost_filesystem
 PROGRAM = GTEC
 SRCDIR  = src

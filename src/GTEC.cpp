@@ -68,7 +68,7 @@ int main(int argc, char* argv[])
 
 
     //Create IGRF object
-    igrf igrfModel(io.year);
+    igrf igrfModel(io.year, io.inputDirectory);
 
     //Create solver object
     solver sys(obs, navdata, io, igrfModel);

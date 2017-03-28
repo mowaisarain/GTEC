@@ -179,6 +179,8 @@ void solver::buildS(int& samplingtime)
                             
                             xA = ippLatLon.Y - markerLatLon.Y + 
                                  varFactor * ((od->timeline_main[i] - tMid)/60);
+                                 
+                            igrfm->getMODIP(ippLatLon);
 			  }
               
 			}
